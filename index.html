@@ -1,18 +1,474 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Metro UI</title>
-        <link rel="stylesheet" href="css/metro.min.css">
-        <link rel="stylesheet" href="css/metro-schemes.min.css">
-        <link rel="stylesheet" href="css/metro-rtl.min.css">
-        <link rel="stylesheet" href="css/metro-responsive.min.css">
-        <link rel="stylesheet" href="css/metro-icons.min.css">
-        <link rel="stylesheet" href="css/metro-colors.min.css">
-        <script src="js/jquery-3.1.0.min.js"></script>
-        <script src="js/metro.min.js"></script>
-        <script src="js/layout.js"></script>
-    </head>
-    <body>
-        
-    </body>
+<html style="background-color:black;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <title>Metro UI</title>
+    <link rel="stylesheet" href="css/metro.min.css">
+    <link rel="stylesheet" href="css/metro-schemes.min.css">
+    <link rel="stylesheet" href="css/metro-rtl.min.css">
+    <link rel="stylesheet" href="css/metro-responsive.min.css">
+    <link rel="stylesheet" href="css/metro-icons.min.css">
+    <link rel="stylesheet" href="css/metro-colors.min.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery.mousewheel-3.0.6.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="js/metro.min.js"></script>
+    <script src="js/layout.js"></script>
+    <style>
+    html {
+        overflow: hidden;
+    }
+    </style>
+</head>
+
+<body style="opacity: 0">
+    <div class="grid">
+        <div class="row">
+            <div class="app-bar darcula">
+                <!-- <a class="app-bar-element" href="..\">Home</a> -->
+                <ul class="app-bar-menu">
+                    <li id="menu_toggle" style="width: 52px;opacity: 0;">
+                        <a>
+                            <span class="mif-menu mif-2x icon" style="line-height: 3.125rem;"></span>
+                        </a>
+                    </li>
+                    <li onclick="_resize();">
+                        <a>
+                            <span class="mif-users mif-2x icon"></span> USER
+                        </a>
+                    </li>
+                    <li>
+                        <!-- <a class="dropdown-toggle">Products</a> -->
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a>Windows 10</a></li>
+                            <li><a>Spartan</a></li>
+                            <li><a>Outlook</a></li>
+                            <li><a>Office 2015</a></li>
+                            <li class="divider"></li>
+                            <li><a class="dropdown-toggle">Other Products</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a>Internet Explorer 10</a></li>
+                                    <li><a>Skype</a></li>
+                                    <li><a>Surface</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li><a>Support</a></li> -->
+                    <!-- <li><a>Help</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div id="sidebar" style="float:left;/*background-color: #3c3f41;*/overflow: auto;">
+                <ul class="sidebar darcula" id="sidebar">
+                    <li>
+                        <a href="#">
+                            <span class="mif-apps icon"></span>
+                            <span class="title">all items</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-vpn-publ icon"></span>
+                            <span class="title">websites</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-drive-eta icon"></span>
+                            <span class="title">Virtual machines</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-cloud icon"></span>
+                            <span class="title">Cloud services</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-database icon"></span>
+                            <span class="title">SQL Databases</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-cogs icon"></span>
+                            <span class="title">Automation</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-apps icon"></span>
+                            <span class="title">all items</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-vpn-publ icon"></span>
+                            <span class="title">websites</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="mif-vpn-lock icon"></span>
+                            <span class="title">websites</span>
+                            <span class="counter">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container" style="float:left;background-color: #5F666A;overflow: auto; border-radius:10px;">
+                <div class="content" style="padding :15px;">
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                    <a>/e964</a>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
