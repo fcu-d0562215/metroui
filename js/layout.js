@@ -1,79 +1,93 @@
-var sidebar200 = 200;
 $(window).resize(function() {
-    _resize()
+    _resize("onresize")
 });
 
 $(document).ready(function() {
-    if (_resize()) {
+    if (_resize("onready")) {
         $("body").animate({ opacity: 1 }, 500).css('background-color', '#3c3f41');
     }
-
+    $(".sidebar0>li").on('click', '', function(event) {
+        event.preventDefault();
+        $(".d-menu").css('z-index', '0');
+        _resize();
+    });
 });
 
-function _toggle_sidebar() {
-    var sidebar = $(".sidebar");
-    var fullsidebar = $(".sidebar.compact");
-    var thinksidebar = $(".sidebar.sidebar200");
-    sidebar.toggleClass('compact').toggleClass('sidebar200 ');
-    if (sidebar.hasClass('sidebar200')) {
-        $(".container").width(_width() - sidebar200);
-    } else if (sidebar.hasClass('compact')) {
-        $(".container").width(_width() - 52);
-    }
-}
 
-function _resize() {
+function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e = null) {
     var x = _width(),
         y = _height(),
         app_bar = $(".app-bar"),
-        sidebar = $("#sidebar"),
-        sidebar_item = $(".sidebar li"),
         container = $(".container"),
-        app_bar_height = app_bar.height(),
+        sidebar = $("#sidebar");
+    if (resize_mode != null) {
+        if (resize_mode == "sidebar") {
+            if (a == 0) {
+                return false;
+            }
+            if (a == 1) {
+                container.width(x - 52);
+            } else if (a == 2) {
+                container.width(x - 200);
+            }
+
+        } else if (resize_mode == "onready") {
+            var sidebar2 = $(".sidebar0");
+
+            if (x > 800) {
+                sidebar2.addClass('sidebar2');
+                container.width(x - 200);
+            } else {
+                sidebar2.addClass('sidebar');
+                container.width(x - 52);
+            }
+        } else if (resize_mode == "onresize") {
+            if (x < 800 && $(".sidebar0").hasClass('sidebar2')) {
+                _toggle_sidebar();
+            } else {
+                container.width(x - sidebar.width())
+            }
+        }
+    }
+    var sidebar_item = $(".sidebar0>li"),
         sidebar_minheight = sidebar_item.height() * sidebar_item.length,
+        app_bar_height = app_bar.height(),
         sidebar_content_height = y - app_bar_height;
+    sidebar_item.each(function(index, el) {
+        console.log(index + "+")
+    })
+    console.log();
     if (sidebar_content_height < sidebar_minheight) {
-        $(".sidebar").height(sidebar_minheight);
+        $(".sidebar0").height(sidebar_minheight);
         container.height(sidebar_minheight);
     } else {
-        $(".sidebar").height(sidebar_content_height);
+        $(".sidebar0").height(sidebar_content_height);
     }
     container.height(sidebar_content_height);
-    var container_width = x - sidebar.width();
-    if (x > 800) {
-        if ($("#menu_toggle").css('opacity') == 0) {
-            $("#menu_toggle").css('opacity', '1').on('click', function() {
-                _toggle_sidebar();
-            });
-        }
-        if ($(".sidebar").hasClass('compact') == false && $(".sidebar").hasClass('sidebar200') == false) {
-            $(".sidebar").toggleClass('sidebar200');
-            container_width = x - sidebar200;
-        }
-    } else {
-        if (($(".sidebar").hasClass('compact')) == false) {
-            $(".sidebar").toggleClass('compact');
-        } else if ($(".sidebar").hasClass('sidebar200')) {
-            _toggle_sidebar();
-            container_width = x - 52;
-        }
-        console.log($("#menu_toggle").css('opacity'))
-        if ($("#menu_toggle").css('opacity')) {
-            $("#menu_toggle").css('opacity', '0').off();
 
-        }
-
-    }
-    container.width(container_width - 1)
-    $(".container").mCustomScrollbar({
-        theme: "minimal"
-    });
-    sidebar.mCustomScrollbar({
-        theme: "minimal"
-    });
     $(".content").html("").append(_width()).append('<br>').append(_height())
+
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+    container.mCustomScrollbar({
+        theme: "minimal"
+    });
+    console.log(resize_mode)
     return true;
-    //console.log(container_height+" "+window_height+" "+app_bar_height+" "+x+" "+y);*/
+}
+
+function _toggle_sidebar() {
+    var sidebar = $(".sidebar0"),
+        mode = 0;
+    if (sidebar.hasClass('sidebar2')) {
+        sidebar.addClass('sidebar').removeClass('sidebar2');
+        mode = 1;
+    } else if (sidebar.hasClass('sidebar')) {
+        sidebar.addClass('sidebar2').removeClass('sidebar');
+        mode = 2;
+    }
+    return _resize("sidebar", mode);
 }
 
 function _width() {

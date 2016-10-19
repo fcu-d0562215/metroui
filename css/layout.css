@@ -1,6 +1,12 @@
-.sidebar200{
+.sidebar2{
     width: 200px;
+}
+.sidebar2{
+    transition: all .2s ease
 }
 .container{
     transition: all .2s ease;
+}
+.d-menu{
+    z-index: 9;
 }

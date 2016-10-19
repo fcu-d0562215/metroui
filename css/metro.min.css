@@ -10974,12 +10974,12 @@ input[type=submit].link:hover {
 
 .sidebar2 {
     text-align: left;
-    background: #fff;
+    /*background: #fff;*/
     max-width: 15.625rem;
     margin: 0;
     padding: 0;
     position: relative;
-    border: 1px solid #eee;
+    /*border: 1px solid #eee;*/
     width: 100%
 }
 
@@ -11271,13 +11271,16 @@ input[type=submit].link:hover {
     transition: all .3s ease
 }
 
+.sidebar2.dark li:first-child {
+    border-top: 0px #5c5c5c solid
+}
 .sidebar2.dark li {
     border-top: 1px #5c5c5c solid
 }
 
 .sidebar2.dark li a,
 .sidebar2.dark li.title {
-    background-color: #3D3D3D;
+    background-color: #3c3f41;
     color: #fff
 }
 
