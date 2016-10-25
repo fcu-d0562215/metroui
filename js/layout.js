@@ -27,17 +27,27 @@ function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e =
     var x = _width(),
         y = _height(),
         app_bar = $(".app-bar"),
-        container = $(".container"),
+        container = $(".container2"),
         sidebar = $("#sidebar");
     if (resize_mode != null) {
         if (resize_mode == "sidebar") {
             if (a == 0) {
                 return false;
             }
-            if (a == 1) {
-                container.width(x - 52);
-            } else if (a == 2) {
-                container.width(x - 200);
+            if (x >= 500) {
+                container.css('right', '0').css('position', 'relative');
+                if (a == 1) {
+                    container.width(x - 52);
+                } else if (a == 2) {
+                    container.width(x - 200);
+                }
+            } else {
+                if (a == 1) {
+                    container.css('right', '0').css('position', 'relative');
+                } else if (a == 2) {
+                    container.css('right', '-148px').css('position', 'absolute');
+                }
+
             }
 
         } else if (resize_mode == "onready") {
@@ -72,7 +82,7 @@ function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e =
     sidebar.height(sidebar_content_height)
     container.height(sidebar_content_height);
 
-    $(".content").html("").append(_width()).append('<br>').append(_height())
+    $(".content").append(_width()).append('<br>').append(_height()).append('<br>').append($(".content").width()).append('<br>')
 
     $("#sidebar").mCustomScrollbar({
         theme: "minimal"
