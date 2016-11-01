@@ -1,9 +1,32 @@
 $(window).resize(function() {
     _resize("onresize")
 });
-
 $(document).ready(function() {
     if (_resize("onready")) {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal",
+            scrollEasing: "easeInOutQuad",
+            autoDraggerLength: true,
+
+            advanced: {
+                updateOnBrowserResize: true,
+                updateOnContentResize: true
+            }
+        });
+        $(".container2").mCustomScrollbar({
+            theme: "minimal",
+            scrollEasing: "easeInOutQuad",
+            autoDraggerLength: true,
+            keyboard: {
+                enable: true,
+                scrollType: "stepless"
+            },
+            contentTouchScroll: 30,
+            advanced: {
+                updateOnBrowserResize: true,
+                updateOnContentResize: true
+            }
+        });
         $("body").animate({ opacity: 1 }, 500).css('background-color', '#3c3f41');
     }
     $(".stick>a").on('click', '', function(event) {
@@ -11,13 +34,13 @@ $(document).ready(function() {
         if ($(".sidebar0").hasClass('sidebar')) {
             _toggle_sidebar();
         }
-        $(".d-menu").css('z-index', '0');
+        $(".sidebar0 .d-menu").css('z-index', '0');
     });
     $(".stick>ul>li>a").on('click', '', function(event) {
         if ($(".sidebar0").hasClass('sidebar2') && _width() <= 800) {
             _toggle_sidebar();
         }
-        $(".d-menu").css('z-index', '0');
+        $(".sidebar0 .d-menu").css('z-index', '0');
         event.preventDefault();
     });
 });
@@ -26,7 +49,7 @@ $(document).ready(function() {
 function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e = null) {
     var x = _width(),
         y = _height(),
-        app_bar = $(".app-bar"),
+        app_bar = $(".app-bar>.container_metro>.app-bar-element.branding"),
         container = $(".container2"),
         sidebar = $("#sidebar");
     if (resize_mode != null) {
@@ -51,13 +74,16 @@ function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e =
             }
 
         } else if (resize_mode == "onready") {
-            var sidebar2 = $(".sidebar0");
-
+            var sidebar2 = $(".sidebar0"),
+                sidebar_icon = sidebar2.find('.toggle_icon');
+            console.log(sidebar_icon)
             if (x > 800) {
                 sidebar2.addClass('sidebar2');
+                sidebar_icon.addClass('mif-chevron-thin-left')
                 container.width(x - 200);
             } else {
                 sidebar2.addClass('sidebar');
+                sidebar_icon.addClass('mif-chevron-thin-right')
                 container.width(x - 52);
             }
         } else if (resize_mode == "onresize") {
@@ -75,32 +101,37 @@ function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e =
     sidebar_item.each(function(index, el) {
         sidebar_minheight += $(this).height();
     })
-    if (sidebar_content_height < sidebar_minheight) {} else {
-        //$(".sidebar0").height(sidebar_content_height);
-    }
     $(".sidebar0").height(sidebar_minheight);
     sidebar.height(sidebar_content_height)
     container.height(sidebar_content_height);
 
-    $(".content").append(_width()).append('<br>').append(_height()).append('<br>').append($(".content").width()).append('<br>')
-
-    $("#sidebar").mCustomScrollbar({
-        theme: "minimal"
-    });
-    container.mCustomScrollbar({
-        theme: "minimal"
-    });
+    //$(".content").append(_width()).append('<br>').append(_height()).append('<br>').append($(".content").width()).append('<br>');
+    scrolltop();
     return true;
+}
+
+function scrolltop() {
+    return setTimeout(function() { $('.container2').mCustomScrollbar('scrollTo', 'top'); }, 200);
+}
+
+function scrollbottom() {
+    return setTimeout(function() { $('.container2').mCustomScrollbar('scrollTo', 'bottom'); }, 200);
 }
 
 function _toggle_sidebar() {
     var sidebar = $(".sidebar0"),
+        sidebar_icon = sidebar.find('.toggle_icon'),
         mode = 0;
+    console.log(sidebar_icon)
     if (sidebar.hasClass('sidebar2')) {
         sidebar.addClass('sidebar').removeClass('sidebar2');
+        sidebar_icon.removeClass('mif-chevron-thin-left').addClass('mif-chevron-thin-right')
+
         mode = 1;
     } else if (sidebar.hasClass('sidebar')) {
         sidebar.addClass('sidebar2').removeClass('sidebar');
+        sidebar_icon.removeClass('mif-chevron-thin-right').addClass('mif-chevron-thin-left')
+
         mode = 2;
     }
     return _resize("sidebar", mode);
