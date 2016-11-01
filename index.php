@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/metro-schemes.min.css">
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="css/layout.css">
-    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/ajax.js"></script>
     <script src="js/jquery-ui-1.10.4.min.js"></script>
     <script src="js/jquery.mousewheel-3.0.6.min.js"></script>
@@ -237,9 +237,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="sharefolder.zip">
+                        <a>
                             <span class="mif-cloud icon"></span>
-                            <span class="title">期中考題目與答案</span>
+                            <span class="title">Cloud services</span>
                             <span class="counter">0</span>
                         </a>
                     </li>
@@ -248,7 +248,6 @@
             <div class="container2" style="float:left;background-color: /*#5F666A*/#FFFFFF;overflow: auto; border-radius:10px;"><div id="loading" data-role="preloader" data-type="cycle" data-style="color" style="position: absolute;right: 0;margin: 5px;display: none;opacity: 0;"></div>
                 <div class="content container-fluid" style="padding :15px;">
                     <div class="row">
-                    asdasdasd
                     </div>
                 </div>
             </div>
