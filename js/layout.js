@@ -97,12 +97,16 @@ function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e =
     var sidebar_item = $(".sidebar0>li"),
         sidebar_minheight,
         app_bar_height = app_bar.height(),
-        sidebar_content_height = y - app_bar_height;
+        sidebar_content_height = y - app_bar_height,
+        appbar = $(".app-bar-menu"),
+        appbar_logo = $(".app-bar-element.branding");
     sidebar_item.each(function(index, el) {
         sidebar_minheight += $(this).height();
     })
     $(".sidebar0").height(sidebar_minheight);
-    sidebar.height(sidebar_content_height)
+    sidebar.height(sidebar_content_height);
+    //appbar.width( x-appbar_logo.width()-appbar_logo.css('padding-left').replace("px","")-appbar_logo.css('padding-right').replace("px","")-3 )
+    //console.log(x,appbar_logo.width(),appbar_logo.css('padding-left'),appbar_logo.css('padding-right'))
     container.height(sidebar_content_height);
 
     //$(".content").append(_width()).append('<br>').append(_height()).append('<br>').append($(".content").width()).append('<br>');

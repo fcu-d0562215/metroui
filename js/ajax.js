@@ -87,7 +87,11 @@ function homepage() {
     })
 
 }
-
+function test(){
+    $(".app-bar-menu").append("<div class='app-bar-element place-right'><a class='dropdown-toggle fg-white'><span class='mif-enter'></span> Enter</a><div class='app-bar-drop-container bg-white fg-dark place-right' data-role='dropdown' data-no-close='true'><div class='padding20'><form><h4 class='text-light'>Login to service...</h4><div class='input-control text'><span class='mif-user prepend-icon'></span><input></div><div class='input-control text'><span class='mif-lock prepend-icon'></span><input type='password'></div><label class='input-control checkbox small-check'><input type='checkbox'><span class='check'></span><span class='caption'>Remember me</span></label><div class='form-actions'><button class='button'>Login</button><button class='button link'>Cancel</button></div></form></div></div></div>");
+    var a = '<li class="stick"><a><span class="mif-tree icon"></span><span class="title">Sub menu</span><span class="counter">4</span></a><ul class="d-menu" data-role="dropdown" style="display:none"><li><a onclick=><span class="mif-vpn-publ icon"></span> Subitem 1</a></li><li><a >Subitem 2</a></li><li><a >Subitem 3</a></li><li><a >Subitem 4</a></li><li class="disabled"><a>Subitem 5</a></li></ul></li>'
+    $(".sidebar0").append(a)
+}
 function page(url) {
     event.preventDefault();
     var formdata = {};

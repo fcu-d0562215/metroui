@@ -39,3 +39,6 @@
 [class*="col-"]:nth-of-type(6n) {
     background-color: purple;
 }
+.app-bar.darcula .app-bar-drop-container:before{
+    background-color: white;
+}

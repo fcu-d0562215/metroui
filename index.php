@@ -40,7 +40,34 @@
         <div class="row_metro">
             <header class="app-bar darcula" data-role="appbar">
                 <div class="container_metro">
-                    <a onclick="homepage()" class="app-bar-element branding mif-home icon"><span class="mif-home icon"></span> 首頁</a>
+                    <a onclick="test()" class="app-bar-element branding mif-home icon"><span class="mif-home icon"></span> 首頁</a>
+                    <div class="app-bar-element place-right">
+                        <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
+                        <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true">
+                            <div class="padding20">
+                                <form>
+                                    <h4 class="text-light">Login to service...</h4>
+                                    <div class="input-control text">
+                                        <span class="mif-user prepend-icon"></span>
+                                        <input type="text">
+                                    </div>
+                                    <div class="input-control text">
+                                        <span class="mif-lock prepend-icon"></span>
+                                        <input type="password">
+                                    </div>
+                                    <label class="input-control checkbox small-check">
+                                        <input type="checkbox">
+                                        <span class="check"></span>
+                                        <span class="caption">Remember me</span>
+                                    </label>
+                                    <div class="form-actions">
+                                        <button class="button">Login</button>
+                                        <button class="button link">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <ul class="app-bar-menu">
                         <li>
                             <a href="#" class="dropdown-toggle">Base CSS</a>
@@ -190,9 +217,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <span class="app-bar-pull"></span>
                     <div class="app-bar-pullbutton automatic" style="display: none;"></div>
-                    <div class="clearfix" style="width: 0;"></div>
                     <nav class="app-bar-pullmenu hidden flexstyle-app-bar-menu" style="display: none;">
                         <ul class="app-bar-pullmenubar hidden app-bar-menu"></ul>
                     </nav>
@@ -245,7 +270,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="container2" style="float:left;background-color: /*#5F666A*/#FFFFFF;overflow: auto; border-radius:10px;"><div id="loading" data-role="preloader" data-type="cycle" data-style="color" style="position: absolute;right: 0;margin: 5px;display: none;opacity: 0;"></div>
+            <div class="container2" style="float:left;background-color: /*#5F666A*/#FFFFFF;overflow: auto; border-radius:10px;">
+                <div id="loading" data-role="preloader" data-type="cycle" data-style="color" style="position: absolute;right: 0;margin: 5px;display: none;opacity: 0;"></div>
                 <div class="content container-fluid" style="padding :15px;">
                     <div class="row">
                     </div>
