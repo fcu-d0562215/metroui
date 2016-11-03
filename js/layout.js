@@ -128,13 +128,13 @@ function _toggle_sidebar() {
         mode = 0;
     console.log(sidebar_icon)
     if (sidebar.hasClass('sidebar2')) {
-        sidebar.addClass('sidebar').removeClass('sidebar2');
         sidebar_icon.removeClass('mif-chevron-thin-left').addClass('mif-chevron-thin-right')
+        sidebar.addClass('sidebar').removeClass('sidebar2');
 
         mode = 1;
     } else if (sidebar.hasClass('sidebar')) {
-        sidebar.addClass('sidebar2').removeClass('sidebar');
         sidebar_icon.removeClass('mif-chevron-thin-right').addClass('mif-chevron-thin-left')
+        sidebar.addClass('sidebar2').removeClass('sidebar');
 
         mode = 2;
     }

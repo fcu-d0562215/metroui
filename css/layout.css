@@ -42,3 +42,6 @@
 .app-bar.darcula .app-bar-drop-container:before{
     background-color: white;
 }
+.sidebar li:hover{
+    background-color: transparent;
+}
