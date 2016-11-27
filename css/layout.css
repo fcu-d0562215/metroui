@@ -1,22 +1,4 @@
-.sidebar2 {
-    width: 200px;
-}
-
-.sidebar2 {
-    transition: all .2s ease
-}
-
-.container2 {
-    transition: all .2s ease;
-}
-
-.container {}
-
-.d-menu {
-    z-index: 9;
-}
-
-[class*="col-"]:nth-of-type(6n+1) {
+/*[class*="col-"]:nth-of-type(6n+1) {
     background-color: red;
 }
 
@@ -38,10 +20,4 @@
 
 [class*="col-"]:nth-of-type(6n) {
     background-color: purple;
-}
-.app-bar.darcula .app-bar-drop-container:before{
-    background-color: white;
-}
-.sidebar li:hover{
-    background-color: transparent;
-}
+}*/

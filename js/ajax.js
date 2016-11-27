@@ -20,7 +20,6 @@ $.ajaxSetup({
                 percentComplete = (evt.loaded / evt.total) * 20;
                 //Do something with upload progress
                 $(".progress").data("progress").set(percentComplete)
-                console.log(percentComplete);
             }
         }, false);
         //Download progress
@@ -29,7 +28,6 @@ $.ajaxSetup({
                 percentComplete = ((evt.loaded / evt.total) * 80) + 20;
                 //Do something with download progress
                 $(".progress").data("progress").set(percentComplete)
-                console.log(percentComplete);
             }
         }, false);
         return xhr;
@@ -65,22 +63,9 @@ window.onpopstate = function() {
     }
 }
 
-function buildFormData() {
-    var fd = new FormData();
-
-    for (var i = 0; i < 10000; i += 1) {
-        fd.append('data[]', Math.floor(Math.random() * 999999));
-    }
-
-    return fd;
-}
-
 function homepage() {
-    var a = buildFormData()
     $.ajax({
         url: 'homepage.php?asd=123123&dfs=134',
-        data: a,
-        processData: false,
         success: function(data) {
             $(".content>.row:first").html(data)
         }

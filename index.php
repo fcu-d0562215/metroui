@@ -40,7 +40,7 @@
         <div class="row_metro">
             <header class="app-bar darcula" data-role="appbar">
                 <div class="container_metro">
-                    <a onclick="test()" class="app-bar-element branding mif-home icon"><span class="mif-home icon"></span> 首頁</a>
+                    <a onclick="homepage()" class="app-bar-element branding mif-home icon"><span class="mif-home icon"></span> 首頁</a>
                     <div class="app-bar-element place-right">
                         <a class="dropdown-toggle fg-white"><span class="mif-enter"></span> Enter</a>
                         <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true">
