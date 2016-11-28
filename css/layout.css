@@ -21,3 +21,8 @@
 [class*="col-"]:nth-of-type(6n) {
     background-color: purple;
 }*/
+
+
+.nav-item>a{
+    cursor: pointer;
+}
