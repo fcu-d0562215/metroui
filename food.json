@@ -6,24 +6,35 @@
         "paragraph": "豚骨拉麵ラーメン 凪 Nagi，這個號稱宇宙最強的拉麵到底有多好吃，值得讓我們排半小時吃一次，只能說吃完之後真的好吃，雖稱不上宇宙第一，但是台中第一應該是實至名歸，有到老虎城看電影的朋友，在等電影開場的時候，可以順便來吃個凪 Nagi拉麵。",
         "cover":"./web網頁設計/Nagi豚王拉麵/nagi-封面.jpg",
         "img":[
-            {"picture1":"./web網頁設計/Nagi豚王拉麵/nagi-1.jpg"},
-            {"picture2":"./web網頁設計/Nagi豚王拉麵/nagi-2.jpg"},
-            {"picture3":"./web網頁設計/Nagi豚王拉麵/nagi-3.jpg"},
-            {"picture4":"./web網頁設計/Nagi豚王拉麵/nagi-4.jpg"}
-    ],
-        "map":""
+                {"picture1":"./web網頁設計/Nagi豚王拉麵/nagi-1.jpg"},
+                {"picture2":"./web網頁設計/Nagi豚王拉麵/nagi-2.jpg"},
+                {"picture3":"./web網頁設計/Nagi豚王拉麵/nagi-3.jpg"},
+                {"picture4":"./web網頁設計/Nagi豚王拉麵/nagi-4.jpg"}
+            ],
+        "lat":24.184524,
+        "long":120.645432
     },
     "Huche":
     {
         "title": "虎徹拉麵屋",
         "paragraph": "這間位於逢甲附近的麵屋虎徹，以日本名刀長曾彌虎徹做為命名這把刀也是新撰組局長近藤勇的愛刀，既然會以此命名不難想像店家希望在台中拉麵店占有什麼地位了。",
         "cover":"./web網頁設計/虎徹麵屋/封面.jpg",
-        "img":[
-            {"picture":"./web網頁設計/虎徹麵屋/1.jpg"},
+        "content":[
+            {"picture":"./web網頁設計/虎徹麵屋/1.jpg","text":"hello"},
             {"picture":"./web網頁設計/虎徹麵屋/2.jpg"},
             {"picture":"./web網頁設計/虎徹麵屋/3.jpg"},
-            {"picture":"./web網頁設計/虎徹麵屋/4.jpg"}
+            {"picture":"./web網頁設計/虎徹麵屋/4.jpg"},
+            {"text":"hello"},
+            {"text":"hello"}
         ],
-        "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3639.6178551984003!2d120.64324661512374!3d24.185131365075193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ac0e414b65359de!2z6JmO5b656bq15bGL!5e0!3m2!1sen!2stw!4v1480152836863"
+        "lat":24.184524,
+        "long":120.645432,
+        "details":{
+            "name":"麵屋虎徹(逢甲)",
+            "contact":"(04)2452-9459",
+            "address":"台中市西屯區福興北三街20號",
+            "workingHours":"(平日)17:00-23:00<br>(假日)17:24:00"
+        }
+
     }
 }
