@@ -14,82 +14,80 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/ajax.js"></script>
-
     <style>
-
-    #body{
+    #body {
         text-align: center;
     }
-
+    
     #map {
-       height: 400px;
-       width: 100%;
-      }
-
+        height: 400px;
+        width: 100%;
+    }
     </style>
-
     <script>
-
     var content
-        function loadJSON(){
-            var data_file = "./food.json";
-            var http_request = new XMLHttpRequest();
-            try{
-                http_request = new XMLHttpRequest();
-            }catch (e) {
-                alert("Your Browser Has Broke!");
-                return false;
-            }
 
-            http_request.onreadystatechange = function(){
+    function loadJSON() {
+        var data_file = "./food.json";
+        var http_request = new XMLHttpRequest();
+        try {
+            http_request = new XMLHttpRequest();
+        } catch (e) {
+            alert("Your Browser Has Broke!");
+            return false;
+        }
 
-                if(http_request.readyState == 4 ){
-                    var jsonObj = JSON.parse(http_request.responseText);
-                    var name = jsonObj.Huche
+        http_request.onreadystatechange = function() {
+
+            if (http_request.readyState == 4) {
+                var jsonObj = JSON.parse(http_request.responseText);
+                var name = jsonObj.Huche
                     // console.log(jsonObj.Huche)
                     //
                     // console.log((Object.keys(name.img).length))
                     // console.log(name.img[0])
                     // console.log(document.querySelectorAll("img")[1])
-                    document.querySelector("#title").innerHTML = name.title;
-                    document.querySelector("#paragraph").innerHTML = name.paragraph;
-                    document.querySelector("#cover").src = name.cover;
-                    // image Start
-                    if(name.img!=""){
-                        for(var i = 0 ; i < Object.keys(name.img).length ; i++){
-                            document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<img src="+name.img[i].picture+" alt='' style='margin-bottom:20px' width='40%'><br>"
+                document.querySelector("#title").innerHTML = name.title;
+                document.querySelector("#paragraph").innerHTML = name.paragraph;
+                document.querySelector("#cover").src = name.cover;
+                // image Start
+                if (name.img != "") {
+                    for (var i = 0; i < Object.keys(name.img).length; i++) {
+                        document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<img src=" + name.img[i].picture + " alt='' style='margin-bottom:20px' width='40%'><br>"
                             // document.querySelectorAll("#body div:nth-of-type(4) div:first-child img")[i].src = name.img[i].picture
                             // $("#body div:nth-of-type(3) div:first-child img").css("width","70%").css("margin-bottom","20px")
-                        }
                     }
-                    // image End
-                    // if(name.map!=""){
-                    //     document.querySelector("#body>div:nth-of-type(4)>div:nth-of-type(1)").innerHTML += "<div><p>地圖</p><div id='map'></div></div>"
-                    //     $("#body div:nth-of-type(2) div:nth-of-type(3)").addClass("col-lg-8")
-                    //     $("#body div:nth-of-type(2) div div:nth-of-type(2)").css("margin","10px").css("border","3px solid purple").css("padding","10px").addClass("col-lg-3")
-                    //     document.querySelector("iframe").src = name.map;
-                    // }
-
-
                 }
+                // image End
+                // if(name.map!=""){
+                //     document.querySelector("#body>div:nth-of-type(4)>div:nth-of-type(1)").innerHTML += "<div><p>地圖</p><div id='map'></div></div>"
+                //     $("#body div:nth-of-type(2) div:nth-of-type(3)").addClass("col-lg-8")
+                //     $("#body div:nth-of-type(2) div div:nth-of-type(2)").css("margin","10px").css("border","3px solid purple").css("padding","10px").addClass("col-lg-3")
+                //     document.querySelector("iframe").src = name.map;
+                // }
+
+
             }
-            http_request.open("GET", data_file, true);
-            http_request.send();
-            // http_request.abort()
         }
+        http_request.open("GET", data_file, true);
+        http_request.send();
+        // http_request.abort()
+    }
 
-        function initMap() {
-       var uluru = {lat: -25.363, lng: 131.044};
-       var map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 4,
-         center: uluru
-       });
-       var marker = new google.maps.Marker({
-         position: uluru,
-         map: map
-       });
-     }
-
+    function initMap() {
+        var uluru = {
+            lat: -25.363,
+            lng: 131.044
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
     </script>
 </head>
 
@@ -113,7 +111,6 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
-
                     </div>
                 </li>
             </ul>
@@ -123,32 +120,26 @@
             </form>
         </div>
     </nav>
-
     <div class="container-fluid">
         <script type="text/javascript">
         $(".container-fluid").css('margin-top', $(".navbar-fixed-top").css('height'));
         </script>
-
         <div id="body">
-
-
             <div class="row"><img id="cover" src="" width="100%" height="100%"></div>
-            <div class="row"><h1 id="title"></h1></div>
-            <div class="row"><h2 id="paragraph"></h2></div>
+            <div class="row">
+                <h1 id="title"></h1></div>
+            <div class="row">
+                <h2 id="paragraph"></h2></div>
             <div class="row">
                 <div style="border-radius:50px">
-
                 </div>
             </div>
-
-              <script>loadJSON()</script>
-
-              <script async defer
-           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk&callback=initMap">
-           </script>
-
-
-       </div>
+            <script>
+            loadJSON()
+            </script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk&callback=initMap">
+            </script>
+        </div>
     </div>
 </body>
 
