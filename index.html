@@ -18,76 +18,24 @@
     #body {
         text-align: center;
     }
-
+    
     #map {
         height: 200px;
         width: 100%;
     }
-    #body>div:first-child{
+    
+    #body>div:first-child {
         height: 20%;
     }
-    #body>div:nth-of-type(4)>div{
+    
+    #body>div:nth-of-type(4)>div {
         border: 3px solid purple;
         border-radius: 20px;
         margin-bottom: 20px;
     }
-
-
-
     </style>
     <script>
-    var content,lati,long
-    // function loadJSON() {
-    //     var data_file = "./food.json";
-    //     var http_request = new XMLHttpRequest();
-    //     try {
-    //         http_request = new XMLHttpRequest();
-    //     } catch (e) {
-    //         alert("Your Browser Has Broke!");
-    //         return false;
-    //     }
-    //
-    //     http_request.onreadystatechange = function() {
-    //
-    //         if (http_request.readyState == 4) {
-    //             var jsonObj = JSON.parse(http_request.responseText);
-    //             var name = jsonObj.Huche
-    //                 // console.log(jsonObj.Huche)
-    //                 //
-    //                 // console.log((Object.keys(name.img).length))
-    //                 // console.log(name.img[0])
-    //                 // console.log(document.querySelectorAll("img")[1])
-    //             document.querySelector("#title").innerHTML = name.title;
-    //             document.querySelector("#paragraph").innerHTML = name.paragraph;
-    //             document.querySelector("#cover").src = name.cover;
-    //             $("#cover").height((_height()*0.35));
-    //             // image Start
-    //             if (name.img != "") {
-    //                 for (var i = 0; i < Object.keys(name.img).length; i++) {
-    //                     document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<img src=" + name.img[i].picture + " alt='' style='margin-bottom:20px' width='60%'><br>"
-    //                         // document.querySelectorAll("#body div:nth-of-type(4) div:first-child img")[i].src = name.img[i].picture
-    //                         // $("#body div:nth-of-type(3) div:first-child img").css("width","70%").css("margin-bottom","20px")
-    //                 }
-    //             }
-    //             // image End
-    //             if(name.map!=""){
-    //                 document.querySelector("#body>div:nth-of-type(4)").innerHTML += "<div class='col-lg-3' style='padding:10px;margin:10px;'><p>地圖</p><p id='map'></p></div>"
-    //                 $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-8")
-    //                 // $("#body>div:nth-of-type(4)>div:nth-of-type(2)").css("margin","10px").css("border","3px solid purple").css("padding","10px").addClass("col-lg-3")
-    //             }
-    //             lati = name.lat
-    //             long = name.long
-    //             console.log(long)
-    //
-    //         }
-    //
-    //
-    //     }
-    //     http_request.open("GET", data_file, true);
-    //     http_request.send();
-    //     // http_request.abort()
-    // }
-    function initMap(lati,long) {
+    function initMap(lati, long) {
         var uluru = {
             lat: lati,
             lng: long
@@ -102,58 +50,53 @@
         });
     }
 
+    function _resetLayout() {
+        $("#body").remove();
+        $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="border-bottom:4px solid;font-size:5em"></a></div><div class="row" style="margin-bottom:20px"><h2 id="paragraph"></h2></div><div class="row"><div style="padding-top:30px;border-radius:50px"></div></div></div>')
+    }
 
-    $(function(){
-        // loadJSON()
+    function _processData(data) {
+        console.log(data)
+        data = data.Huche
+        _resetLayout();
+        document.querySelector("#title").innerHTML = data.title;
+        document.querySelector("#paragraph").innerHTML = data.paragraph;
+        document.querySelector("#cover").src = data.cover;
+        $("#cover").height((_height() * 0.35));
+        if (data.content) {
+            for (var i = 0; i < Object.keys(data.content).length; i++) {
+                if (data.content[i].picture) {
+                    document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<img src=" + data.content[i].picture + " alt='' style='margin-bottom:20px' width='40%' ><br>"
+                }
+                if (data.content[i].text) {
+                    document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<p>" + data.content[i].text + "</p><br>"
+                }
+            }
+        }
+        if (data.details) {
+            document.querySelector("#body>div:nth-of-type(4)").innerHTML += "<div class='col-lg-3 text-xs-left' style='padding:10px;margin-left:10px;'><p>Name:" + data.details.name + "<br>Contact:" + data.details.contact + "<br>Address:" + data.details.address + "<br>Working Hours:<br>" + data.details.workingHours + "</p></div>"
+        }
+        if (data.lat) {
+            document.querySelector("#body>div:nth-of-type(4)").innerHTML += "<div class='col-lg-3' style='padding:10px;margin-left:10px;'><p>地圖</p><p id='map'></p></div>"
+            $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-8")
+            initMap(data.lat, data.long)
+        }
+    }
+
+    function _getData(type) {
         $.ajax({
-            url:"./food.json",
-            success: function(response){
-                var jsonObj = JSON.parse(response);
-                var name = jsonObj.Huche
-                    // console.log(jsonObj.Huche)
-                    //
-                    // console.log((Object.keys(name.img).length))
-                    // console.log(name.img[0])
-                    // console.log(document.querySelectorAll("img")[1])
-                document.querySelector("#title").innerHTML = name.title;
-                document.querySelector("#paragraph").innerHTML = name.paragraph;
-                document.querySelector("#cover").src = name.cover;
-                $("#cover").height((_height()*0.35));
-                // image Start
-                if (name.content) {
-                    for (var i = 0; i < Object.keys(name.content).length; i++) {
-                        if(name.content[i].picture){
-                            document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<img src=" + name.content[i].picture + " alt='' style='margin-bottom:20px' width='40%' ><br>"
-                        }
-                        if(name.content[i].text){
-                            document.querySelector("#body>div:nth-of-type(4)>div").innerHTML += "<p>" + name.content[i].text + "</p><br>"
-                        }
-                            // document.querySelectorAll("#body div:nth-of-type(4) div:first-child img")[i].src = name.img[i].picture
-                            // $("#body div:nth-of-type(3) div:first-child img").css("width","70%").css("margin-bottom","20px")
-                    }
-                }
-                if(name.details){
-                    document.querySelector("#body>div:nth-of-type(4)").innerHTML+="<div class='col-lg-3 text-xs-left' style='padding:10px;margin-left:10px;'><p>Name:"+name.details.name+"<br>Contact:"+name.details.contact+"<br>Address:"+name.details.address+"<br>Working Hours:<br>"+name.details.workingHours+"</p></div>"
-                }
-                // image End
-                if(name.lat){
-                    document.querySelector("#body>div:nth-of-type(4)").innerHTML += "<div class='col-lg-3' style='padding:10px;margin-left:10px;'><p>地圖</p><p id='map'></p></div>"
-                    $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-8")
-                    // $("#body>div:nth-of-type(4)>div:nth-of-type(2)").css("margin","10px").css("border","3px solid purple").css("padding","10px").addClass("col-lg-3")
-                    initMap(name.lat,name.long)
-                }
-                // lati = name.lat
-                // long = name.long
-                console.log(name)
+            url: "./" + type + ".json",
+            dataType: "json",
+            success: function(response) {
+                _processData(response)
             }
         })
-
-        // setTimeout(function(){$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk&callback=initMap");},1000)
+    }
+    $(function() {
+        _getData("food")
     })
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
-
-
 </head>
 
 <body>
@@ -162,11 +105,11 @@
         <div class="collapse navbar-toggleable-xs" id="navbarResponsive">
             <a class="navbar-brand" href="#">首頁</a>
             <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">食物<span class="sr-only">(current)</span></a>
+                <li class="nav-item" onclick="_getData('food')">
+                    <a class="nav-link">食物<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">旅遊</a>
+                <li class="nav-item" onclick="_getData('travel')">
+                    <a class="nav-link">旅遊</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">地區</a>
@@ -192,7 +135,8 @@
         <div id="body">
             <div class="row"><img id="cover" src="" width="100%" height="100%"></div>
             <div class="row" style="margin-bottom:40px">
-                <a id="title" class="" style="border-bottom:4px solid;font-size:5em"></a></div>
+                <a id="title" class="" style="border-bottom:4px solid;font-size:5em"></a>
+            </div>
             <div class="row" style="margin-bottom:20px">
                 <h2 id="paragraph"></h2></div>
             <div class="row">
@@ -201,6 +145,7 @@
             </div>
         </div>
     </div>
+    <progress class="progress navbar-fixed-top" value="25" max="100" style="margin-bottom: 0;height: 5px;"></progress>
 </body>
 
 </html>

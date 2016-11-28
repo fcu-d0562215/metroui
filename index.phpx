@@ -279,7 +279,7 @@
             </div>
         </div>
     </div>
-    <div class="progress gradient-bar fixed-bottom" data-role="progress" style="position: fixed;background:transparent;margin:0;padding: 0;"></div>
+    <progress class="progress navbar-fixed-bottom" value="25" max="100" style="margin-bottom: 0;"></progress>
 </body>
 
 </html>
