@@ -63,22 +63,69 @@ window.onpopstate = function() {
     }
 }
 
-function homepage() {
+function initMap(lati, long) {
+    var uluru = {
+        lat: lati,
+        lng: long
+    };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: uluru
+    });
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+    });
+}
+
+function _resetLayout() {
+    $("#body").remove();
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="font-size:5em;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph"></h2></div><div class="row"><div></div></div></div>')
+}
+
+function _processData(data) {
+    data = data.Huche
+    _resetLayout();
+    $("#title").text(data.title);
+    $("#paragraph").text(data.paragraph);
+    $("#cover").attr('src', data.cover).height(_height() * 0.45);
+    var _content = document.querySelector("#body>div:nth-of-type(4)>div")
+    if (data.content) {
+        var _dataImg = "",
+            _dataContent = "";
+        for (var i = 0; i < Object.keys(data.content).length; i++) {
+            if (data.content[i].picture) {
+                _dataImg += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='40%' ><br>"
+            }
+            if (data.content[i].text) {
+                _dataContent += "<p>" + data.content[i].text + "</p><br>"
+            }
+        }
+
+        _content.innerHTML += '<div>' + _dataImg + _dataContent + "</div>";
+    }
+    _content = document.querySelector("#body>div:nth-of-type(4)")
+    if (data.details) {
+        _content.innerHTML += "<div class='col-lg-3 text-xs-left' style='margin-bottom:15px;'><div><p>Name:" + data.details.name + "<br>Contact:" + data.details.contact + "<br>Address:" + data.details.address + "<br>Working Hours:<br>" + data.details.workingHours + "</p></div></div>"
+    }
+    if (data.lat) {
+        _content.innerHTML += "<div class='col-lg-3'><div><p>地圖</p><p id='map'></p></div></div>";
+        $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-9")
+        initMap(data.lat, data.long)
+    }
+}
+
+function _getData(type) {
     $.ajax({
-        url: 'homepage.php?asd=123123&dfs=134',
-        success: function(data) {
-            $(".content>.row:first").html(data)
+        url: "./" + type + ".json",
+        dataType: "json",
+        success: function(response) {
+            _processData(response)
         }
     })
-
 }
 
-function test() {
-    $(".app-bar-menu").append("<div class='app-bar-element place-right'><a class='dropdown-toggle fg-white'><span class='mif-enter'></span> Enter</a><div class='app-bar-drop-container bg-white fg-dark place-right' data-role='dropdown' data-no-close='true'><div class='padding20'><form><h4 class='text-light'>Login to service...</h4><div class='input-control text'><span class='mif-user prepend-icon'></span><input></div><div class='input-control text'><span class='mif-lock prepend-icon'></span><input type='password'></div><label class='input-control checkbox small-check'><input type='checkbox'><span class='check'></span><span class='caption'>Remember me</span></label><div class='form-actions'><button class='button'>Login</button><button class='button link'>Cancel</button></div></form></div></div></div>");
-    var a = '<li class="stick"><a><span class="mif-tree icon"></span><span class="title">Sub menu</span><span class="counter">4</span></a><ul class="d-menu" data-role="dropdown" style="display:none"><li><a onclick=><span class="mif-vpn-publ icon"></span> Subitem 1</a></li><li><a >Subitem 2</a></li><li><a >Subitem 3</a></li><li><a >Subitem 4</a></li><li class="disabled"><a>Subitem 5</a></li></ul></li>'
-    $(".sidebar0").append(a)
-}
-
+/*
 function page(url) {
     event.preventDefault();
     var formdata = {};
@@ -128,9 +175,12 @@ function googledocview(one_element) {
     history.pushState({ response: str, type: 'googledocview' }, "逢甲海青班", "?googledocview=" + url);
     $('.content').html(str);
 }
-
+*/
 function hide_progressbar() {
     $("#loading").stop().animate({ opacity: 0 }, 300, function() { $("#loading").css('display', 'none'); });
     return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
 
 }
+$(document).ready(function() {
+    _getData("food")
+});
