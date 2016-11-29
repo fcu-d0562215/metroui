@@ -84,7 +84,12 @@ function _resetLayout() {
 }
 
 function _processData(data) {
-    data = data.Huche
+
+
+    // for(var i in data1){
+    //     console.log(data1.Huche)
+    //     console.log(data1.keys('Huche'))
+    // }
     _resetLayout();
     $("#title").text(data.title);
     $("#paragraph").text(data.paragraph);
@@ -115,13 +120,12 @@ function _processData(data) {
     }
 }
 
-function _getData(type) {
+function _getData(type,page) {
     $.ajax({
         url: "./" + type + ".json",
         dataType: "json",
         success: function(response) {
-            console.log(Object.keys(response)[1])
-            _processData(response)
+            _processData(response[page])
         }
     })
 }
@@ -183,5 +187,5 @@ function hide_progressbar() {
 
 }
 $(document).ready(function() {
-    _getData("food")
+    _getData("food","Nagi")
 });
