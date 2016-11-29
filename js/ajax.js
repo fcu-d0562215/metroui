@@ -120,12 +120,13 @@ function _processData(data) {
     }
 }
 
-function _getData(type,page) {
+function _getData(type, page) {
     $.ajax({
         url: "./" + type + ".json",
         dataType: "json",
         success: function(response) {
             _processData(response[page])
+            $(document).scrollTop(0);
         }
     })
 }
@@ -187,5 +188,5 @@ function hide_progressbar() {
 
 }
 $(document).ready(function() {
-    _getData("food","Nagi")
+    _getData("food", "Nagi")
 });
