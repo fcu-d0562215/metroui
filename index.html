@@ -15,24 +15,34 @@
     <script src="js/layout.js"></script>
     <script src="js/ajax.js"></script>
     <style>
+    *{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: -moz-none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
     #body {
         text-align: center;
     }
-    
+
     #map {
         height: 200px;
         width: 100%;
     }
-    
+
     #body>div:first-child {
         height: 20%;
     }
-    
+
     #body>div:nth-of-type(4)>div>div {
         border: 3px solid purple;
         border-radius: 20px;
     }
     </style>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
 </head>
 
@@ -77,11 +87,12 @@
             <div class="row">
                 <h2 id="paragraph"></h2></div>
             <div class="row">
-                <div></div>
+                <div ></div>
             </div>
         </div>
     </div>
     <progress class="progress navbar-fixed-top" value="25" max="100" style="margin-bottom: 0;height: 5px;"></progress>
+
 </body>
 
 </html>

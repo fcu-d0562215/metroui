@@ -102,11 +102,11 @@ function _processData(data) {
             }
         }
 
-        _content.innerHTML += '<div>' + _dataImg + _dataContent + "</div>";
+        _content.innerHTML += '<div style="padding:10px 10px 0 10px">' + _dataImg + _dataContent + "</div>";
     }
     _content = document.querySelector("#body>div:nth-of-type(4)")
     if (data.details) {
-        _content.innerHTML += "<div class='col-lg-3 text-xs-left' style='margin-bottom:15px;'><div><p>Name:" + data.details.name + "<br>Contact:" + data.details.contact + "<br>Address:" + data.details.address + "<br>Working Hours:<br>" + data.details.workingHours + "</p></div></div>"
+        _content.innerHTML += "<div class='col-lg-3 text-xs-left' style='margin-bottom:15px;'><div style='padding:10px 5px 0 5px;'><p>Name:" + data.details.name + "<br>Contact:" + data.details.contact + "<br>Address:" + data.details.address + "<br>Working Hours:<br>" + data.details.workingHours + "</p></div></div>"
     }
     if (data.lat) {
         _content.innerHTML += "<div class='col-lg-3'><div><p>地圖</p><p id='map'></p></div></div>";
@@ -120,6 +120,7 @@ function _getData(type) {
         url: "./" + type + ".json",
         dataType: "json",
         success: function(response) {
+            console.log(Object.keys(response)[1])
             _processData(response)
         }
     })

@@ -48,6 +48,23 @@ $(document).ready(function() {
     //     $(".sidebar0 .d-menu").css('z-index', '0');
     //     event.preventDefault();
     // });
+
+        document.oncontextmenu = function()
+        {
+            return false
+        }
+        if (document.layers)
+        {
+            window.captureEvents(Event.MOUSEDOWN);
+            window.onmousedown = function(e)
+            {
+              if (e.target==document) return false;
+            }
+        }
+        else
+        {
+          document.onmousedown = function() {return false}
+        }
 });
 
 
