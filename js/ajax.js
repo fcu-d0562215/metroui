@@ -37,30 +37,30 @@ $(document).ajaxStop(function() {
     hide_progressbar();
 });
 window.onpopstate = function() {
-    if (event.state) {
-        var data_type = (event.state).type;
-        var data_response = (event.state).response;
-        var data = data_response; //already array
-        if (data_type == "history") {
-            console.log(data_type + '-----' + data);
-            $('.content').html(data);
-        } else if (data_type == "page") {
-            console.log(data_type + '-----' + data);
-            $('.content').text(data);
-        } else if (data_type == "new") {
-            console.log(data_type + '-----' + data);
-            $('.content').text(data);
-        } else if (data_type == "googledocview") {
-            console.log(data_type + '-----' + data);
-            $('.content').html(data);
-        }
-    } else {
-        if (document.location.search == "") {
-            location.reload();
-        } else {
+    // if (event.state) {
+    //     var data_type = (event.state).type;
+    //     var data_response = (event.state).response;
+    //     var data = data_response; //already array
+    //     if (data_type == "history") {
+    //         console.log(data_type + '-----' + data);
+    //         $('.content').html(data);
+    //     } else if (data_type == "page") {
+    //         console.log(data_type + '-----' + data);
+    //         $('.content').text(data);
+    //     } else if (data_type == "new") {
+    //         console.log(data_type + '-----' + data);
+    //         $('.content').text(data);
+    //     } else if (data_type == "googledocview") {
+    //         console.log(data_type + '-----' + data);
+    //         $('.content').html(data);
+    //     }
+    // } else {
+    //     if (document.location.search == "") {
+    //         location.reload();
+    //     } else {
 
-        }
-    }
+    //     }
+    // }
 }
 
 function initMap(lati, long) {
@@ -84,12 +84,6 @@ function _resetLayout() {
 }
 
 function _processData(data) {
-
-
-    // for(var i in data1){
-    //     console.log(data1.Huche)
-    //     console.log(data1.keys('Huche'))
-    // }
     _resetLayout();
     $("#title").text(data.title);
     $("#paragraph").text(data.paragraph);
@@ -124,9 +118,9 @@ function _getData(type, page) {
     $.ajax({
         url: "./" + type + ".json",
         dataType: "json",
-        success: function(response) {
-            _processData(response[page])
-            $(document).scrollTop(0);
+        success: function(data) {
+            _processData(data[page])
+            scrolltop();
         }
     })
 }
@@ -183,8 +177,8 @@ function googledocview(one_element) {
 }
 */
 function hide_progressbar() {
-    $("#loading").stop().animate({ opacity: 0 }, 300, function() { $("#loading").css('display', 'none'); });
-    return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
+    // $("#loading").stop().animate({ opacity: 0 }, 300, function() { $("#loading").css('display', 'none'); });
+    return $(".progress").stop().delay(1000).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
 
 }
 $(document).ready(function() {
