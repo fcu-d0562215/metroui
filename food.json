@@ -30,11 +30,11 @@
         "lat":24.184524,
         "long":120.645432,
         "details":{
-            "name":"麵屋虎徹(逢甲)",
-            "contact":"(04)2452-9459",
-            "address":"台中市西屯區福興北三街20號",
-            "workingHours":"(平日)17:00-23:00<br>(假日)17:24:00",
-            "Facebook":"https://www.facebook.com/kotetsu30/"
+            "Name":"麵屋虎徹(逢甲)",
+            "Contact":"(04)2452-9459",
+            "Address":"台中市西屯區福興北三街20號",
+            "Working Hours":"<br>(平日)17:00-23:00<br>(假日)17:24:00",
+            "Facebook":"<a href='https://www.facebook.com/kotetsu30/'>虎徹</a>"
         }
 
     }
