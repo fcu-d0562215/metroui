@@ -21,11 +21,11 @@ $(document).ready(function() {
 function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e = null) {
 
     if(_width()<998){
-        console.log($("#body>div:nth-of-type(4)>div>div>img").width(_width()*50/100))
-        console.log($("#body>div:nth-of-type(4)>div>div>img").height(_height()*40/100))
+        $("#body>div:nth-of-type(4)>div>div>img").width(_width()*0.5)
+        $("#body>div:nth-of-type(4)>div>div>img").height(_height()*0.4)
     }else{
-        console.log($("#body>div:nth-of-type(4)>div>div>img").width(_width()*30/100))
-        console.log($("#body>div:nth-of-type(4)>div>div>img").height(_height()*40/100))
+        $("#body>div:nth-of-type(4)>div>div>img").width(_width()*0.3)
+        $("#body>div:nth-of-type(4)>div>div>img").height(_height()*0.4)
     }
 
     return true;

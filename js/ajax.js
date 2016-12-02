@@ -80,7 +80,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin:20px 0 "><a id="title" style="font-size:150%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:100%"></h2></div><div class="row"><div></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin:20px 0 "><a id="title" style="font-size:150%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:100%"></h2></div><div class="row"><div id="_content"></div></div></div>')
 }
 
 function _processData(data) {
@@ -95,7 +95,7 @@ function _processData(data) {
     $("#title").text(data.title);
     $("#paragraph").text(data.paragraph);
     $("#cover").attr('src', data.cover).height(_height() * 0.45);
-    var _content = document.querySelector("#body>div:nth-of-type(4)>div")
+    var _content = document.querySelector("#body #_content")
     if (data.content) {
         var _dataDetails = "",
             _dataContent = "";
@@ -111,27 +111,26 @@ function _processData(data) {
 
         _content.innerHTML += '<div style="padding:10px 10px 0 10px">' + _dataContent + "</div>";
     }
-    _content = document.querySelector("#body>div:nth-of-type(4)")
-    console.log(Object.keys(data.details)[0])
-    console.log(data.details["name"])
+    _content = $("#body>div:nth-of-type(4)>div:first")
     if (data.details) {
-        for(var i=0;i<Object.keys(data.details).length;i++){
-            _dataDetails += Object.keys(data.details)[i]+" : "+data.details[Object.keys(data.details)[i]]+"<br>"
+        for (var i = 0; i < Object.keys(data.details).length; i++) {
+            _dataDetails += Object.keys(data.details)[i] + " : " + data.details[Object.keys(data.details)[i]] + "<br>"
         }
-        _content.innerHTML += "<div class='col-lg-3 text-xs-left' style='margin-bottom:15px;'><div style='padding:10px 5px 0 5px;font-size:100%;'>"+_dataDetails+"</p></div></div>"
+        _content.before("<div class='col-md-3 text-xs-left push-md-9' style='margin-bottom:15px;'><div style='padding:10px 5px 0 5px;font-size:100%;'>" + _dataDetails + "</p></div></div>");
     }
+    _content = document.querySelector("#body>div:nth-of-type(4)")
     if (data.lat) {
-        _content.innerHTML += "<div class='col-lg-3'><div><p>地圖</p><p id='map'></p></div></div>";
-        $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-9")
+        _content.innerHTML += "<div class='col-md-3 push-md-9'><div><p>地圖</p><p id='map'></p></div></div>";
+        $("#body #_content").addClass("col-md-9 float-md-right pull-md-3")
         initMap(data.lat, data.long)
     }
-        _resize()
+    _resize()
 }
 
 function _getData(type, page) {
     $.ajax({
         type: 'Get',
-        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
+        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
         dataType: "json",
         success: function(response) {
             _processData(response[page])
