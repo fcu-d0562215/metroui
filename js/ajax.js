@@ -80,7 +80,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="font-size:200%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:150%"></h2></div><div class="row"><div></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin:20px 0 "><a id="title" style="font-size:150%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:100%"></h2></div><div class="row"><div></div></div></div>')
 }
 
 function _processData(data) {
