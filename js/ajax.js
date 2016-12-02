@@ -80,7 +80,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="font-size:5em;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph"></h2></div><div class="row"><div></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="font-size:4em;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:30px"></h2></div><div class="row"><div></div></div></div>')
 }
 
 function _processData(data) {
@@ -91,6 +91,7 @@ function _processData(data) {
     //     console.log(data1.keys('Huche'))
     // }
     _resetLayout();
+
     $("#title").text(data.title);
     $("#paragraph").text(data.paragraph);
     $("#cover").attr('src', data.cover).height(_height() * 0.45);
@@ -102,6 +103,7 @@ function _processData(data) {
             if (data.content[i].picture) {
                 _dataContent += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='40%' ><br>"
             }
+            // console.log(document.querySelector("#body"))
             if (data.content[i].text) {
                 _dataContent += "<p>" + data.content[i].text + "</p><br>"
             }
@@ -123,7 +125,8 @@ function _processData(data) {
         $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-9")
         initMap(data.lat, data.long)
     }
-
+        console.log($("#body>div:nth-of-type(4)>div>div>img").width(_width()*30/100))
+        console.log($("#body>div:nth-of-type(4)>div>div>img").height(_height()*40/100))
 }
 
 function _getData(type, page) {

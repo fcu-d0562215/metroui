@@ -2,17 +2,24 @@
 {
     "Nagi":
     {
-        "title": "豚骨拉麵 Nagi",
+        "title": "豚骨拉麵 Nagi（台中店）",
         "paragraph": "豚骨拉麵ラーメン 凪 Nagi，這個號稱宇宙最強的拉麵到底有多好吃，值得讓我們排半小時吃一次，只能說吃完之後真的好吃，雖稱不上宇宙第一，但是台中第一應該是實至名歸，有到老虎城看電影的朋友，在等電影開場的時候，可以順便來吃個凪 Nagi拉麵。",
         "cover":"./web網頁設計/Nagi豚王拉麵/nagi-封面.jpg",
         "content":[
-                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-1.jpg"},
-                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-2.jpg"},
+                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-1.jpg","text":"豚骨拉麵台中店"},
+                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-2.jpg","text":"豚骨拉麵(Nagi) 擁有四種口味的豚王，赤王，黑王和翠王<br>其中還有一個隱藏的限定王口味由於每日都有限供應，所以要<br>吃必須問過服務員才行"},
                 {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-3.jpg"},
-                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-4.jpg"}
+                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-4.jpg","text":"價客制化的菜單是豚骨拉麵(Nagi)的一大特色依自己的喜好   打照專屬自己最喜愛口味的拉麵"}
             ],
         "lat":24.184524,
-        "long":120.645432
+        "long":120.645432,
+        "details":{
+            "Name":"豚骨拉麵 Nagi（台中店）",
+            "Contact":"(04)3606-2511",
+            "Address":"台中市河南路三段120號3樓老虎城",
+            "Working Hours":"<br>周日~周四11:00~22:00<br>周五~周六11:00~23:00",
+            "Facebook":"<a href='http://n-nagi.event2.tw'>豚骨拉麵 Nagi</a>"
+        }
     },
     "Huche":
     {
@@ -23,9 +30,7 @@
             {"picture":"./web網頁設計/虎徹麵屋/1.jpg","text":"這種拉麵店的自動販賣機之前在日本吃拉麵的時候還蠻常見的不過在台灣我是第一次遇到販<br>賣機上有著店內各式菜色的價錢，用法也很簡單就像販賣機一樣的投幣->點選->然後再把單子給服務人員就好了"},
             {"picture":"./web網頁設計/虎徹麵屋/2.jpg","text":"這個就是《濃厚虎徹拉麵》"},
             {"picture":"./web網頁設計/虎徹麵屋/3.jpg","text":"吃拉麵當然必須要吃有糖心蛋的拉麵<br>看看這好吃的糖心蛋，讓人看了就想把它吞進肚子裡！"},
-            {"picture":"./web網頁設計/虎徹麵屋/4.jpg","text":""},
-            {"text":"hello"},
-            {"text":"hello"}
+            {"picture":"./web網頁設計/虎徹麵屋/4.jpg","text":"細麵更湯底配起來簡直就是完美！"}
         ],
         "lat":24.184524,
         "long":120.645432,

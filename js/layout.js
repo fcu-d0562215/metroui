@@ -14,6 +14,7 @@ $(document).ready(function() {
             return false;
         }
     });
+    $("#body>div:nth-of-type(4)>div>div>img").width(_width()*20/100)
 });
 
 
