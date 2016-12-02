@@ -80,7 +80,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="font-size:4em;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:30px"></h2></div><div class="row"><div></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin-bottom:40px"><a id="title" style="font-size:200%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:150%"></h2></div><div class="row"><div></div></div></div>')
 }
 
 function _processData(data) {
@@ -118,20 +118,20 @@ function _processData(data) {
         for(var i=0;i<Object.keys(data.details).length;i++){
             _dataDetails += Object.keys(data.details)[i]+" : "+data.details[Object.keys(data.details)[i]]+"<br>"
         }
-        _content.innerHTML += "<div class='col-lg-3 text-xs-left' style='margin-bottom:15px;'><div style='padding:10px 5px 0 5px;'>"+_dataDetails+"</p></div></div>"
+        _content.innerHTML += "<div class='col-lg-3 text-xs-left' style='margin-bottom:15px;'><div style='padding:10px 5px 0 5px;font-size:100%;'>"+_dataDetails+"</p></div></div>"
     }
     if (data.lat) {
         _content.innerHTML += "<div class='col-lg-3'><div><p>地圖</p><p id='map'></p></div></div>";
         $("#body>div:nth-of-type(4)>div:nth-of-type(1)").addClass("col-lg-9")
         initMap(data.lat, data.long)
     }
-        console.log($("#body>div:nth-of-type(4)>div>div>img").width(_width()*30/100))
-        console.log($("#body>div:nth-of-type(4)>div>div>img").height(_height()*40/100))
+        _resize()
 }
 
 function _getData(type, page) {
     $.ajax({
-        url: "./" + type + ".json",
+        type: 'Get',
+        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
         dataType: "json",
         success: function(response) {
             _processData(response[page])

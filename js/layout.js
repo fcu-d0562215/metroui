@@ -1,5 +1,5 @@
 $(window).resize(function() {
-    // _resize("onresize")
+    _resize("onresize")
 });
 $(document).ready(function() {
     $(".container-fluid").css('margin-top', $(".navbar-fixed-top").css('height'));
@@ -14,11 +14,20 @@ $(document).ready(function() {
             return false;
         }
     });
-    $("#body>div:nth-of-type(4)>div>div>img").width(_width()*20/100)
+    _resize()
 });
 
 
 function _resize(resize_mode = null, a = null, b = null, c = null, d = null, e = null) {
+
+    if(_width()<998){
+        console.log($("#body>div:nth-of-type(4)>div>div>img").width(_width()*50/100))
+        console.log($("#body>div:nth-of-type(4)>div>div>img").height(_height()*40/100))
+    }else{
+        console.log($("#body>div:nth-of-type(4)>div>div>img").width(_width()*30/100))
+        console.log($("#body>div:nth-of-type(4)>div>div>img").height(_height()*40/100))
+    }
+
     return true;
 }
 

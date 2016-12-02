@@ -26,6 +26,29 @@
     .nav-item>a,.navbar-brand,.dropdown-menu>a{
         cursor: pointer;
     }
+    *{
+        font-size:15px;
+    }
+    @media screen and (min-width:576px){
+        *{
+            font-size:13px;
+        }
+    }
+    @media screen and (min-width:768px){
+        *{
+            font-size:15px;
+        }
+    }
+    @media screen and (min-width:992px){
+        *{
+            font-size:20px;
+        }
+    }
+    @media screen and (min-width:1200px){
+        *{
+            font-size:22px;
+        }
+    }
 
     #body {
         text-align: center;
@@ -46,7 +69,7 @@
     #body>div:nth-of-type(4)>div>div {
         border: 3px solid purple;
         border-radius: 20px;
-        font-size: 20px;
+        font-size: 160%;
     }
     /*[class*="col-"]:nth-of-type(6n+1) {
     background-color: red;
