@@ -136,13 +136,11 @@ function _getData(type, page) {
     $.ajax({
         type: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
-        url: "./"+type+".json",
         dataType: "json",
         success: function(response) {
             allInOne = response
             pagemax = Object.keys(response).length - 1
             types  = type
-            console.log(Object.keys(response)[0])
             _processData(response[Object.keys(response)[page]])
             $(document).scrollTop(0);
         }
