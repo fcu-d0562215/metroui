@@ -43,6 +43,7 @@ function _height() {
     return window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 }
 
+
 // if (_resize("onready")) {
 //     $("#sidebar").mCustomScrollbar({
 //         theme: "minimal",

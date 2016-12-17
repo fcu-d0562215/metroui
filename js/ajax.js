@@ -1,3 +1,7 @@
+var pageno = 0
+var pagemax = 0
+var types, allInOne
+
 $.ajaxSetup({
     method: "POST",
     cache: false,
@@ -131,13 +135,37 @@ function _processData(data) {
 function _getData(type, page) {
     $.ajax({
         type: 'Get',
-        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
+        // url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
+        url: "./"+type+".json",
         dataType: "json",
         success: function(response) {
-            _processData(response[page])
+            allInOne = response
+            pagemax = Object.keys(response).length - 1
+            types  = type
+            console.log(Object.keys(response)[0])
+            _processData(response[Object.keys(response)[page]])
             $(document).scrollTop(0);
         }
     })
+}
+
+function nextpage(){
+    console.log("here")
+    if(pageno != pagemax){
+        pageno+=1
+        console.log(pageno)
+        console.log(types)
+        _getData(types,pageno)
+    }
+}
+
+function previouspage(){
+    if(pageno != 0){
+        pageno-=1
+        console.log(pageno)
+        console.log(types)
+        _getData(types,pageno)
+    }
 }
 
 /*
@@ -197,5 +225,11 @@ function hide_progressbar() {
 
 }
 $(document).ready(function() {
-    _getData("food", "Nagi")
+    _getData("food", 0)
+    window.onkeyup = function(e){
+        if(e.keyIdentifier == "Right")
+        nextpage()
+        if(e.keyIdentifier == "Left")
+        previouspage()
+    }
 });
