@@ -135,7 +135,7 @@ function _processData(data) {
 function _getData(type, page) {
     $.ajax({
         type: 'Get',
-        // url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
+        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
         url: "./"+type+".json",
         dataType: "json",
         success: function(response) {
@@ -150,11 +150,8 @@ function _getData(type, page) {
 }
 
 function nextpage(){
-    console.log("here")
     if(pageno != pagemax){
         pageno+=1
-        console.log(pageno)
-        console.log(types)
         _getData(types,pageno)
     }
 }
@@ -162,8 +159,6 @@ function nextpage(){
 function previouspage(){
     if(pageno != 0){
         pageno-=1
-        console.log(pageno)
-        console.log(types)
         _getData(types,pageno)
     }
 }
