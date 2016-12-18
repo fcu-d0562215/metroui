@@ -49,6 +49,17 @@
     <div class="container-fluid">
     </div>
     <progress class="progress navbar-fixed-top" value="25" max="100" style="margin-bottom: 0;height: 0;"></progress>
+    <script>
+    $(document).ready(function() {
+        _getData("food", 0)
+        window.onkeyup = function(e){
+            if(e.keyIdentifier == "Right")
+            nextpage()
+            if(e.keyIdentifier == "Left")
+            previouspage()
+        }
+    });
+    </script>
 </body>
 
 </html>

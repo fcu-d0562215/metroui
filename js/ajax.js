@@ -133,7 +133,7 @@ function _processData(data) {
 
 function _getData(type, page) {
     $.ajax({
-        type: 'Get',
+        type: 'get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
         dataType: "json",
         success: function(response) {
@@ -142,6 +142,18 @@ function _getData(type, page) {
             types  = type
             _processData(response[Object.keys(response)[page]])
             $(document).scrollTop(0);
+
+            $.each(response, function(i, v) {
+                console.log("v ="+v)
+                console.log("i = "+i)
+                for( i in v){
+                    console.log(i)
+                    if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
+                            console.log(v[i])
+                    }
+                }
+
+   });
         }
     })
 }
@@ -160,6 +172,35 @@ function previouspage(){
     }
 }
 
+function mainpage(){
+    $.ajax({
+        type: 'Get',
+        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
+        dataType: "json",
+        success: function(response){
+            for(i in response){
+                var  string ='<div class="card col-lg-2"><p class="card_title">'+response[i].title+'</p><img src="'+response[i].cover+'" alt=""><p class="content">'+response[i].paragraph+'</p><button>More ...</button></div>'
+                $('#food').append(string);
+                console.log(response[i].title)
+                console.log(response[i].paragraph)
+            }
+        }
+    })
+    $.ajax({
+        type: 'Get',
+        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
+        dataType: "json",
+        success: function(response){
+            for(i in response){
+                var  string ='<div class="card col-lg-2"><p class="card_title">'+response[i].title+'</p><img src="'+response[i].cover+'" alt=""><p class="content">'+response[i].paragraph+'</p><button>More ...</button></div>'
+                $('#travel').append(string);
+                console.log(response[i].title)
+                console.log(response[i].paragraph)
+            }
+
+        }
+    })
+}
 /*
 function page(url) {
     event.preventDefault();
@@ -216,12 +257,3 @@ function hide_progressbar() {
     return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
 
 }
-$(document).ready(function() {
-    _getData("food", 0)
-    window.onkeyup = function(e){
-        if(e.keyIdentifier == "Right")
-        nextpage()
-        if(e.keyIdentifier == "Left")
-        previouspage()
-    }
-});
