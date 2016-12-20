@@ -26,7 +26,7 @@
                 <li class="nav-item" onclick="_getData('food', 0)">
                     <a class="nav-link">食物<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item" onclick="_getData('food', 0)">
+                <li class="nav-item" onclick="_getData('food', 1)">
                     <a class="nav-link">旅遊</a>
                 </li>
                 <li class="nav-item">
@@ -48,15 +48,15 @@
     </nav>
     <div class="container-fluid">
     </div>
-    <progress class="progress navbar-fixed-top" value="25" max="100" style="margin-bottom: 0;height: 0;"></progress>
+    <progress class="progress navbar-fixed-top" value="0" max="100" style="margin-bottom: 0;height: 0;"></progress>
     <script>
     $(document).ready(function() {
-        _getData("food", 0)
-        window.onkeyup = function(e){
-            if(e.keyIdentifier == "Right")
-            nextpage()
-            if(e.keyIdentifier == "Left")
-            previouspage()
+        _getData("food")
+        window.onkeyup = function(e) {
+            if (e.keyIdentifier == "Right" || e.keyCode == 39)
+                nextpage()
+            if (e.keyIdentifier == "Left" || e.keyCode == 37)
+                previouspage()
         }
     });
     </script>

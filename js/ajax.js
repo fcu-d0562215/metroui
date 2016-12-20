@@ -20,19 +20,27 @@ $.ajaxSetup({
         var percentComplete = 0;
         //Upload progress
         xhr.upload.addEventListener("progress", function(evt) {
+            console.log("QaQ")
+
             if (evt.lengthComputable) {
                 percentComplete = (evt.loaded / evt.total) * 20;
                 //Do something with upload progress
+                console.log("  up " + percentComplete);
                 $(".progress").attr('value', percentComplete);
             }
         }, false);
         //Download progress
         xhr.addEventListener("progress", function(evt) {
+            // console.log(evt.loaded)
+
             if (evt.lengthComputable) {
+                // console.log("QoQq")
                 percentComplete = ((evt.loaded / evt.total) * 80) + 20;
                 //Do something with download progress
+                // console.log("down "+percentComplete);
                 $(".progress").attr('value', percentComplete)
             }
+
         }, false);
         return xhr;
     }
@@ -131,7 +139,7 @@ function _processData(data) {
     _resize()
 }
 
-function _getData(type, page) {
+function _getData(type, page = 0) {
     $.ajax({
         type: 'get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
@@ -139,47 +147,47 @@ function _getData(type, page) {
         success: function(response) {
             allInOne = response
             pagemax = Object.keys(response).length - 1
-            types  = type
+            types = type
             _processData(response[Object.keys(response)[page]])
             $(document).scrollTop(0);
 
             $.each(response, function(i, v) {
-                console.log("v ="+v)
-                console.log("i = "+i)
-                for( i in v){
-                    console.log(i)
+                // console.log("v ="+v)
+                // console.log("i = "+i)
+                for (i in v) {
+                    // console.log(i)
                     if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
-                            console.log(v[i])
+                        // console.log(v[i])
                     }
                 }
 
-   });
+            });
         }
     })
 }
 
-function nextpage(){
-    if(pageno != pagemax){
-        pageno+=1
-        _getData(types,pageno)
+function nextpage() {
+    if (pageno != pagemax) {
+        pageno += 1
+        _getData(types, pageno)
     }
 }
 
-function previouspage(){
-    if(pageno != 0){
-        pageno-=1
-        _getData(types,pageno)
+function previouspage() {
+    if (pageno != 0) {
+        pageno -= 1
+        _getData(types, pageno)
     }
 }
 
-function mainpage(){
+function mainpage() {
     $.ajax({
         type: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
         dataType: "json",
-        success: function(response){
-            for(i in response){
-                var  string ='<div class="card col-lg-2"><p class="card_title">'+response[i].title+'</p><img src="'+response[i].cover+'" alt=""><p class="content">'+response[i].paragraph+'</p><button>More ...</button></div>'
+        success: function(response) {
+            for (i in response) {
+                var string = '<div class="card col-lg-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
                 $('#food').append(string);
                 console.log(response[i].title)
                 console.log(response[i].paragraph)
@@ -190,9 +198,9 @@ function mainpage(){
         type: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
         dataType: "json",
-        success: function(response){
-            for(i in response){
-                var  string ='<div class="card col-lg-2"><p class="card_title">'+response[i].title+'</p><img src="'+response[i].cover+'" alt=""><p class="content">'+response[i].paragraph+'</p><button>More ...</button></div>'
+        success: function(response) {
+            for (i in response) {
+                var string = '<div class="card col-lg-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
                 $('#travel').append(string);
                 console.log(response[i].title)
                 console.log(response[i].paragraph)
