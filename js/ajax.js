@@ -92,7 +92,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="margin:20px 0 "><a id="title" style="font-size:150%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:100%"></h2></div><div class="row"><div id="_content"></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><a id="title" style="font-size:150%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:100%"></h2></div><div class="row"><div id="_content"></div></div></div>')
 }
 
 function _processData(data) {
@@ -181,31 +181,28 @@ function previouspage() {
 }
 
 function mainpage() {
-    $.ajax({
-        type: 'Get',
-        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-        dataType: "json",
-        success: function(response) {
-            for (i in response) {
-                var string = '<div class="card col-lg-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
-                $('#food').append(string);
-                console.log(response[i].title)
-                console.log(response[i].paragraph)
-            }
-        }
-    })
-    $.ajax({
-        type: 'Get',
-        url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-        dataType: "json",
-        success: function(response) {
-            for (i in response) {
-                var string = '<div class="card col-lg-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
-                $('#travel').append(string);
-                console.log(response[i].title)
-                console.log(response[i].paragraph)
-            }
+    var dataSource = {
+        "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
+        "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json"
+    }
+    for (type in dataSource) {
+        _getMainData(dataSource[type], type)
+    }
+}
 
+function _getMainData(url, type) {
+    $.ajax({
+        type: 'Get',
+        url: url,
+        dataType: "json",
+        success: function(response) {
+            for (i in response) {
+                var string = '<div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
+                console.log(type)
+                $('#' + type).append(string);
+                // console.log(response[i].title)
+                // console.log(response[i].paragraph)
+            }
         }
     })
 }
