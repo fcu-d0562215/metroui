@@ -20,7 +20,7 @@ $.ajaxSetup({
         var percentComplete = 0;
         //Upload progress
         xhr.upload.addEventListener("progress", function(evt) {
-            console.log("QaQ")
+            // console.log("QaQ")
 
             if (evt.lengthComputable) {
                 percentComplete = (evt.loaded / evt.total) * 20;
@@ -198,7 +198,7 @@ function _getMainData(url, type) {
         success: function(response) {
             for (i in response) {
                 var string = '<div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
-                console.log(type)
+                // console.log(type)
                 $('#' + type).append(string);
                 // console.log(response[i].title)
                 // console.log(response[i].paragraph)
