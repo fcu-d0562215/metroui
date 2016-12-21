@@ -29,6 +29,7 @@
         text-align: center;
         justify-content: center;
         border-radius: 5px;
+
     }
 
     #frame>p {
@@ -54,7 +55,7 @@
     .calouse_Content {
         background-color: #ede065;
         border-radius: 5px;
-        /*display: flex;*/
+        overflow:hidden;
         align-content: center;
         padding: 20px;
         font-size: 15px;
@@ -120,8 +121,10 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div id="frame" class="col-xs-12">
-                <p>Do Your Future</p>
+            <div class="col-xs-12">
+                <div id="frame" class="col-xs-12">
+                    <p>Do Your Future</p>
+                </div>
             </div>
             <div class="calouse col-xs-12">
                 <span id="calouse_Header">Food</span>
