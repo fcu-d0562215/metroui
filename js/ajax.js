@@ -190,7 +190,7 @@ function nextContent(type) {
         if (contentno != contentmax) {
             contentno += 5
             _getMainData(dataSource[type.id], type.id ,contentno)
-            if(contentno >= contentmax){
+            if(contentno >= contentmax -5){
                 $('#next'+type.id).remove()
             }
             if(contentno != 0){
@@ -206,13 +206,13 @@ function nextContent(type) {
 function prevContent(type) {
         if (contentno != 0) {
             contentno -= 5
-            _getMainData(dataSource["food"], "food" ,contentno)
+            _getMainData(dataSource[type.id], type.id ,contentno)
             if(contentno == 0){
                 $('#prev'+type.id).remove()
             }
-            if(contentno != contentmax){
+            if(contentno != contentmax -5){
                 if(!$("#next"+type.id).html()){
-                    $('#foodContent').append("<button id='next"+type.id+"' onclick='prevContent("+type.id+")'>></button>")
+                    $('#'+type.id+'Content').append("<button id='next"+type.id+"' onclick='nextContent("+type.id+")'>></button>")
                 }
             }
         }
