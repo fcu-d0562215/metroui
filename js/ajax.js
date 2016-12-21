@@ -1,6 +1,12 @@
 var pageno = 0
 var pagemax = 0
+var contentno = 0
+var contentmax = 0
 var types, allInOne
+var dataSource = {
+    "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
+    "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json"
+}
 
 $.ajaxSetup({
     method: "POST",
@@ -141,7 +147,7 @@ function _processData(data) {
 
 function _getData(type, page = 0) {
     $.ajax({
-        type: 'get',
+        method: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
         dataType: "json",
         success: function(response) {
@@ -180,24 +186,55 @@ function previouspage() {
     }
 }
 
+function nextContent(type) {
+        if (contentno != contentmax) {
+            contentno += 5
+            _getMainData(dataSource[type.id], type.id ,contentno)
+            if(contentno >= contentmax){
+                $('#next'+type.id).remove()
+            }
+            if(contentno != 0){
+                if(!$("#prev"+type.id).html()){
+                    $("#"+type.id+"Content").prepend('<button id="prev'+type.id+'" onclick="prevContent('+type.id+')"><</button')
+                }
+            }
+        }
+
+
+}
+
+function prevContent(type) {
+        if (contentno != 0) {
+            contentno -= 5
+            _getMainData(dataSource["food"], "food" ,contentno)
+            if(contentno == 0){
+                $('#prev'+type.id).remove()
+            }
+            if(contentno != contentmax){
+                if(!$("#next"+type.id).html()){
+                    $('#foodContent').append("<button id='next"+type.id+"' onclick='prevContent("+type.id+")'>></button>")
+                }
+            }
+        }
+}
+
 function mainpage() {
-    var dataSource = {
-        "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-        "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json"
-    }
+
     for (type in dataSource) {
         _getMainData(dataSource[type], type)
     }
 }
 
-function _getMainData(url, type) {
+function _getMainData(url, type ,content_no = 0) {
     $.ajax({
-        type: 'Get',
+        method: 'Get',
         url: url,
         dataType: "json",
         success: function(response) {
-            for (i in response) {
-                var string = '<div class="mycard col-xs-10 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="mycard_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
+            contentmax = Object.keys(response).length -1
+            $('#'+type).html("")
+            for (i=content_no;i<content_no+5;i++) {
+                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="mycard_title">' + response[Object.keys(response)[i]].title + '</p><img src="' + response[Object.keys(response)[i]].cover + '" alt=""><p class="content">' + response[Object.keys(response)[i]].paragraph + '</p><button>More ...</button></div>'
                 // console.log(type)
                 $('#' + type).append(string);
                 // console.log(response[i].title)

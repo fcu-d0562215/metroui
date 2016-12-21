@@ -21,13 +21,10 @@
     }
 
     #frame {
-        /*text-align: center;*/
         background: #c26b2d;
         background-image: linear-gradient(to bottom, #c26b2d 0, #cb7741 100%);
         height: 400px;
-        /*display: flex;*/
         text-align: center;
-        justify-content: center;
         border-radius: 5px;
 
     }
@@ -42,8 +39,6 @@
         height: 100px;
         margin: auto;
         color: lightgray;
-        align-self: center;
-        /*bottom: 50%;*/
     }
 
     .calouse {
@@ -55,19 +50,21 @@
     .calouse_Content {
         background-color: #ede065;
         border-radius: 5px;
-        overflow:hidden;
         align-content: center;
         padding: 20px;
         font-size: 15px;
+        height: 370px;
+
+
     }
 
     .calouse_Content img {
         background-color: white;
     }
 
-    .calouse_Content button {
+    /*.calouse_Content button {
         border-radius: 10px;
-        /*font-size: 10px;*/
+        font-size: 10px;
         position: absolute;
         right: 0;
         bottom: 0;
@@ -75,12 +72,13 @@
 
     .calouse_Content button:focus {
         outline: none;
-    }
+    }*/
     @media screen and (min-width:768px){
         .mycard {
-            margin: 10px;
+            /*margin: 15px;*/
         }
         .calouse_Content {
+            /*height: 360px;*/
             padding: 20px;
         }
     }
@@ -89,6 +87,7 @@
         background-color: gray;
         padding-top: 10px;
         height: 300px;
+        margin-left: 2.7%;
     }
 
     .mycard_title {
@@ -115,6 +114,43 @@
         width: 100%;
         height: 35%;
     }
+    #foodContent{
+        padding: 0px;
+    }
+    #food,#travel{
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        margin: auto;
+    }
+    #prevfood,#nextfood,#prevtravel,#nexttravel{
+        font-weight: 800;
+        z-index: 100;
+        color: white;
+        position: absolute;
+        top : 0;
+        bottom: 0;
+        margin: auto;
+        height: 30px;
+        text-align: center;
+        background-color: #555555;
+        border-radius: 99px;
+    }
+    #prevfood:hover,#nextfood:hover,#prevtravel:hover,#nexttravel:hover{
+        color: white;
+        cursor: pointer;
+    }
+    #prevfood,#prevtravel{
+        text-align: right;
+        left: 1%;
+    }
+    #nextfood,#nexttravel{
+        text-align: left;
+        right: 1%;
+    }
     </style>
 </head>
 
@@ -128,17 +164,15 @@
             </div>
             <div class="calouse col-xs-12">
                 <span id="calouse_Header">Food</span>
-                <div id="food" class="calouse_Content col-xs-12"></div>
+                <div class="col-xs-12" style=" padding: 0px;">
+                    <div id="foodContent" class="calouse_Content "><div id="food" class="col-xs-12"></div><button id="nextfood" onclick="nextContent(food)">></button></div>
+                </div>
             </div>
             <div class="calouse col-xs-12">
                 <span id="calouse_Header">Travel</span>
-                <div id="travel" class="calouse_Content col-xs-12">
-                    <div class="mycard col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                        <img src="img\pokeball.png" alt="">
-                        <p class="content">Welcome to my Worasdasd asdasdasd qsw qwasdasdsasdasdaseqw eqweqweqwe qweqwrqwtqet dasdasdasdweqw qwe qwe qwe qwe </p>
-                        <button>More ...</button>
-                    </div>
-                </div>
+
+                    <div id="travelContent" class="calouse_Content col-xs-12"><div id="travel" class="col-xs-12"></div><button id="nexttravel" onclick="nextContent(travel)">></button></div>
+
             </div>
         </div>
     </div>
