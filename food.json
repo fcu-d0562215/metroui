@@ -327,10 +327,10 @@
             "Facebook":"<a href='https://www.facebook.com/alanbiersteak'>阿蘭貝爾牛排廚房</a>"
         }
     },
-    "":
+    "Yue_Yuen":
     {
         "title": "裕元花園酒店",
-        "paragraph": "「裕元花園酒店」整體環境優雅又舒適，搭配大量的玫瑰意象與滿室綠意，讓人感到濃濃溫馨感!「映 景觀餐廳」的餐點更是讓人喜愛，從前菜、沙拉、湯品、主餐到甜點，每道都獨具特色，尤其在這裡可以吃到特別的乾式熟成牛排，讓人吃得既飽足又滿足!另外夜晚的酒吧融合繽紛夜色與唯美的氛圍，搭配創意調酒讓人相當驚艷，來到這裡就可以好好放鬆一下啦!",
+        "paragraph": "「裕元花園酒店」整體環境優雅又舒適，搭配大量的玫瑰意象與滿室綠意，讓人感到濃濃溫馨感!「景觀餐廳」的餐點更是讓人喜愛，從前菜、沙拉、湯品、主餐到甜點，每道都獨具特色，尤其在這裡可以吃到特別的乾式熟成牛排，讓人吃得既飽足又滿足!另外夜晚的酒吧融合繽紛夜色與唯美的氛圍，搭配創意調酒讓人相當驚艷，來到這裡就可以好好放鬆一下啦!",
         "cover":"",
         "content":[
             {"picture":"","text":"▲一進到裡頭，首先映入眼簾的是挑高三層樓的大廳，不但極富造型感，且一整個優雅氣派，讓人難忘!"},
@@ -407,10 +407,10 @@
             "Facebook":"<a href='https://www.facebook.com/GTing.YU.SS'>偈亭泡菜鍋</a>"
         }
     },
-    "StayReal_Café":
+    "StayReal_Cafe":
     {
-        "title": "StayReal Café",
-        "paragraph": "來到「StayReal Café一中店」，有種悠閒又自在的感覺，除了大片落地窗與窗外灑落的陽光之外，座位的舒適度也讓人超喜愛!最棒的是現在已經開放訂位，插座也可以免費使用，對於喜愛泡咖啡店的朋友真是一大福音!",
+        "title": "StayReal Cafe",
+        "paragraph": "來到「StayReal Cafe一中店」，有種悠閒又自在的感覺，除了大片落地窗與窗外灑落的陽光之外，座位的舒適度也讓人超喜愛!最棒的是現在已經開放訂位，插座也可以免費使用，對於喜愛泡咖啡店的朋友真是一大福音!",
         "cover":"",
         "content":[
             {"picture":"","text":"▲外頭的陽光與綠意透過大片的落地窗灑落在室內，搭配原木色為主的清爽氛圍及輕工業風的紅色鐵椅，呈現出一種悠閒的慢活步調!"},
@@ -420,31 +420,11 @@
         "lat":24.150403, 
         "long":120.685411,
         "details":{
-            "Name":"StayReal Café",
+            "Name":"StayReal Cafe",
             "Contact":"(04)2221-1055",
             "Address":"台中市北區一中街103-1號2樓",
             "Working Hours":"<br>(平日):12:00-22:00<br>(假日):12:00-22:00",
-            "Facebook":"<a href='https://www.facebook.com/StayRealCafe'>StayReal Café</a>"
-        }
-    },
-    "":
-    {
-        "title": "",
-        "paragraph": "",
-        "cover":"",
-        "content":[
-            {"picture":"","text":"▲"},
-            {"picture":"","text":"▲"},
-            {"picture":"","text":"▲"}
-        ],
-        "lat":,
-        "long":,
-        "details":{
-            "Name":"",
-            "Contact":"(04)",
-            "Address":"",
-            "Working Hours":"<br>(平日):<br>(假日):",
-            "Facebook":"<a href=''></a>"
+            "Facebook":"<a href='https://www.facebook.com/StayRealCafe'>StayReal Cafe</a>"
         }
     }
 }
