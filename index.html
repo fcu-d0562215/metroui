@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <title>Metro UI</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="img/pokeball.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/metro-icons.min.css">
@@ -14,7 +14,90 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/ajax.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
+    <title>Background</title>
+    <style media="screen">
+    
+    
+    #frame {
+        /*text-align: center;*/
+        background: #c26b2d;
+        background-image: linear-gradient(to bottom, #c26b2d 0, #cb7741 100%);
+        height: 400px;
+        /*display: flex;*/
+        justify-content: center;
+        border-radius: 5px;
+    }
+    
+    #frame>p {
+        font-size: 30px;
+        color: lightgray;
+        align-self: center;
+        /*bottom: 50%;*/
+    }
+    
+    .calouse {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+    
+    .calouse_Content {
+        background-color: #ede065;
+        border-radius: 5px;
+        /*display: flex;*/
+        align-content: center;
+        padding: 20px;
+        font-size: 15px;
+    }
+    
+    .calouse_Content img {
+        background-color: white;
+    }
+    
+    .calouse_Content button {
+        border-radius: 10px;
+        /*font-size: 10px;*/
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    
+    .calouse_Content button:focus {
+        outline: none;
+    }
+    
+    .card {
+        background-color: gray;
+        padding-top: 10px;
+        height: 300px;
+        /*margin-right: 20px;*/
+    }
+    
+    .card_title {
+        height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .content {
+        /*margin-top:10px;*/
+        display: block;
+        display: -webkit-box;
+        /*background-color: lightgray;*/
+        color: white;
+        /*height: 100px;*/
+        max-width: 400px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    img {
+        width: 100%;
+        height: 35%;
+    }
+    </style>
 </head>
 
 <body>
@@ -47,18 +130,29 @@
         </div>
     </nav>
     <div class="container-fluid">
+        <div class="row">
+            <div id="frame" class="col-xs-12">
+                <p>Do Your Future</p>
+            </div>
+            <div class="calouse col-xs-12">
+                <span id="calouse_Header">Food</span>
+                <div id="food" class="calouse_Content col-xs-12"></div>
+            </div>
+            <div class="calouse col-xs-12">
+                <span id="calouse_Header">Travel</span>
+                <div id="travel" class="calouse_Content col-xs-12">
+                    <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <img src="img\pokeball.png" alt="">
+                        <p class="content">Welcome to my Worasdasd asdasdasd qsw qwasdasdsasdasdaseqw eqweqweqwe qweqwrqwtqet dasdasdasdweqw qwe qwe qwe qwe </p>
+                        <button>More ...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <progress class="progress navbar-fixed-top" value="0" max="100" style="margin-bottom: 0;height: 0;"></progress>
     <script>
-    $(document).ready(function() {
-        _getData("food")
-        window.onkeyup = function(e) {
-            if (e.keyIdentifier == "Right" || e.keyCode == 39)
-                nextpage()
-            if (e.keyIdentifier == "Left" || e.keyCode == 37)
-                previouspage()
-        }
-    });
+    mainpage()
     </script>
 </body>
 
