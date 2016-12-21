@@ -60,26 +60,5 @@
             "Working Hours":"<br>(平日):11:00~16:00、17:00~22:00<br>(假日)11:00~22:00",
             "Facebook":"<a href='https://www.facebook.com/pantorasteak/'>潘朵拉之宴</a>"
         }
-    },
-    "Tim_heart":
-    {
-        "title": "恬心朵朵",
-        "paragraph": "「恬心朵朵」豐原店就位於台中市豐原區向陽路上，明亮又溫馨的用餐環境搭配新鮮現做的餐點，不僅口味好、價格實在，且餐點選擇多元，非常適合各式聚會!",
-        "cover":"./web網頁設計/恬心朵朵/恬心朵朵.jpg",
-        "content":[
-            {"picture":"./web網頁設計/恬心朵朵/恬心朵朵1.jpg","text":"▲裡頭走的是溫馨的用餐空間，木質感搭配鵝黃的燈光看起來頗為溫暖!"},
-            {"picture":"./web網頁設計/恬心朵朵/恬心朵朵2.jpg","text":"▲這裡的每個小角落都佈置得很溫馨，讓人感覺很舒服~"},
-            {"picture":"./web網頁設計/恬心朵朵/恬心朵朵3.jpg","text":"▲後頭還有另一個用餐的包廂小空間，非常適合家族和朋友聚餐，重點是還不會吵到別人XD"}
-            
-        ],
-        "lat":24.252366,
-        "long":120.723695,
-        "details":{
-            "Name":"恬心朵朵",
-            "Contact":"(04)25293135",
-            "Address":"台中市豐原區向陽路102號",
-            "Working Hours":"<br>(平日):8:30~22:00<br>(假日)8:30~22:00",
-            "Facebook":"<a href='https://www.facebook.com/lilywhitecafe3/'>恬心朵朵</a>"
-        }
     }
 }
