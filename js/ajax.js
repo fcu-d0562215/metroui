@@ -197,7 +197,7 @@ function _getMainData(url, type) {
         dataType: "json",
         success: function(response) {
             for (i in response) {
-                var string = '<div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="card_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
+                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="mycard_title">' + response[i].title + '</p><img src="' + response[i].cover + '" alt=""><p class="content">' + response[i].paragraph + '</p><button>More ...</button></div>'
                 // console.log(type)
                 $('#' + type).append(string);
                 // console.log(response[i].title)
