@@ -99,7 +99,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><a id="title" style="font-size:150%;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:100%"></h2></div><div class="row"><div id="_content"></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><a id="title" style="font-size:2.3em;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:150%"></h2></div><div class="row"><div id="_content"></div></div></div>')
 }
 
 function _processData(data) {
@@ -196,7 +196,7 @@ function nextContent(type) {
             }
             if(contentno[type.id] != 0){
                 if(!$("#prev"+type.id).html()){
-                    $("#"+type.id+"Content").prepend('<button id="prev'+type.id+'" onclick="prevContent('+type.id+')"><</button')
+                    $("#"+type.id+"Content").prepend('<span id="prev'+type.id+'" onclick="prevContent('+type.id+')"><</span>')
                 }
             }
         }
@@ -216,7 +216,7 @@ function prevContent(type) {
             }
             if(contentno[type.id] != contentmax[type.id] - contentsize){
                 if(!$("#next"+type.id).html()){
-                    $('#'+type.id+'Content').append("<button id='next"+type.id+"' onclick='nextContent("+type.id+")'>></button>")
+                    $('#'+type.id+'Content').append("<span id='next"+type.id+"' onclick='nextContent("+type.id+")'>></span>")
                 }
             }
         }
@@ -236,20 +236,7 @@ function mainpage() {
     // }else{
     //     alert("Your Screen Too small!!!")
     // }
-    var width1 = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-    if(width1 <= 543){
-        contentsize = 1
-    }else if(_width() <= 767){
-        width1 = 2
-    }else if(_width() <= 991){
-        width1 = 3
-    }else if (_width() <= 1199){
-        width1 = 4
-    }else if(_width() >=1200){
-        width1 = 5
-    }else{
-        alert("Your Screen Too small!!!")
-    }
+
     for (type in dataSource) {
         _getMainData(dataSource[type], type , contentno[type])
     }
@@ -264,11 +251,25 @@ function _getMainData(url, type ,content_no = 0) {
         url: url,
         dataType: "json",
         success: function(response) {
+            var width1 = document.getElementsByTagName('body')[0].clientWidth;
+            if(width1 <= 543){
+                contentsize = 1
+            }else if(width1 <= 767){
+                contentsize = 2
+            }else if(width1 <= 991){
+                contentsize = 3
+            }else if (width1 <= 1199){
+                contentsize = 4
+            }else if(width1 >=1200){
+                contentsize = 5
+            }else{
+                alert("Your Screen Too small!!!")
+            }
             console.log(contentmax)
             contentmax[type] = Object.keys(response).length -1
             $('#'+type).html("")
             for (i=content_no;i<content_no+contentsize;i++) {
-                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + response[Object.keys(response)[i]].title + '</p><img src="' + response[Object.keys(response)[i]].cover + '" alt=""><p class="content">' + response[Object.keys(response)[i]].paragraph + '</p><button>More ...</button></div>'
+                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + response[Object.keys(response)[i]].title + '</p><img src="' + response[Object.keys(response)[i]].cover + '" alt=""><p class="content">' + response[Object.keys(response)[i]].paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
                 // console.log(type)
                 $('#' + type).append(string);
                 // console.log(response[i].title)
