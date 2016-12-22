@@ -12,7 +12,7 @@
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/layout.js"></script> -->
+    <script src="js/layout.js"></script>
     <script src="js/ajax.js"></script>
     <title>Background</title>
     <style media="screen">
@@ -218,8 +218,10 @@
     $(window).resize(function() {
         mainpage()
     });
-
-    mainpage()
+    $(document).ready(function(){
+        mainpage()
+        console.log("qwe",$('html').css('width'))
+    })
     </script>
 </body>
 

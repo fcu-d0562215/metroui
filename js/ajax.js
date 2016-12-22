@@ -223,15 +223,29 @@ function prevContent(type) {
 }
 
 function mainpage() {
-    if(document.body.offsetWidth <= 583){
+    // if(document.body.offsetWidth <= 543){
+    //     contentsize = 1
+    // }else if(document.body.offsetWidth ==580 || document.body.offsetWidth <= 767){
+    //     contentsize = 2
+    // }else if(document.body.offsetWidth <= 991){
+    //     contentsize = 3
+    // }else if (document.body.offsetWidth <= 1199){
+    //     contentsize = 4
+    // }else if(document.body.offsetWidth >=1200){
+    //     contentsize = 5
+    // }else{
+    //     alert("Your Screen Too small!!!")
+    // }
+    if(_width() <= 543){
         contentsize = 1
-    }else if(document.body.offsetWidth <= 767){
+    }else if(_width() <= 767){
+
         contentsize = 2
-    }else if(document.body.offsetWidth <= 991){
+    }else if(_width() <= 991){
         contentsize = 3
-    }else if (document.body.offsetWidth <= 1199){
+    }else if (_width() <= 1199){
         contentsize = 4
-    }else if(document.body.offsetWidth >=1200){
+    }else if(_width() >=1200){
         contentsize = 5
     }else{
         alert("Your Screen Too small!!!")
