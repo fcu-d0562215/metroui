@@ -26,16 +26,14 @@
          margin: 10px 0;
       }
     </style>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
   </head>
   <body>
     <div id="map"></div>
     <script>
       var map;
       var marker;
-      var current = infowindow;
+      var current;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 10,
@@ -87,9 +85,8 @@
             }
         })
       }
-      $(function(){
-
-        initMap()
+      $(document).ready(function(){
+          initMap()
       })
     </script>
 
