@@ -1,7 +1,8 @@
 var pageno = 0
 var pagemax = 0
-var contentno = 0
-var contentmax = 0
+var contentno = {"food":0,"travel":0}
+var contentmax = {"food":0,"travel":0}
+var contentsize=0
 var types, allInOne
 var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
@@ -187,13 +188,13 @@ function previouspage() {
 }
 
 function nextContent(type) {
-        if (contentno != contentmax) {
-            contentno += 5
-            _getMainData(dataSource[type.id], type.id ,contentno)
-            if(contentno >= contentmax -5){
+        if (contentno[type.id] != contentmax[type.id]) {
+            contentno[type.id] += contentsize
+            _getMainData(dataSource[type.id], type.id ,contentno[type.id])
+            if(contentno[type.id] >= contentmax[type.id] - contentsize){
                 $('#next'+type.id).remove()
             }
-            if(contentno != 0){
+            if(contentno[type.id] != 0){
                 if(!$("#prev"+type.id).html()){
                     $("#"+type.id+"Content").prepend('<button id="prev'+type.id+'" onclick="prevContent('+type.id+')"><</button')
                 }
@@ -204,13 +205,16 @@ function nextContent(type) {
 }
 
 function prevContent(type) {
-        if (contentno != 0) {
-            contentno -= 5
-            _getMainData(dataSource[type.id], type.id ,contentno)
-            if(contentno == 0){
+        if (contentno[type.id] != 0) {
+            contentno[type.id] -= contentsize
+            if(contentno[type.id] < 0){
+                contentno[type.id] = 0
+            }
+            _getMainData(dataSource[type.id], type.id ,contentno[type.id])
+            if(contentno[type.id] <= 0){
                 $('#prev'+type.id).remove()
             }
-            if(contentno != contentmax -5){
+            if(contentno[type.id] != contentmax[type.id] - contentsize){
                 if(!$("#next"+type.id).html()){
                     $('#'+type.id+'Content').append("<button id='next"+type.id+"' onclick='nextContent("+type.id+")'>></button>")
                 }
@@ -219,22 +223,38 @@ function prevContent(type) {
 }
 
 function mainpage() {
-
+    if(document.body.offsetWidth <= 583){
+        contentsize = 1
+    }else if(document.body.offsetWidth <= 767){
+        contentsize = 2
+    }else if(document.body.offsetWidth <= 991){
+        contentsize = 3
+    }else if (document.body.offsetWidth <= 1199){
+        contentsize = 4
+    }else if(document.body.offsetWidth >=1200){
+        contentsize = 5
+    }else{
+        alert("Your Screen Too small!!!")
+    }
     for (type in dataSource) {
-        _getMainData(dataSource[type], type)
+        _getMainData(dataSource[type], type , contentno[type])
     }
 }
 
 function _getMainData(url, type ,content_no = 0) {
+    console.log(document.body.offsetWidth)
+
+
     $.ajax({
         method: 'Get',
         url: url,
         dataType: "json",
         success: function(response) {
-            contentmax = Object.keys(response).length -1
+            console.log(contentmax)
+            contentmax[type] = Object.keys(response).length -1
             $('#'+type).html("")
-            for (i=content_no;i<content_no+5;i++) {
-                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><p class="mycard_title">' + response[Object.keys(response)[i]].title + '</p><img src="' + response[Object.keys(response)[i]].cover + '" alt=""><p class="content">' + response[Object.keys(response)[i]].paragraph + '</p><button>More ...</button></div>'
+            for (i=content_no;i<content_no+contentsize;i++) {
+                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + response[Object.keys(response)[i]].title + '</p><img src="' + response[Object.keys(response)[i]].cover + '" alt=""><p class="content">' + response[Object.keys(response)[i]].paragraph + '</p><button>More ...</button></div>'
                 // console.log(type)
                 $('#' + type).append(string);
                 // console.log(response[i].title)
