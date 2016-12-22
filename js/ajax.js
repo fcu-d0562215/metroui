@@ -236,17 +236,17 @@ function mainpage() {
     // }else{
     //     alert("Your Screen Too small!!!")
     // }
-    if(_width() <= 543){
+    var width1 = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+    if(width1 <= 543){
         contentsize = 1
     }else if(_width() <= 767){
-
-        contentsize = 2
+        width1 = 2
     }else if(_width() <= 991){
-        contentsize = 3
+        width1 = 3
     }else if (_width() <= 1199){
-        contentsize = 4
+        width1 = 4
     }else if(_width() >=1200){
-        contentsize = 5
+        width1 = 5
     }else{
         alert("Your Screen Too small!!!")
     }
