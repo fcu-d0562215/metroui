@@ -231,13 +231,15 @@ function mainpage() {
 
 function _getMainData(url, type ,content_no = 0) {
     console.log(document.body.offsetWidth)
-
-
+	
+	url = "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json";
+	
     $.ajax({
         method: 'Get',
         url: url,
         dataType: "json",
         success: function(response) {
+			console.log("Show:"+type);
             var width1 = document.getElementsByTagName('body')[0].clientWidth;
             if(width1 <= 575){
                 contentsize = 1
@@ -256,11 +258,13 @@ function _getMainData(url, type ,content_no = 0) {
             contentmax[type] = Object.keys(response).length -1
             $('#'+type).html("")
             for (i=content_no;i<content_no+contentsize;i++) {
-                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + response[Object.keys(response)[i]].title + '</p><img src="' + response[Object.keys(response)[i]].cover + '" alt=""><p class="content">' + response[Object.keys(response)[i]].paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
-                // console.log(type)
+				var source = response[Object.keys(response)[i]];
+				var title = source.title;
+				var cover = source.cover;
+				var paragraph = source.paragraph;
+				console.log("Title:"+title+" Cover:"+cover+" Paragraph:"+paragraph);
+                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
                 $('#' + type).append(string);
-                // console.log(response[i].title)
-                // console.log(response[i].paragraph)
             }
         }
     })
