@@ -9,11 +9,6 @@ $(document).ready(function() {
     }, function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeOut(100);
     });
-    $(window).keydown(function(event) {
-        if (event.keyCode == 123 || event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-            return false;
-        }
-    });
     _resize()
 });
 
