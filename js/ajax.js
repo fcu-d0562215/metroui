@@ -99,7 +99,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="font-size:2.3em;border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" style="font-size:150%"></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div>')
 }
 
 function _processData(data) {
@@ -135,12 +135,12 @@ function _processData(data) {
         for (var i = 0; i < Object.keys(data.details).length; i++) {
             _dataDetails += Object.keys(data.details)[i] + " : " + data.details[Object.keys(data.details)[i]] + "<br>"
         }
-        _content.before("<div class='col-md-3 text-xs-left push-md-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px;font-size:60%;'><span>" + _dataDetails + "</span></div></div>");
+        _content.before("<div class='col-md-4 col-lg-3 text-xs-left push-md-8 push-lg-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px;font-size:60%;'><span>" + _dataDetails + "</span></div></div>");
     }
     _content = document.querySelector("#body>div:nth-of-type(4)")
     if (data.lat) {
-        _content.innerHTML += "<div class='col-md-3 push-md-9'><div><p>地圖</p><p id='map'></p></div></div>";
-        $("#body #_content").addClass("col-md-9 float-md-right pull-md-3")
+        _content.innerHTML += "<div class='col-md-4 col-lg-3 push-md-8 push-lg-9'><div style='padding: 0px 10px;'><p>地圖</p><p id='map' ></p></div></div>";
+        $("#body #_content").addClass("col-md-8 col-lg-9 float-md-right pull-md-4 pull-lg-3")
         initMap(data.lat, data.long)
     }
     _resize()

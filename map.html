@@ -31,6 +31,11 @@
       var map;
       var marker;
       var current;
+
+        function ajax(type){
+
+        }
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 10,
@@ -66,21 +71,28 @@
         });
 
         }
-
-        $.ajax({
-            method:"Get",
-            url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-            dataType:"json",
-            success:function(response){
-                  console.log(Object.keys(response))
-                  var test
-                  for(i in response){
-                      addMarker(response[i].lat ,response[i].long ,response[i].title ,response[i].details ,response[i].details.Facebook , response[i].cover);
-                      console.log(response[i].lat)
-
-                  }
-            }
-        })
+        function ajaxQueue(type = "travel"){
+            $.ajax({
+                method:"Get",
+                url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
+                dataType:"json",
+                success:function(response){
+                      console.log(Object.keys(response))
+                      var test
+                      for(i in response){
+                          addMarker(response[i].lat ,response[i].long ,response[i].title ,response[i].details ,response[i].details.Facebook , response[i].cover);
+                          console.log(response[i].lat)
+                      }
+                },
+                error:function(a ,b ,c){
+                    console.log(a)
+                    console.log(b)
+                    console.log(c)
+                }
+            })
+        }
+        ajaxQueue("food");
+        ajaxQueue("travel");
       }
       $(document).ready(function(){
           initMap()

@@ -74,6 +74,12 @@
            width: 90%;
            margin: 0 5%;
         }
+        #title{
+            font-size: 130%;
+        }
+        #paragraph{
+            font-size:100%;
+        }
 
         @media screen and (min-width:576px) {
             .mycard
@@ -91,6 +97,12 @@
             #details>span>a{
                 font-size: 150%;
                 font-weight: bolder;
+            }
+            #title{
+                font-size: 160%;
+            }
+            #paragraph{
+                font-size:120%;
             }
         }
 
@@ -110,6 +122,12 @@
             #details>span>a{
                 font-size: 100%;
                 font-weight: bolder;
+            }
+            #title{
+                font-size: 160%;
+            }
+            #paragraph{
+                font-size:120%;
             }
         }
 
