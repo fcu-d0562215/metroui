@@ -99,7 +99,7 @@ function initMap(lati, long) {
 
 function _resetLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><a id="title" style="font-size:2.3em;border-bottom:3px solid;"></a></div><div class="row"><h2 id="paragraph" style="font-size:150%"></h2></div><div class="row"><div id="_content"></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="font-size:2.3em;border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" style="font-size:150%"></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div>')
 }
 
 function _processData(data) {
@@ -135,7 +135,7 @@ function _processData(data) {
         for (var i = 0; i < Object.keys(data.details).length; i++) {
             _dataDetails += Object.keys(data.details)[i] + " : " + data.details[Object.keys(data.details)[i]] + "<br>"
         }
-        _content.before("<div class='col-md-3 text-xs-left push-md-9' style='margin-bottom:15px;'><div style='padding:10px 5px 0 5px;font-size:100%;'>" + _dataDetails + "</p></div></div>");
+        _content.before("<div class='col-md-3 text-xs-left push-md-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px 0 5px;font-size:60%;'><span>" + _dataDetails + "</span></div></div>");
     }
     _content = document.querySelector("#body>div:nth-of-type(4)")
     if (data.lat) {
@@ -223,19 +223,6 @@ function prevContent(type) {
 }
 
 function mainpage() {
-    // if(document.body.offsetWidth <= 543){
-    //     contentsize = 1
-    // }else if(document.body.offsetWidth ==580 || document.body.offsetWidth <= 767){
-    //     contentsize = 2
-    // }else if(document.body.offsetWidth <= 991){
-    //     contentsize = 3
-    // }else if (document.body.offsetWidth <= 1199){
-    //     contentsize = 4
-    // }else if(document.body.offsetWidth >=1200){
-    //     contentsize = 5
-    // }else{
-    //     alert("Your Screen Too small!!!")
-    // }
 
     for (type in dataSource) {
         _getMainData(dataSource[type], type , contentno[type])
@@ -252,7 +239,7 @@ function _getMainData(url, type ,content_no = 0) {
         dataType: "json",
         success: function(response) {
             var width1 = document.getElementsByTagName('body')[0].clientWidth;
-            if(width1 <= 543){
+            if(width1 <= 575){
                 contentsize = 1
             }else if(width1 <= 767){
                 contentsize = 2
