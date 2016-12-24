@@ -232,7 +232,7 @@ function mainpage() {
 function _getMainData(url, type ,content_no = 0) {
     console.log(document.body.offsetWidth)
 	
-	//url = "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json";
+	url = "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json";
 	
     $.ajax({
         method: 'Get',
