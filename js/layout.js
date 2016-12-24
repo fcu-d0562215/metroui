@@ -3,16 +3,10 @@ $(window).resize(function() {
 });
 $(document).ready(function() {
     // $(".container-fluid").css('margin-top', $(".navbar-fixed-top").css('height'));
-    document.addEventListener('contextmenu', event => event.preventDefault());
     $('ul.nav li.dropdown').hover(function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeIn(100);
     }, function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeOut(100);
-    });
-    $(window).keydown(function(event) {
-        if (event.keyCode == 123 || event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-            return false;
-        }
     });
     _resize()
 });
