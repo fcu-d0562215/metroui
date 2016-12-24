@@ -63,9 +63,9 @@
         $(".container-fluid").on("swipe",function(e){
             console.log(e)
             if(e.swipestart.coords[0]>e.swipestop.coords[0]){
-                previouspage()
-            }else{
                 nextpage()
+            }else{
+                previouspage()
             }
         });
     });

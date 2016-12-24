@@ -85,9 +85,9 @@
 
         $("#travel,#food").on("swipe",function(e){
             if(e.swipestart.coords[0]>e.swipestop.coords[0]){
-                prevContent(this)
-            }else{
                 nextContent(this)
+            }else{
+                prevContent(this)
             }
         });
     })
