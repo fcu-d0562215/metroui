@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="css/metro-icons.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/tether.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- <script src="js/layout.js"></script> -->
     <script src="js/ajax.js"></script>
@@ -79,10 +82,18 @@
     $(document).ready(function(){
         mainpage()
         console.log("qwe",$('html').css('width'))
-        document.querySelector("body").addEventListener("ontouchstart",function(){alert("hello")})
-        document.querySelector("body").addEventListener("ontouchmove",function(){alert("hello");alert(ontouchmove)})
-        
+
+
+        $("#travel,#food").on("swipe",function(e){
+            if(e.swipestart.coords[0]>e.swipestop.coords[0]){
+                prevContent(this)
+            }else{
+                nextContent(this)
+            }
+        });
     })
+
+
     </script>
 </body>
 

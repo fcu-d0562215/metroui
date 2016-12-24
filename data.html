@@ -14,6 +14,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/ajax.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
 </head>
 
@@ -58,7 +60,16 @@
             if (e.keyIdentifier == "Left" || e.keyCode == 37)
                 previouspage()
         }
+        $(".container-fluid").on("swipe",function(e){
+            console.log(e)
+            if(e.swipestart.coords[0]>e.swipestop.coords[0]){
+                previouspage()
+            }else{
+                nextpage()
+            }
+        });
     });
+
     </script>
 </body>
 
