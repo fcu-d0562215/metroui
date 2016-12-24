@@ -160,7 +160,7 @@
         body{
             background-image: url("..\\img\\background.jpg");
             background-repeat: repeat-x;
-            background-size: cover;
+            background-size: 100% 100%;
             background-color: black;
         }
 
