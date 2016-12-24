@@ -135,7 +135,7 @@ function _processData(data) {
         for (var i = 0; i < Object.keys(data.details).length; i++) {
             _dataDetails += Object.keys(data.details)[i] + " : " + data.details[Object.keys(data.details)[i]] + "<br>"
         }
-        _content.before("<div class='col-md-3 text-xs-left push-md-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px 0 5px;font-size:60%;'><span>" + _dataDetails + "</span></div></div>");
+        _content.before("<div class='col-md-3 text-xs-left push-md-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px;font-size:60%;'><span>" + _dataDetails + "</span></div></div>");
     }
     _content = document.querySelector("#body>div:nth-of-type(4)")
     if (data.lat) {
