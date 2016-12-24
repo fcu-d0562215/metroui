@@ -80,6 +80,8 @@
         mainpage()
         console.log("qwe",$('html').css('width'))
     })
+    document.querySelector("body").addEventListener("ontouchstart",function(){alert("hello")})
+    document.querySelector("body").addEventListener("ontouchmove",function(){alert("hello");alert(ontouchmove)})
     </script>
 </body>
 
