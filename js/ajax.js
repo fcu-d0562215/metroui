@@ -4,6 +4,7 @@ var contentno = { "food": 0, "travel": 0 }
 var contentmax = { "food": 0, "travel": 0 }
 var contentsize = 0
 var types, allInOne
+var swipestart;
 var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
     "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/travel.json"
@@ -108,7 +109,7 @@ function _resetDataLayout() {
 
 function _resetMainLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div class="row" id="body"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>Do Your Future</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"><div id="food" class="col-xs-12"></div><span id="nextfood" onclick="nextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12"><div id="travel" class="col-xs-12"></div><span id="nexttravel" onclick="nextContent(travel)">></span></div></div></div>')
+    $(".container-fluid").append('<div class="row" id="body"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>Do Your Future</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="nextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="nextContent(travel)">></span></div></div></div>')
 }
 
 function _processData(data) {
@@ -175,6 +176,23 @@ function _getData(type, page = 0) {
     })
 }
 
+
+function mainSwipeStart(){
+    e = this.event
+    swipestart = e.touches[0].clientX
+}
+function mainSwipeEnd(type = food){
+    e = this.event
+    if(swipestart - e.changedTouches[0].clientX>=50||swipestart - e.changedTouches[0].clientX<=-50){
+        if(swipestart > e.changedTouches[0].clientX){
+        	nextContent(type)
+    	}else{
+        	prevContent(type)
+        }
+    }
+
+}
+
 function nextpage() {
     if (pageno != pagemax) {
         pageno += 1
@@ -192,10 +210,12 @@ function previouspage() {
 function nextContent(type) {
     if (contentno[type.id] != contentmax[type.id]) {
         contentno[type.id] += contentsize
-        _processMain(content[type.id], type.id, contentno[type.id])
+
         if (contentno[type.id] >= contentmax[type.id] - contentsize ) {
+            contentno[type.id] = contentmax[type.id]
             $('#next' + type.id).remove()
         }
+        _processMain(content[type.id], type.id, contentno[type.id])
         if (contentno[type.id] != 0) {
             if (!$("#prev" + type.id).html()) {
                 $("#" + type.id + "Content").prepend('<span id="prev' + type.id + '" onclick="prevContent(' + type.id + ')"><</span>')
@@ -229,7 +249,6 @@ function mainpage() {
     _changeContentSize();
     for (type in dataSource) {
         _getMainData(dataSource[type], type, contentno[type])
-        console.log(dataSource[type])
     }
 }
 
