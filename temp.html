@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="css/metro-icons.min.css">
     <link rel="stylesheet" href="css/layout.css">
     <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/layout.js"></script> -->
+    <script src="js/layout.js"></script>
     <script src="js/ajax.js"></script>
     <title>Background</title>
     <style>
@@ -53,44 +53,21 @@
             </form>
         </div>
     </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="frame" class="col-xs-12">
-                    <p>Do Your Future</p>
-                </div>
-            </div>
-            <div class="calouse col-xs-12">
-                <a id="calouse_Header" href="">Food</a>
-                <div class="col-xs-12" style=" padding: 0px;">
-                    <div id="foodContent" class="calouse_Content "><div id="food" class="col-xs-12"></div><span id="nextfood" onclick="nextContent(food)">></span></div>
-                </div>
-            </div>
-            <div class="calouse col-xs-12">
-                <a id="calouse_Header" href="">Travel</a>
-
-                    <div id="travelContent" class="calouse_Content col-xs-12"><div id="travel" class="col-xs-12"></div><span id="nexttravel" onclick="nextContent(travel)">></span></div>
-
-            </div>
-        </div>
-    </div>
+    <div class="container-fluid"></div>
     <script>
-    $(window).resize(function() {
-        mainpage()
-    });
-    $(document).ready(function(){
-        mainpage()
-        console.log("qwe",$('html').css('width'))
-
-
-        $("#travel,#food").on("swipe",function(e){
-            if(e.swipestart.coords[0]>e.swipestop.coords[0]){
-                nextContent(this)
-            }else{
-                prevContent(this)
-            }
-        });
-    })
+    // $(window).resize(function() {
+    //     mainpage()
+    // });
+    // $(document).ready(function(){
+    //     mainpage()
+    // //     $("#travel,#food").on("swipe",function(e){
+    // //         if(e.swipestart.coords[0]>e.swipestop.coords[0]){
+    // //             nextContent(this)
+    // //         }else{
+    // //             prevContent(this)
+    // //         }
+    //     // });
+    // })
 
 
     </script>

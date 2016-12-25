@@ -1,8 +1,8 @@
 var pageno = 0
 var pagemax = 0
-var contentno = {"food":0,"travel":0}
-var contentmax = {"food":0,"travel":0}
-var contentsize=0
+var contentno = { "food": 0, "travel": 0 }
+var contentmax = { "food": 0, "travel": 0 }
+var contentsize = 0
 var types, allInOne
 var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
@@ -97,20 +97,18 @@ function initMap(lati, long) {
     });
 }
 
-function _resetLayout() {
+function _resetDataLayout() {
     $("#body").remove();
     $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div>')
 }
 
+function _resetMainLayout() {
+    $("#body").remove();
+    $(".container-fluid").append('<div class="row" id="body"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>Do Your Future</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"><div id="food" class="col-xs-12"></div><span id="nextfood" onclick="nextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12"><div id="travel" class="col-xs-12"></div><span id="nexttravel" onclick="nextContent(travel)">></span></div></div></div>')
+}
+
 function _processData(data) {
-
-
-    // for(var i in data1){
-    //     console.log(data1.Huche)
-    //     console.log(data1.keys('Huche'))
-    // }
-    _resetLayout();
-
+    _resetDataLayout();
     $("#title").text(data.title);
     $("#paragraph").text(data.paragraph);
     $("#cover").attr('src', data.cover).height(_height() * 0.45);
@@ -188,86 +186,70 @@ function previouspage() {
 }
 
 function nextContent(type) {
-        if (contentno[type.id] != contentmax[type.id]) {
-            contentno[type.id] += contentsize
-            _getMainData(dataSource[type.id], type.id ,contentno[type.id])
-            if(contentno[type.id] >= contentmax[type.id] - contentsize){
-                $('#next'+type.id).remove()
-            }
-            if(contentno[type.id] != 0){
-                if(!$("#prev"+type.id).html()){
-                    $("#"+type.id+"Content").prepend('<span id="prev'+type.id+'" onclick="prevContent('+type.id+')"><</span>')
-                }
+    if (contentno[type.id] != contentmax[type.id]) {
+        contentno[type.id] += contentsize
+        _getMainData(dataSource[type.id], type.id, contentno[type.id])
+        if (contentno[type.id] >= contentmax[type.id] - contentsize) {
+            $('#next' + type.id).remove()
+        }
+        if (contentno[type.id] != 0) {
+            if (!$("#prev" + type.id).html()) {
+                $("#" + type.id + "Content").prepend('<span id="prev' + type.id + '" onclick="prevContent(' + type.id + ')"><</span>')
             }
         }
+    }
 
 
 }
 
 function prevContent(type) {
-        if (contentno[type.id] != 0) {
-            contentno[type.id] -= contentsize
-            if(contentno[type.id] < 0){
-                contentno[type.id] = 0
-            }
-            _getMainData(dataSource[type.id], type.id ,contentno[type.id])
-            if(contentno[type.id] <= 0){
-                $('#prev'+type.id).remove()
-            }
-            if(contentno[type.id] != contentmax[type.id] - contentsize){
-                if(!$("#next"+type.id).html()){
-                    $('#'+type.id+'Content').append("<span id='next"+type.id+"' onclick='nextContent("+type.id+")'>></span>")
-                }
+    if (contentno[type.id] != 0) {
+        contentno[type.id] -= contentsize
+        if (contentno[type.id] < 0) {
+            contentno[type.id] = 0
+        }
+        _getMainData(dataSource[type.id], type.id, contentno[type.id])
+        if (contentno[type.id] <= 0) {
+            $('#prev' + type.id).remove()
+        }
+        if (contentno[type.id] != contentmax[type.id] - contentsize) {
+            if (!$("#next" + type.id).html()) {
+                $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='nextContent(" + type.id + ")'>></span>")
             }
         }
-}
-
-function mainpage() {
-
-    for (type in dataSource) {
-        _getMainData(dataSource[type], type , contentno[type])
     }
 }
 
-function _getMainData(url, type ,content_no = 0) {
-    console.log(document.body.offsetWidth)
-	
-	url = "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json";
-	
+function mainpage() {
+    _resetMainLayout();
+    _changeContentSize();
+    for (type in dataSource) {
+        _getMainData(dataSource[type], type, contentno[type])
+    }
+}
+
+function _getMainData(url, type, content_no = 0) {
     $.ajax({
         method: 'Get',
         url: url,
         dataType: "json",
         success: function(response) {
-			console.log("Show:"+type);
-            var width1 = document.getElementsByTagName('body')[0].clientWidth;
-            if(width1 <= 575){
-                contentsize = 1
-            }else if(width1 <= 767){
-                contentsize = 2
-            }else if(width1 <= 991){
-                contentsize = 3
-            }else if (width1 <= 1199){
-                contentsize = 4
-            }else if(width1 >=1200){
-                contentsize = 5
-            }else{
-                alert("Your Screen Too small!!!")
-            }
-            console.log(contentmax)
-            contentmax[type] = Object.keys(response).length -1
-            $('#'+type).html("")
-            for (i=content_no;i<content_no+contentsize;i++) {
-				var source = response[Object.keys(response)[i]];
-				var title = source.title;
-				var cover = source.cover;
-				var paragraph = source.paragraph;
-				console.log("Title:"+title+" Cover:"+cover+" Paragraph:"+paragraph);
-                var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
-                $('#' + type).append(string);
-            }
+            _processMain(response);
         }
     })
+}
+
+function _processMain(data) {
+    contentmax[type] = Object.keys(data).length - 1 ;
+    $('#' + type).html("")
+    for (i = content_no; i < content_no + contentsize; i++) {
+        var source = data[Object.keys(data)[i]];
+        var title = source.title;
+        var cover = source.cover;
+        var paragraph = source.paragraph;
+        var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
+        $('#' + type).append(string);
+    }
 }
 /*
 function page(url) {
