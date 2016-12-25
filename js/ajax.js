@@ -192,8 +192,8 @@ function previouspage() {
 function nextContent(type) {
     if (contentno[type.id] != contentmax[type.id]) {
         contentno[type.id] += contentsize
-        _getMainData(dataSource[type.id], type.id, contentno[type.id])
-        if (contentno[type.id] >= contentmax[type.id] - contentsize) {
+        _processMain(content[type.id], type.id, contentno[type.id])
+        if (contentno[type.id] >= contentmax[type.id] - contentsize ) {
             $('#next' + type.id).remove()
         }
         if (contentno[type.id] != 0) {
@@ -212,7 +212,7 @@ function prevContent(type) {
         if (contentno[type.id] < 0) {
             contentno[type.id] = 0
         }
-        _getMainData(dataSource[type.id], type.id, contentno[type.id])
+        _processMain(content[type.id], type.id, contentno[type.id])
         if (contentno[type.id] <= 0) {
             $('#prev' + type.id).remove()
         }
@@ -249,12 +249,15 @@ function _processMain(data,type,content_no) {
     contentmax[type] = Object.keys(data).length - 1 ;
     $('#' + type).html("")
     for (i = content_no; i < content_no + contentsize; i++) {
-        var source = data[Object.keys(data)[i]];
-        var title = source.title;
-        var cover = source.cover;
-        var paragraph = source.paragraph;
-        var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
-        $('#' + type).append(string);
+        if(data[Object.keys(data)[i]]){
+            var source = data[Object.keys(data)[i]];
+            var title = source.title;
+            var cover = source.cover;
+            var paragraph = source.paragraph;
+            var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
+            $('#' + type).append(string);
+        }
+
     }
 }
 /*
