@@ -286,6 +286,8 @@
             right: 0;
             height: 300px;
             margin: auto;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
         #prevfood,#nextfood,#prevtravel,#nexttravel{
             z-index: 100;

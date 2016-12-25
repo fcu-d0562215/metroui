@@ -6,7 +6,11 @@ var contentsize = 0
 var types, allInOne
 var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-    "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json"
+    "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/travel.json"
+}
+var content ={
+    "food": "",
+    "travel":""
 }
 
 $.ajaxSetup({
@@ -225,6 +229,7 @@ function mainpage() {
     _changeContentSize();
     for (type in dataSource) {
         _getMainData(dataSource[type], type, contentno[type])
+        console.log(dataSource[type])
     }
 }
 
@@ -234,7 +239,8 @@ function _getMainData(url, type, content_no = 0) {
         url: url,
         dataType: "json",
         success: function(response) {
-            _processMain(response,type,content_no);
+            content[type] = response
+            _processMain(content[type],type,content_no);
         }
     })
 }
