@@ -1,10 +1,6 @@
 $(window).resize(function() {
-
+    mainpage()
     _resize();
-    for(i in content){
-        _processMain(content[i],i,contentno[i]);
-    }
-
 });
 $(document).ready(function() {
     $('ul.nav li.dropdown').hover(function() {
