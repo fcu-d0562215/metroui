@@ -1,5 +1,6 @@
 $(window).resize(function() {
     mainpage()
+    _resize();
 });
 $(document).ready(function() {
     $('ul.nav li.dropdown').hover(function() {

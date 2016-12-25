@@ -234,12 +234,12 @@ function _getMainData(url, type, content_no = 0) {
         url: url,
         dataType: "json",
         success: function(response) {
-            _processMain(response);
+            _processMain(response,type,content_no);
         }
     })
 }
 
-function _processMain(data) {
+function _processMain(data,type,content_no) {
     contentmax[type] = Object.keys(data).length - 1 ;
     $('#' + type).html("")
     for (i = content_no; i < content_no + contentsize; i++) {
