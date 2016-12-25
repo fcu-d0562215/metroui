@@ -271,7 +271,7 @@
             text-overflow: ellipsis;
         }
 
-        div>div>img ,#food>div>img , #travel>div>img {
+        #food>div>img , #travel>div>img {
             width: 100%;
             height: 35%;
         }
