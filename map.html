@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <script src="js/jquery-3.1.0.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/layout.css">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -17,10 +18,6 @@
         height: 100%;
         margin: 0;
         padding: 0;
-      }
-      #mapContent>h6>span{
-         display:block;
-         margin: 10px 0;
       }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
@@ -42,22 +39,27 @@
           center: new google.maps.LatLng(24.1, 120.6),
         });
 
-        function addMarker(Lat, Long, title, details, link ,img) {
+        function addMarker(content) {
           var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(Lat, Long),
+            position: new google.maps.LatLng(content.lat, content.long),
             map: map
           });
-          var contentString = '<div id="content">'+
-           '<div id="siteNotice">'+
-           '</div>'+
-           '<h2 id="firstHeading" class="firstHeading">'+title+'</h2>'+
-           '<div id="bodyContent">'+
-           '<div class="col-xs-12"><img src="'+img+'" style="width:100%;"></div>'+
-           '<div id="mapContent" class="col-xs-12"><h6><span>上班時間 :'+details["Working Hours"]+'</span><span>聯絡電話 :'+details.Contact+'</span><span>地址 :'+details.Address+'</span>'+
-           '<span>Facebook: <a href="'+link+'">'+
-           link+'</a></span></h6> </div>'+
-           '</div>'+
-           '</div>';
+          var contentString = '<div id="mapTitle">'
+            if(content.title)
+               contentString += '<span style="text-align:center;">'+content.title+'</span>'
+            contentString += '<div id="bodyContent">'
+            if(content.cover)
+               contentString += '<div id="mapImg" class="col-xs-6"><img src="'+content.cover+'"style="width:100%;"></div>'
+            contentString += '<div id="mapContent" class="col-xs-6">'
+           if(content.details["Working Hours"])
+                contentString += '<span>上班時間 :'+content.details["Working Hours"]+'</span>'
+           if(content.details["Contact"])
+                contentString += '<span>聯絡電話 :'+content.details.Contact+'</span>'
+            if(content.details.Address)
+               contentString += '<span>地址 :'+content.details.Address+'</span>'
+            if(content.details.Website)
+               contentString += '<span>Facebook: '+content.details.Website+'</span>'
+            contentString += '</div>'
            var infowindow = new google.maps.InfoWindow({
               content: contentString
             });
@@ -71,17 +73,15 @@
         });
 
         }
-        function ajaxQueue(type = "travel"){
+        function ajaxQueue(type){
             $.ajax({
                 method:"Get",
                 url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/"+type+".json",
                 dataType:"json",
                 success:function(response){
-                      console.log(Object.keys(response))
-                      var test
                       for(i in response){
-                          addMarker(response[i].lat ,response[i].long ,response[i].title ,response[i].details ,response[i].details.Facebook , response[i].cover);
-                          console.log(response[i].lat)
+                          console.log()
+                          addMarker(response[i]);
                       }
                 },
                 error:function(a ,b ,c){
