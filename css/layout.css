@@ -124,6 +124,16 @@
             color:rgb(1, 31, 43);
             font-size:150%;
         }
+        #mapTitle{
+            font-size: 100%;
+        }
+        #mapContent>span{
+            font-weight: bolder;
+            font-size: 50%;
+        }
+        #mapImg>img{
+            height: 100px;
+        }
 
         @media screen and (min-width:576px) {
             .mycard
@@ -147,6 +157,14 @@
             }
             #paragraph{
                 font-size:160%;
+            }
+            #mapContent>span{
+                font-size: 110%;
+                font-weight: bolder;
+            }
+            #mapImg>img{
+                height: 200px;
+
             }
         }
 
@@ -174,6 +192,13 @@
             }
             #paragraph{
                 font-size:180%;
+            }
+            #mapContent>span{
+                font-size: 140%;
+                font-weight: bolder;
+            }
+            #mapImg>img{
+                height: 200px;
             }
         }
 
@@ -204,6 +229,13 @@
             #details>span>a{
                 font-size: 130%;
                 font-weight: bolder;
+            }
+            #mapContent>span{
+                font-size: 150%;
+                font-weight: bolder;
+            }
+            #mapImg>img{
+                height: 250px;
             }
         }
 
