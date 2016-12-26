@@ -311,7 +311,7 @@ $(document).ready(function() {
     } else {
         _resetMainLayout();
         mainpage();
-        
+
     }
 });
 $.ajaxSetup({
