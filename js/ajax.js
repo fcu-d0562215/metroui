@@ -1,9 +1,10 @@
 var pageno = 0
 var pagemax = 0
+var pageContent = ""
 var contentno = { "food": 0, "travel": 0 }
 var contentmax = { "food": 0, "travel": 0 }
 var contentsize = 0
-var types, allInOne
+var types
 var swipestart;
 var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
@@ -123,14 +124,13 @@ function _processData(data) {
             _dataContent = "";
         for (var i = 0; i < Object.keys(data.content).length; i++) {
             if (data.content[i].picture) {
-                _dataContent += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='40%' ><br>"
+                _dataContent += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='70%' ><br>"
             }
             // console.log(document.querySelector("#body"))
             if (data.content[i].text) {
                 _dataContent += "<p>" + data.content[i].text + "</p><br>"
             }
         }
-
         _content.innerHTML += '<div style="padding:10px 12% 0 12%">' + _dataContent + "</div>";
     }
     _content = $("#body>#DataBody>div:nth-of-type(4)>div:first")
@@ -155,19 +155,17 @@ function _getData(type, page = 0) {
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
         dataType: "json",
         success: function(response) {
-            allInOne = response
+            pageContent = response
             pagemax = Object.keys(response).length - 1
-            types = type
-            _processData(response[Object.keys(response)[page]])
+            _processData(pageContent[Object.keys(pageContent)[pageno]])
+            if(Object.keys(response).length>0){
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+            }
             $(document).scrollTop(0);
 
             $.each(response, function(i, v) {
-                // console.log("v ="+v)
-                // console.log("i = "+i)
                 for (i in v) {
-                    // console.log(i)
                     if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
-                        // console.log(v[i])
                     }
                 }
 
@@ -196,15 +194,38 @@ function mainSwipeEnd(type){
 function nextpage() {
     if (pageno != pagemax) {
         pageno += 1
-        _getData(types, pageno)
+        _processData(pageContent[Object.keys(pageContent)[pageno]])
+        if(pageno < pagemax){
+            if(!$("#nextpagebutton").html()){
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+            }
+        }else{
+            $("#nextpagebutton").remove()
+        }
+        if(pageno>0 && !$("#prevpagebutton").html()){
+            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''><<</span>")
+        }
+
     }
 }
 
 function previouspage() {
     if (pageno != 0) {
         pageno -= 1
-        _getData(types, pageno)
+        _processData(pageContent[Object.keys(pageContent)[pageno]])
+        if(pageno > 0){
+            if(!$("#prevpagebutton").html()){
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''><<</span>")
+            }
+        }else{
+            $("#prevpagebutton").remove()
+        }
+        if(pageno < pagemax && !$("#nextpagebutton").html()){
+            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+        }
+
     }
+
 }
 
 function nextContent(type) {
@@ -351,37 +372,36 @@ function _changeContentSize(){
   var n=_width();
   n<576?contentsize=1:n<768?contentsize=2:n<992?contentsize=3:n<1200?contentsize=4:contentsize=5
 }
-        
+
 function scrolltop(){$(document).scrollTop(0)
 }
-        
+
 function _width(){return window.innerWidth||document.documentElement.clientWidth||document.getElementsByTagName("body")[0].clientWidth}function _height(){return window.innerHeight||document.documentElement.clientHeight||document.getElementsByTagName("body")[0].clientHeight}
-        
-        
+
+
 $(window).resize(function(){
     _resize()
   for (type in dataSource) {
       _processMain(content[type], type, contentno[type])
-      
+
       if (contentno[type] + contentsize > contentmax[type] ) {
             $('#next' + type).remove()
         }else{
              if (!$("#next" + type).html()) {
                 $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
             }
-        } 
+        }
       if (contentno[type] <= 0 ) {
             $('#prev' + type).remove()
         }else{
              if (!$("#prev" + type).html()) {
                 $('#' + type + 'Content').append("<span id='prev" + type + "' onclick='prevContent(" + type + ")'><</span>")
             }
-        } 
-      
+        }
+
   }
 
- 
-   
-    
-}),$(document).ready(function(){$("ul.nav li.dropdown").hover(function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeIn(100),$(this).find("a").attr("aria-expanded","true"),$(this).addClass("open")},function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeOut(100),$(this).find("a").attr("aria-expanded","false"),$(this).removeClass("open")}),mainpage()});
 
+
+
+}),$(document).ready(function(){$("ul.nav li.dropdown").hover(function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeIn(100),$(this).find("a").attr("aria-expanded","true"),$(this).addClass("open")},function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeOut(100),$(this).find("a").attr("aria-expanded","false"),$(this).removeClass("open")}),mainpage()});
