@@ -1,15 +1,7 @@
-var URL = window.location.href.split("?");
-console.log(URL.shift());
-var mode = "main";
+var URL;
+var mode;
 var _GET = [];
-if (URL.length > 0 && URL[URL.length - 1] != "") {
-    URL = URL.shift().split("&");
-    mode = URL.shift();
-    URL.forEach(function(get) {
-        var tmp = get.split("=");
-        _GET[tmp[0]] = tmp[1];
-    })
-}
+_GETURL();
 var pageno = 0
 var pagemax = 0
 var pageContent = ""
@@ -28,26 +20,9 @@ var content = {
 }
 window.onpopstate = function() {
     if (event.state) {
-        var data_type = (event.state).type;
-        var data_response = (event.state).response;
-        var data = data_response; //already array
-        if (data_type == "history") {
-            console.log(data_type + '-----' + data);
-            $('.content').html(data);
-        } else if (data_type == "page") {
-            console.log(data_type + '-----' + data);
-            $('.content').text(data);
-        } else if (data_type == "new") {
-            console.log(data_type + '-----' + data);
-            $('.content').text(data);
-        } else if (data_type == "googledocview") {
-            console.log(data_type + '-----' + data);
-            $('.content').html(data);
-        }
-    } else {
-        if (document.location.search == "") {
-            location.reload();
-        } else {}
+        console.log(event)
+        $('.container-fluid').html(event.state.response);
+        scrolltop();
     }
 }
 
@@ -109,13 +84,12 @@ function _processData(data) {
         $("#body #_content").addClass("col-md-8 col-lg-9 float-md-right pull-md-4 pull-lg-3")
         initMap(data.lat, data.long)
     }
-    _resize()
+    return _resize();
 }
 
 function _getData(type, page) {
     if (page === undefined)
         page = 0;
-    console.log(page);
     $.ajax({
         method: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
@@ -123,17 +97,26 @@ function _getData(type, page) {
         success: function(response) {
             pageContent = response
             pagemax = Object.keys(response).length - 1
-            _processData(pageContent[Object.keys(pageContent)[pageno]])
-            if(Object.keys(response).length>0){
-                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-            }
-            $(document).scrollTop(0);
-            $.each(response, function(i, v) {
-                for (i in v) {
-                    if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
+            types = type
+            if (_processData(response[Object.keys(response)[page]])) {
+                scrolltop();
+                $.each(response, function(i, v) {
+                    // console.log("v ="+v)
+                    // console.log("i = "+i)
+                    for (i in v) {
+                        // console.log(i)
+                        if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
+                            // console.log(v[i])
+                        }
                     }
+                });
+                console.log()
+                if (history.state && history.state.url != "?" + type + "&page=" + page) {
+                    history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
+                } else {
+                    history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, "首頁", "?" + mode + "&page=" + _GET["page"]);
                 }
-            });
+            }
         }
     })
 }
@@ -158,17 +141,16 @@ function nextpage() {
     if (pageno != pagemax) {
         pageno += 1
         _processData(pageContent[Object.keys(pageContent)[pageno]])
-        if(pageno < pagemax){
-            if(!$("#nextpagebutton").html()){
+        if (pageno < pagemax) {
+            if (!$("#nextpagebutton").html()) {
                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
             }
-        }else{
+        } else {
             $("#nextpagebutton").remove()
         }
-        if(pageno>0 && !$("#prevpagebutton").html()){
+        if (pageno > 0 && !$("#prevpagebutton").html()) {
             $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
         }
-
     }
 }
 
@@ -176,19 +158,17 @@ function previouspage() {
     if (pageno != 0) {
         pageno -= 1
         _processData(pageContent[Object.keys(pageContent)[pageno]])
-        if(pageno > 0){
-            if(!$("#prevpagebutton").html()){
+        if (pageno > 0) {
+            if (!$("#prevpagebutton").html()) {
                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
             }
-        }else{
+        } else {
             $("#prevpagebutton").remove()
         }
-        if(pageno < pagemax && !$("#nextpagebutton").html()){
+        if (pageno < pagemax && !$("#nextpagebutton").html()) {
             $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
         }
-
     }
-
 }
 
 function nextContent(type) {
@@ -230,6 +210,11 @@ function mainpage() {
     for (type in dataSource) {
         _getMainData(dataSource[type], type, contentno[type])
     }
+    if (history.state && history.state.url != "?main") {
+        history.pushState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
+    } else {
+        history.replaceState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
+    }
 }
 
 function _getMainData(url, type, content_no) {
@@ -253,75 +238,30 @@ function _processMain(data, type, content_no) {
             var title = source.title;
             var cover = source.cover;
             var paragraph = source.paragraph;
-            var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
+            var str = "_getData('"+type+"','"+content_no+"')"
+            var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick="'+str+'"><p style="cursor:pointer;" class="mycard_title">' + title + '</p><img style="cursor:pointer;" src="' + cover + '" alt=""><p style="cursor:pointer;" class="content">' + paragraph + '</p><a style="cursor:pointer;" class="moreInfo" href onclick="event.preventDefault();">More info ...</a></div>'
             $('#' + type).append(string);
         }
     }
 }
 $("#bitch").ready(function() {
-        window.onkeyup = function(e) {
-            if (e.keyIdentifier == "Right" || e.keyCode == 39) {
-                nextpage();
-            } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
-                previouspage();
-            }
+    window.onkeyup = function(e) {
+        if (e.keyIdentifier == "Right" || e.keyCode == 39) {
+            nextpage();
+        } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
+            previouspage();
         }
-    })
-    /*
-    function page(url) {
-        event.preventDefault();
-        var formdata = {};
-        formdata.page = url;
-        $.ajax({
-            data: formdata,
-            success: function(response) {
-                response = eval(response);
-                $('.content').text(response);
-                history.pushState({ response: response, type: 'page' }, "逢甲海青班", "?page=" + url);
-            }
-        })
     }
-    function news(url) {
-        event.preventDefault();
-        var formdata = {};
-        formdata.news = url;
-        $.ajax({
-            data: formdata,
-            success: function(response) {
-                response = eval(response);
-                $('.content').text(response);
-                history.pushState({ response: response, type: 'news' }, "逢甲海青班", "?news=" + url);
-            }
-        })
-    }
-    function home() {
-        event.preventDefault();
-        var formdata = {};
-        formdata.home = 'home';
-        $.ajax({
-            data: formdata,
-            success: function(response) {
-                $('.content').html(response);
-                history.pushState({ response: response, type: 'history' }, "逢甲海青班", "?home");
-            }
-        })
-    }
-    function googledocview(one_element) {
-        event.preventDefault();
-        var url = encodeURIComponent(one_element.href);
-        var str = '<iframe src="http://docs.google.com/viewer?embedded=true&url=' + url + '" width="100%" height="500px" style="border: none;"></iframe>';
-        str += "<div style='position:absolute ;left: 3px;top: 3px;'><a href='" + one_element.href + "' download>下載</a></div>";
-        history.pushState({ response: str, type: 'googledocview' }, "逢甲海青班", "?googledocview=" + url);
-        $('.content').html(str);
-    }
-    */
+})
+
 function hide_progressbar() {
     $("#loading").stop().animate({ opacity: 0 }, 300, function() { $("#loading").css('display', 'none'); });
     return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
 }
 
 function _resize() {
-    return _changeContentSize(), !0
+    _changeContentSize();
+    return true;
 }
 
 function _changeContentSize() {
@@ -340,7 +280,6 @@ function _width() {
 function _height() {
     return window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight
 }
-
 $(window).resize(function() {
     _resize()
     for (type in dataSource) {
@@ -352,7 +291,6 @@ $(window).resize(function() {
                 $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
             }
         }
-
         if (contentno[type] <= 0) {
             $('#prev' + type).remove()
         } else {
@@ -368,14 +306,14 @@ $(document).ready(function() {
     }, function() {
         $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeOut(100), $(this).find("a").attr("aria-expanded", "false"), $(this).removeClass("open")
     });
-    if(mode == "main"){
+    if (mode == "food" || mode == "travel") {
+        _getData(mode, _GET["page"]);
+    } else {
+        _resetMainLayout();
         mainpage();
-    }else if (mode == "food" || mode == "travel") {
-        _getData(mode,_GET["page"]);
-
+        
     }
 });
-
 $.ajaxSetup({
     method: "POST",
     cache: false,
@@ -418,3 +356,16 @@ $.ajaxSetup({
 $(document).ajaxStop(function() {
     hide_progressbar();
 });
+
+function _GETURL() {
+    URL = window.location.href.split("?");
+    URL.shift()
+    if (URL.length > 0 && URL[URL.length - 1] != "") {
+        URL = URL.shift().split("&");
+        mode = URL.shift();
+        URL.forEach(function(get) {
+            var tmp = get.split("=");
+            _GET[tmp[0]] = tmp[1];
+        })
+    }
+}
