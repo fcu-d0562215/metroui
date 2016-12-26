@@ -250,6 +250,11 @@ $(window).resize(function() {
     _resize()
 });
 $(document).ready(function() {
+    $('ul.nav li').click(function(event) {
+        if ($(".navbar-toggleable-xs.collapse ").hasClass('in')) {
+            $('.navbar-toggler').click();
+        }
+    });
     $("ul.nav li.dropdown").hover(function() {
         $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeIn(100), $(this).find("a").attr("aria-expanded", "true"), $(this).addClass("open")
     }, function() {
