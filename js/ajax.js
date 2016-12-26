@@ -104,7 +104,7 @@ function initMap(lati, long) {
 
 function _resetDataLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div>')
+    $(".container-fluid").append('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
 }
 
 function _resetMainLayout() {
@@ -117,7 +117,7 @@ function _processData(data) {
     $("#title").text(data.title);
     $("#paragraph").text(data.paragraph);
     $("#cover").attr('src', data.cover).height(_height() * 0.45);
-    var _content = document.querySelector("#body #_content")
+    var _content = document.querySelector("#body #DataBody #_content")
     if (data.content) {
         var _dataDetails = "",
             _dataContent = "";
@@ -133,14 +133,14 @@ function _processData(data) {
 
         _content.innerHTML += '<div style="padding:10px 10px 0 10px">' + _dataContent + "</div>";
     }
-    _content = $("#body>div:nth-of-type(4)>div:first")
+    _content = $("#body>#DataBody>div:nth-of-type(4)>div:first")
     if (data.details) {
         for (var i = 0; i < Object.keys(data.details).length; i++) {
             _dataDetails += Object.keys(data.details)[i] + " : " + data.details[Object.keys(data.details)[i]] + "<br>"
         }
         _content.before("<div class='col-md-4 col-lg-3 text-xs-left push-md-8 push-lg-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px;'><span>" + _dataDetails + "</span></div></div>");
     }
-    _content = document.querySelector("#body>div:nth-of-type(4)")
+    _content = document.querySelector("#body>#DataBody>div:nth-of-type(4)")
     if (data.lat) {
         _content.innerHTML += "<div class='col-md-4 col-lg-3 push-md-8 push-lg-9'><div style='padding: 0px 10px;'><p>地圖</p><p id='map' ></p></div></div>";
         $("#body #_content").addClass("col-md-8 col-lg-9 float-md-right pull-md-4 pull-lg-3")
@@ -221,8 +221,6 @@ function nextContent(type) {
             }
         }
     }
-
-
 }
 
 function prevContent(type) {
@@ -278,6 +276,18 @@ function _processMain(data,type,content_no) {
 
     }
 }
+
+
+$(document).ready(function(){
+    _getData("food")
+        window.onkeyup=function(e){
+        if(e.keyIdentifier=="Right" || e.keyCode==39){
+            nextpage();
+        }else if(e.keyIdentifier=="Left" || e.keyCode==37){
+            previouspage();
+        }
+    }
+})
 /*
 function page(url) {
     event.preventDefault();
@@ -342,15 +352,19 @@ function _changeContentSize(){
   var n=_width();
   n<576?contentsize=1:n<768?contentsize=2:n<992?contentsize=3:n<1200?contentsize=4:contentsize=5
 }
+        
 function scrolltop(){$(document).scrollTop(0)
 }
+        
 function _width(){return window.innerWidth||document.documentElement.clientWidth||document.getElementsByTagName("body")[0].clientWidth}function _height(){return window.innerHeight||document.documentElement.clientHeight||document.getElementsByTagName("body")[0].clientHeight}
+        
+        
 $(window).resize(function(){
     _resize()
   for (type in dataSource) {
-    console.log(type)
       _processMain(content[type], type, contentno[type])
-       if (contentno[type] + contentsize > contentmax[type] ) {
+      
+      if (contentno[type] + contentsize > contentmax[type] ) {
             $('#next' + type).remove()
         }else{
              if (!$("#next" + type).html()) {

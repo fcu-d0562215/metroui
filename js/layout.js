@@ -17,7 +17,6 @@ $(document).ready(function() {
 
 function _resize() {
     _changeContentSize();
-
     return true;
 }
 
