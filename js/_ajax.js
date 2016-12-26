@@ -4,9 +4,6 @@ var _GET = [];
 _GETURL();
 var pageNo = 0;
 var pageMax = 0;
-var pageContent = "";
-var contentNo = { "food": 0, "travel": 0 };
-var contentMax = { "food": 0, "travel": 0 };
 var contentSize = 0;
 var types;
 var swipestart;
@@ -26,30 +23,8 @@ var fullData = {
 
 }
 
-function initMap(lati, long) {
-    var uluru = {
-        lat: lati,
-        lng: long
-    };
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
-        center: uluru
-    });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
-}
 
-function _resetDataLayout() {
-    $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
-}
 
-function _resetMainLayout() {
-    $("#body").remove();
-    $(".container-fluid").append('<div class="row" id="body"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>ROAD TO FUTURE</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="nextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="nextContent(travel)">></span></div></div></div>')
-}
 
 function _processData(data) {
     _resetDataLayout();
@@ -141,6 +116,122 @@ function _getData(type, page) {
     }
 }
 
+
+// function nextpage() {
+//     if (pageNo != pageMax) {
+//         pageNo += 1
+//         _processData(pageContent[Object.keys(pageContent)[pageNo]])
+//         if (pageNo < pageMax) {
+//             if (!$("#nextpagebutton").html()) {
+//                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+//             }
+//         } else {
+//             $("#nextpagebutton").remove()
+//         }
+//         if (pageNo > 0 && !$("#prevpagebutton").html()) {
+//             $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+//         }
+//     }
+// }
+
+// function previouspage() {
+//     if (pageNo != 0) {
+//         pageNo -= 1
+//         _processData(pageContent[Object.keys(pageContent)[pageNo]])
+//         if (pageNo > 0) {
+//             if (!$("#prevpagebutton").html()) {
+//                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+//             }
+//         } else {
+//             $("#prevpagebutton").remove()
+//         }
+//         if (pageNo < pageMax && !$("#nextpagebutton").html()) {
+//             $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+//         }
+//     }
+// }
+
+
+function mainpage() {
+    _resetMainLayout();
+    _processMain();
+    if (history.state && history.state.url != "?main") {
+        history.pushState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
+    } else {
+        history.replaceState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
+    }
+}
+
+function _processMain(type) {
+    if (type) {
+        _writeMain(type, fullData[type]);
+    } else {}
+    $.each(fullData, function(index, el) {
+        _writeMain(index, el);
+    });
+}
+
+function _writeMain(index, el) {
+    $('#' + index).html("")
+    for (i = el.contentNo; i < el.contentNo + contentSize; i++) {
+        if (el.content[Object.keys(data)[i]]) {
+            var source = el.content[Object.keys(data)[i]];
+            var title = source.title;
+            var cover = source.cover;
+            var paragraph = source.paragraph;
+            var str = "_getData('" + index + "','" + content_no + "')"
+            var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick="' + str + '"><p style="cursor:pointer;" class="mycard_title">' + title + '</p><img style="cursor:pointer;" src="' + cover + '" alt=""><p style="cursor:pointer;" class="content">' + paragraph + '</p><a style="cursor:pointer;" class="moreInfo" href onclick="event.preventDefault();">More info ...</a></div>'
+            $('#' + index).append(string);
+        }
+    }
+    if (el.contentNo + contentSize > el.contentMax) {
+        $('#next' + index).remove()
+    } else {
+        if (!$("#next" + index).html()) {
+            $('#' + index + 'Content').append("<span id='next" + index + "' onclick='mainNextContent(" + index + ")'>></span>")
+        }
+    }
+    if (el.contentNo <= 0) {
+        $('#prev' + index).remove()
+    } else {
+        if (!$("#prev" + index).html()) {
+            $('#' + index + 'Content').append("<span id='prev" + index + "' onclick='mainPrevContent(" + index + ")'><</span>")
+        }
+    }
+}
+
+function mainNextContent(type) {
+    if (fullData[type.id].contentNo != contentMax[type.id] && fullData[type.id].contentNo <= contentMax[type.id] - contentSize) {
+        fullData[type.id].contentNo += contentSize
+        if (fullData[type.id].contentNo > contentMax[type.id] - contentSize) {
+            $('#next' + type.id).remove()
+        }
+        _processMain(type)
+        if (fullData[type.id].contentNo != 0) {
+            if (!$("#prev" + type.id).html()) {
+                $("#" + type.id + "Content").prepend('<span id="prev' + type.id + '" onclick="mainPrevContent(' + type.id + ')"><</span>')
+            }
+        }
+    }
+}
+
+function mainPrevContent(type) {
+    if (fullData[type.id].contentNo != 0) {
+        fullData[type.id].contentNo -= contentSize
+        if (fullData[type.id].contentNo < 0) {
+            fullData[type.id].contentNo = 0
+        }
+        _processMain(type)
+        if (fullData[type.id].contentNo <= 0) {
+            $('#prev' + type.id).remove()
+        }
+        if (fullData[type.id].contentNo != contentMax[type.id] - contentSize) {
+            if (!$("#next" + type.id).html()) {
+                $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='mainNextContent(" + type.id + ")'>></span>")
+            }
+        }
+    }
+}
 function mainSwipeStart() {
     e = this.event
     swipestart = e.touches[0].clientX
@@ -150,149 +241,28 @@ function mainSwipeEnd(type) {
     e = this.event
     if (swipestart - e.changedTouches[0].clientX >= 50 || swipestart - e.changedTouches[0].clientX <= -50) {
         if (swipestart > e.changedTouches[0].clientX) {
-            nextContent(type)
+            mainNextContent(type)
         } else {
-            prevContent(type)
+            mainPrevContent(type)
         }
     }
 }
 
-function nextpage() {
-    if (pageNo != pageMax) {
-        pageNo += 1
-        _processData(pageContent[Object.keys(pageContent)[pageNo]])
-        if (pageNo < pageMax) {
-            if (!$("#nextpagebutton").html()) {
-                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-            }
-        } else {
-            $("#nextpagebutton").remove()
-        }
-        if (pageNo > 0 && !$("#prevpagebutton").html()) {
-            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
-        }
-    }
-}
-
-function previouspage() {
-    if (pageNo != 0) {
-        pageNo -= 1
-        _processData(pageContent[Object.keys(pageContent)[pageNo]])
-        if (pageNo > 0) {
-            if (!$("#prevpagebutton").html()) {
-                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
-            }
-        } else {
-            $("#prevpagebutton").remove()
-        }
-        if (pageNo < pageMax && !$("#nextpagebutton").html()) {
-            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-        }
-    }
-}
-
-function nextContent(type) {
-    if (contentNo[type.id] != contentMax[type.id] && contentNo[type.id] <= contentMax[type.id] - contentSize) {
-        contentNo[type.id] += contentSize
-        if (contentNo[type.id] > contentMax[type.id] - contentSize) {
-            $('#next' + type.id).remove()
-        }
-        _processMain(content[type.id], type.id, contentNo[type.id])
-        if (contentNo[type.id] != 0) {
-            if (!$("#prev" + type.id).html()) {
-                $("#" + type.id + "Content").prepend('<span id="prev' + type.id + '" onclick="prevContent(' + type.id + ')"><</span>')
-            }
-        }
-    }
-}
-
-function prevContent(type) {
-    if (contentNo[type.id] != 0) {
-        contentNo[type.id] -= contentSize
-        if (contentNo[type.id] < 0) {
-            contentNo[type.id] = 0
-        }
-        _processMain(content[type.id], type.id, contentNo[type.id])
-        if (contentNo[type.id] <= 0) {
-            $('#prev' + type.id).remove()
-        }
-        if (contentNo[type.id] != contentMax[type.id] - contentSize) {
-            if (!$("#next" + type.id).html()) {
-                $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='nextContent(" + type.id + ")'>></span>")
-            }
-        }
-    }
-}
-
-function mainpage() {
-    _resetMainLayout();
-    _changecontentSize();
-    for (type in dataSource) {
-        _getMainData(dataSource[type], type, contentNo[type])
-    }
-    if (history.state && history.state.url != "?main") {
-        history.pushState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
-    } else {
-        history.replaceState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
-    }
-}
-
-function _getMainData(url, type, content_no) {
-    $.ajax({
-        method: 'Get',
-        url: url,
-        dataType: "json",
-        success: function(response) {
-            content[type] = response
-            _processMain(content[type], type, content_no);
-        }
-    })
-}
-
-function _processMain(data, type, content_no) {
-    contentMax[type] = Object.keys(data).length - 1;
-    $('#' + type).html("")
-    for (i = content_no; i < content_no + contentSize; i++) {
-        if (data[Object.keys(data)[i]]) {
-            var source = data[Object.keys(data)[i]];
-            var title = source.title;
-            var cover = source.cover;
-            var paragraph = source.paragraph;
-            var str = "_getData('" + type + "','" + content_no + "')"
-            var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick="' + str + '"><p style="cursor:pointer;" class="mycard_title">' + title + '</p><img style="cursor:pointer;" src="' + cover + '" alt=""><p style="cursor:pointer;" class="content">' + paragraph + '</p><a style="cursor:pointer;" class="moreInfo" href onclick="event.preventDefault();">More info ...</a></div>'
-            $('#' + type).append(string);
-        }
-    }
-}
-$("#bitch").ready(function() {
-    window.onkeyup = function(e) {
-        if (e.keyIdentifier == "Right" || e.keyCode == 39) {
-            nextpage();
-        } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
-            previouspage();
-        }
-    }
-})
+// $("#bitch").ready(function() {
+//     window.onkeyup = function(e) {
+//         if (e.keyIdentifier == "Right" || e.keyCode == 39) {
+//             nextpage();
+//         } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
+//             previouspage();
+//         }
+//     }
+// })
 
 function _resize() {
-    for (type in dataSource) {
-        _processMain(content[type], type, contentNo[type])
-        if (contentNo[type] + contentSize > contentMax[type]) {
-            $('#next' + type).remove()
-        } else {
-            if (!$("#next" + type).html()) {
-                $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
-            }
-        }
-        if (contentNo[type] <= 0) {
-            $('#prev' + type).remove()
-        } else {
-            if (!$("#prev" + type).html()) {
-                $('#' + type + 'Content').append("<span id='prev" + type + "' onclick='prevContent(" + type + ")'><</span>")
-            }
-        }
-    }
     _changecontentSize();
+    _processMain()
+
+
     return true;
 }
 
@@ -321,13 +291,10 @@ $(document).ready(function() {
     }, function() {
         $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeOut(100), $(this).find("a").attr("aria-expanded", "false"), $(this).removeClass("open")
     });
-    for (type in dataSource) {
-        _getFullData();
-    }
+    _getFullData();
     if (mode == "food" || mode == "travel") {
         _getData(mode, _GET["page"]);
     } else {
-        _resetMainLayout();
         mainpage();
 
     }
@@ -391,4 +358,50 @@ window.onpopstate = function() {
         $('.container-fluid').html(event.state.response);
         scrolltop();
     }
+}
+
+function initMap(lati, long) {
+    var uluru = {
+        lat: lati,
+        lng: long
+    };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: uluru
+    });
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+    });
+}
+
+function _getFullData() {
+    $.each(fullData, function(index, el) {
+        $.ajax({
+                url: el.url,
+                method: 'GET',
+                dataType: 'json'
+            })
+            .done(function(response) {
+                el.content = response;
+                el.contentMax = Object.keys(response).length - 1;
+            })
+            .fail(function() {
+                // console.log("error");
+            })
+            .always(function() {
+                // console.log("complete");
+            });
+
+    });
+}
+function _resetDataLayout() {
+    $("#body").remove();
+    $(".container-fluid").append('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
+}
+
+function _resetMainLayout() {
+    $("#body").remove();
+    $(".container-fluid").append('<div class="row" id="body"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>ROAD TO FUTURE</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div>');
+    _changecontentSize();
 }
