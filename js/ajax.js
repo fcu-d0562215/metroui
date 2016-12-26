@@ -357,6 +357,14 @@ $(window).resize(function(){
                 $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
             }
         } 
+      if (contentno[type] <= 0 ) {
+            $('#prev' + type).remove()
+        }else{
+             if (!$("#prev" + type).html()) {
+                $('#' + type + 'Content').append("<span id='prev" + type + "' onclick='prevContent(" + type + ")'><</span>")
+            }
+        } 
+      
   }
 
  
