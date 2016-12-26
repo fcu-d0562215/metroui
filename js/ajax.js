@@ -149,7 +149,7 @@ function _processData(data) {
     _resize()
 }
 
-function _getData(type, page = 0) {
+function _getData(type, page) {
     $.ajax({
         method: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
@@ -181,7 +181,7 @@ function mainSwipeStart(){
     e = this.event
     swipestart = e.touches[0].clientX
 }
-function mainSwipeEnd(type = food){
+function mainSwipeEnd(type){
     e = this.event
     if(swipestart - e.changedTouches[0].clientX>=50||swipestart - e.changedTouches[0].clientX<=-50){
         if(swipestart > e.changedTouches[0].clientX){
@@ -208,10 +208,10 @@ function previouspage() {
 }
 
 function nextContent(type) {
-    if (contentno[type.id] != contentmax[type.id] && contentno[type.id] < contentmax[type.id] - contentsize) {
+    if (contentno[type.id] != contentmax[type.id] && contentno[type.id] <= contentmax[type.id] - contentsize) {
         contentno[type.id] += contentsize
 
-        if (contentno[type.id] >= contentmax[type.id] - contentsize ) {
+        if (contentno[type.id] > contentmax[type.id] - contentsize ) {
             $('#next' + type.id).remove()
         }
         _processMain(content[type.id], type.id, contentno[type.id])
@@ -251,7 +251,7 @@ function mainpage() {
     }
 }
 
-function _getMainData(url, type, content_no = 0) {
+function _getMainData(url, type, content_no) {
     $.ajax({
         method: 'Get',
         url: url,
@@ -334,3 +334,33 @@ function hide_progressbar() {
     return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
 
 }
+
+function _resize(){
+  return _changeContentSize(),!0
+}
+function _changeContentSize(){
+  var n=_width();
+  n<576?contentsize=1:n<768?contentsize=2:n<992?contentsize=3:n<1200?contentsize=4:contentsize=5
+}
+function scrolltop(){$(document).scrollTop(0)
+}
+function _width(){return window.innerWidth||document.documentElement.clientWidth||document.getElementsByTagName("body")[0].clientWidth}function _height(){return window.innerHeight||document.documentElement.clientHeight||document.getElementsByTagName("body")[0].clientHeight}
+$(window).resize(function(){
+    _resize()
+  for (type in dataSource) {
+    console.log(type)
+      _processMain(content[type], type, contentno[type])
+       if (contentno[type] + contentsize > contentmax[type] ) {
+            $('#next' + type).remove()
+        }else{
+             if (!$("#next" + type).html()) {
+                $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
+            }
+        } 
+  }
+
+ 
+   
+    
+}),$(document).ready(function(){$("ul.nav li.dropdown").hover(function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeIn(100),$(this).find("a").attr("aria-expanded","true"),$(this).addClass("open")},function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeOut(100),$(this).find("a").attr("aria-expanded","false"),$(this).removeClass("open")}),mainpage()});
+
