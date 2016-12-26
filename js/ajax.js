@@ -1,7 +1,6 @@
 var URL;
 var mode;
 var _GET = [];
-
 _GETURL();
 var pageno = 0
 var pagemax = 0
@@ -21,8 +20,9 @@ var content = {
 }
 window.onpopstate = function() {
     if (event.state) {
-        console.log(event.state.response)
+        console.log(event)
         $('.container-fluid').html(event.state.response);
+        scrolltop();
     }
 }
 
@@ -99,7 +99,7 @@ function _getData(type, page) {
             pagemax = Object.keys(response).length - 1
             types = type
             if (_processData(response[Object.keys(response)[page]])) {
-                $(document).scrollTop(0);
+                scrolltop();
                 $.each(response, function(i, v) {
                     // console.log("v ="+v)
                     // console.log("i = "+i)
@@ -110,7 +110,12 @@ function _getData(type, page) {
                         }
                     }
                 });
-                history.pushState({ response: $('.container-fluid').html(), type: type, page: page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
+                console.log()
+                if (history.state && history.state.url != "?" + type + "&page=" + page) {
+                    history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
+                } else {
+                    history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, "首頁", "?" + mode + "&page=" + _GET["page"]);
+                }
             }
         }
     })
@@ -146,7 +151,6 @@ function nextpage() {
         if (pageno > 0 && !$("#prevpagebutton").html()) {
             $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
         }
-
     }
 }
 
@@ -164,9 +168,7 @@ function previouspage() {
         if (pageno < pagemax && !$("#nextpagebutton").html()) {
             $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
         }
-
     }
-
 }
 
 function nextContent(type) {
@@ -208,7 +210,11 @@ function mainpage() {
     for (type in dataSource) {
         _getMainData(dataSource[type], type, contentno[type])
     }
-
+    if (history.state && history.state.url != "?main") {
+        history.pushState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
+    } else {
+        history.replaceState({ response: $(".container-fluid").html(), url: "?main" }, "首頁", "?main")
+    }
 }
 
 function _getMainData(url, type, content_no) {
@@ -236,65 +242,17 @@ function _processMain(data, type, content_no) {
             $('#' + type).append(string);
         }
     }
-
 }
 $("#bitch").ready(function() {
-        window.onkeyup = function(e) {
-            if (e.keyIdentifier == "Right" || e.keyCode == 39) {
-                nextpage();
-            } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
-                previouspage();
-            }
+    window.onkeyup = function(e) {
+        if (e.keyIdentifier == "Right" || e.keyCode == 39) {
+            nextpage();
+        } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
+            previouspage();
         }
-    })
-    /*
-    function page(url) {
-        event.preventDefault();
-        var formdata = {};
-        formdata.page = url;
-        $.ajax({
-            data: formdata,
-            success: function(response) {
-                response = eval(response);
-                $('.content').text(response);
-                history.pushState({ response: response, type: 'page' }, "逢甲海青班", "?page=" + url);
-            }
-        })
     }
-    function news(url) {
-        event.preventDefault();
-        var formdata = {};
-        formdata.news = url;
-        $.ajax({
-            data: formdata,
-            success: function(response) {
-                response = eval(response);
-                $('.content').text(response);
-                history.pushState({ response: response, type: 'news' }, "逢甲海青班", "?news=" + url);
-            }
-        })
-    }
-    function home() {
-        event.preventDefault();
-        var formdata = {};
-        formdata.home = 'home';
-        $.ajax({
-            data: formdata,
-            success: function(response) {
-                $('.content').html(response);
-                history.pushState({ response: response, type: 'history' }, "逢甲海青班", "?home");
-            }
-        })
-    }
-    function googledocview(one_element) {
-        event.preventDefault();
-        var url = encodeURIComponent(one_element.href);
-        var str = '<iframe src="http://docs.google.com/viewer?embedded=true&url=' + url + '" width="100%" height="500px" style="border: none;"></iframe>';
-        str += "<div style='position:absolute ;left: 3px;top: 3px;'><a href='" + one_element.href + "' download>下載</a></div>";
-        history.pushState({ response: str, type: 'googledocview' }, "逢甲海青班", "?googledocview=" + url);
-        $('.content').html(str);
-    }
-    */
+})
+
 function hide_progressbar() {
     $("#loading").stop().animate({ opacity: 0 }, 300, function() { $("#loading").css('display', 'none'); });
     return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
@@ -321,7 +279,6 @@ function _width() {
 function _height() {
     return window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight
 }
-
 $(window).resize(function() {
     _resize()
     for (type in dataSource) {
@@ -333,7 +290,6 @@ $(window).resize(function() {
                 $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
             }
         }
-
         if (contentno[type] <= 0) {
             $('#prev' + type).remove()
         } else {
@@ -354,10 +310,9 @@ $(document).ready(function() {
     } else {
         _resetMainLayout();
         mainpage();
-        history.replaceState({ response: $(".container-fluid").html() }, "首頁", "?main")
+        
     }
 });
-
 $.ajaxSetup({
     method: "POST",
     cache: false,
@@ -412,5 +367,4 @@ function _GETURL() {
             _GET[tmp[0]] = tmp[1];
         })
     }
-
 }
