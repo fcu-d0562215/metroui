@@ -1,6 +1,6 @@
 var URL = window.location.href.split("?");
-console.log(URL.shift());
-var mode = "main";
+URL.shift()
+var mode;
 var _GET = [];
 if (URL.length > 0 && URL[URL.length - 1] != "") {
     URL = URL.shift().split("&");
@@ -27,26 +27,8 @@ var content = {
 }
 window.onpopstate = function() {
     if (event.state) {
-        var data_type = (event.state).type;
-        var data_response = (event.state).response;
-        var data = data_response; //already array
-        if (data_type == "history") {
-            console.log(data_type + '-----' + data);
-            $('.content').html(data);
-        } else if (data_type == "page") {
-            console.log(data_type + '-----' + data);
-            $('.content').text(data);
-        } else if (data_type == "new") {
-            console.log(data_type + '-----' + data);
-            $('.content').text(data);
-        } else if (data_type == "googledocview") {
-            console.log(data_type + '-----' + data);
-            $('.content').html(data);
-        }
-    } else {
-        if (document.location.search == "") {
-            location.reload();
-        } else {}
+        console.log(event.state.response)
+        $('.container-fluid').html(event.state.response);
     }
 }
 
@@ -108,13 +90,12 @@ function _processData(data) {
         $("#body #_content").addClass("col-md-8 col-lg-9 float-md-right pull-md-4 pull-lg-3")
         initMap(data.lat, data.long)
     }
-    _resize()
+    return _resize();
 }
 
 function _getData(type, page) {
     if (page === undefined)
         page = 0;
-    console.log(page);
     $.ajax({
         method: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
@@ -123,18 +104,20 @@ function _getData(type, page) {
             allInOne = response
             pagemax = Object.keys(response).length - 1
             types = type
-            _processData(response[Object.keys(response)[page]])
-            $(document).scrollTop(0);
-            $.each(response, function(i, v) {
-                // console.log("v ="+v)
-                // console.log("i = "+i)
-                for (i in v) {
-                    // console.log(i)
-                    if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
-                        // console.log(v[i])
+            if (_processData(response[Object.keys(response)[page]])) {
+                $(document).scrollTop(0);
+                $.each(response, function(i, v) {
+                    // console.log("v ="+v)
+                    // console.log("i = "+i)
+                    for (i in v) {
+                        // console.log(i)
+                        if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
+                            // console.log(v[i])
+                        }
                     }
-                }
-            });
+                });
+                history.pushState({ response: $('.container-fluid').html(), type: type, page: page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
+            }
         }
     })
 }
@@ -208,6 +191,7 @@ function mainpage() {
     for (type in dataSource) {
         _getMainData(dataSource[type], type, contentno[type])
     }
+
 }
 
 function _getMainData(url, type, content_no) {
@@ -235,6 +219,7 @@ function _processMain(data, type, content_no) {
             $('#' + type).append(string);
         }
     }
+
 }
 $("#bitch").ready(function() {
         window.onkeyup = function(e) {
@@ -299,7 +284,8 @@ function hide_progressbar() {
 }
 
 function _resize() {
-    return _changeContentSize(), !0
+    _changeContentSize();
+    return true;
 }
 
 function _changeContentSize() {
@@ -344,10 +330,12 @@ $(document).ready(function() {
     }, function() {
         $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeOut(100), $(this).find("a").attr("aria-expanded", "false"), $(this).removeClass("open")
     });
-    if(mode == "main"){
+    if (mode == "food" || mode == "travel") {
+        _getData(mode, _GET["page"]);
+    } else {
+        _resetMainLayout();
         mainpage();
-    }else if (mode == "food" || mode == "travel") {
-        _getData(mode,_GET["page"]);
+        history.replaceState({response: $(".container-fluid").html()},"首頁","?main")
         
     }
 });
