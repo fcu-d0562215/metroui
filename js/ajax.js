@@ -1,15 +1,8 @@
-var URL = window.location.href.split("?");
-URL.shift()
+var URL;
 var mode;
 var _GET = [];
-if (URL.length > 0 && URL[URL.length - 1] != "") {
-    URL = URL.shift().split("&");
-    mode = URL.shift();
-    URL.forEach(function(get) {
-        var tmp = get.split("=");
-        _GET[tmp[0]] = tmp[1];
-    })
-}
+
+_GETURL();
 var pageno = 0
 var pagemax = 0
 var pageContent = ""
@@ -143,14 +136,14 @@ function nextpage() {
     if (pageno != pagemax) {
         pageno += 1
         _processData(pageContent[Object.keys(pageContent)[pageno]])
-        if(pageno < pagemax){
-            if(!$("#nextpagebutton").html()){
+        if (pageno < pagemax) {
+            if (!$("#nextpagebutton").html()) {
                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
             }
-        }else{
+        } else {
             $("#nextpagebutton").remove()
         }
-        if(pageno>0 && !$("#prevpagebutton").html()){
+        if (pageno > 0 && !$("#prevpagebutton").html()) {
             $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
         }
 
@@ -161,14 +154,14 @@ function previouspage() {
     if (pageno != 0) {
         pageno -= 1
         _processData(pageContent[Object.keys(pageContent)[pageno]])
-        if(pageno > 0){
-            if(!$("#prevpagebutton").html()){
+        if (pageno > 0) {
+            if (!$("#prevpagebutton").html()) {
                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
             }
-        }else{
+        } else {
             $("#prevpagebutton").remove()
         }
-        if(pageno < pagemax && !$("#nextpagebutton").html()){
+        if (pageno < pagemax && !$("#nextpagebutton").html()) {
             $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
         }
 
@@ -361,7 +354,7 @@ $(document).ready(function() {
     } else {
         _resetMainLayout();
         mainpage();
-        history.replaceState({response: $(".container-fluid").html()},"首頁","?main")
+        history.replaceState({ response: $(".container-fluid").html() }, "首頁", "?main")
     }
 });
 
@@ -407,3 +400,17 @@ $.ajaxSetup({
 $(document).ajaxStop(function() {
     hide_progressbar();
 });
+
+function _GETURL() {
+    URL = window.location.href.split("?");
+    URL.shift()
+    if (URL.length > 0 && URL[URL.length - 1] != "") {
+        URL = URL.shift().split("&");
+        mode = URL.shift();
+        URL.forEach(function(get) {
+            var tmp = get.split("=");
+            _GET[tmp[0]] = tmp[1];
+        })
+    }
+
+}
