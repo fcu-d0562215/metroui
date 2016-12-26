@@ -15,11 +15,6 @@
     <script src="js/ajax.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
     <title>Background</title>
-    <style>
-    .container-fluid {
-        padding-top: 15px
-    }
-    </style>
 </head>
 
 <body>
@@ -28,7 +23,7 @@
         <a class="navbar-brand" href onclick="mainpage(); event.preventDefault();">首頁</a>
         <div class="collapse navbar-toggleable-xs" id="navbarResponsive">
             <ul class="nav navbar-nav">
-                <li class="nav-item" onclick='_getData("food",0)'><a class="nav-link">食物<span class="sr-only">(current)</span></a></li>
+                <li style="top:54px;" class="nav-item" onclick='_getData("food",0);'><a class="nav-link">食物<span class="sr-only">(current)</span></a></li>
                 <li class="nav-item" onclick='_getData("travel",0)'><a class="nav-link">旅遊</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">地區</a></li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
