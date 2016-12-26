@@ -131,7 +131,7 @@ function _processData(data) {
             }
         }
 
-        _content.innerHTML += '<div style="padding:10px 10px 0 10px">' + _dataContent + "</div>";
+        _content.innerHTML += '<div style="padding:10px 12% 0 12%">' + _dataContent + "</div>";
     }
     _content = $("#body>#DataBody>div:nth-of-type(4)>div:first")
     if (data.details) {
@@ -278,8 +278,7 @@ function _processMain(data,type,content_no) {
 }
 
 
-$(document).ready(function(){
-    _getData("food")
+$("#bitch").ready(function(){
         window.onkeyup=function(e){
         if(e.keyIdentifier=="Right" || e.keyCode==39){
             nextpage();

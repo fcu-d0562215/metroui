@@ -35,7 +35,7 @@
 
     #body {
         text-align: center;
-        color: rgb(151, 236, 44);
+        
     }
 
     #map {
@@ -79,11 +79,11 @@
         }
         #title{
             color:rgb(1, 31, 43);
-            font-size: 130%;
+            font-size: 160%;
         }
         #paragraph{
             color:rgb(1, 31, 43);
-            font-size:100%;
+            font-size:150%;
         }
 
         @media screen and (min-width:576px) {
@@ -104,10 +104,10 @@
                 font-weight: bolder;
             }
             #title{
-                font-size: 160%;
+                font-size: 190%;
             }
             #paragraph{
-                font-size:120%;
+                font-size:160%;
             }
         }
 
@@ -131,20 +131,20 @@
                 font-weight: bolder;
             }
             #title{
-                font-size: 160%;
+                font-size: 210%;
             }
             #paragraph{
-                font-size:120%;
+                font-size:180%;
             }
         }
 
         @media screen and (min-width:850px){
             #details>span{
-                font-size: 100%;
+                font-size: 80%;
                 font-weight: bolder;
             }
             #details>span>a{
-                font-size: 120%;
+                font-size: 110%;
                 font-weight: bolder;
             }
         }
@@ -159,7 +159,7 @@
                 margin-top: 54px;
             }
             #details>span{
-                font-size: 80%;
+                font-size: 75%;
                 font-weight: bolder;
             }
             #details>span>a{
