@@ -208,8 +208,7 @@ function previouspage() {
 }
 
 function nextContent(type) {
-    if (contentno[type.id] != contentmax[type.id] && contentno[type.id] >= contentmax[type.id] - contentsize
-     ) {
+    if (contentno[type.id] != contentmax[type.id] && contentno[type.id] < contentmax[type.id] - contentsize) {
         contentno[type.id] += contentsize
 
         if (contentno[type.id] >= contentmax[type.id] - contentsize ) {
