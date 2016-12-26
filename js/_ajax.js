@@ -65,54 +65,17 @@ function _processData(data) {
 function _getData(type, page) {
     if (page === undefined)
         page = 0;
-    if (pageContent[Object.keys(pageContent)[page]]) {
-        if (_processData(pageContent[Object.keys(pageContent)[page]])) {
+    var tmp = fullData[type].content[page];
+    if ( tmp ) {
+        if (_processData(tmp)) {
             scrolltop();
-            $.each(pageContent, function(i, v) {
-                // console.log("v ="+v)
-                // console.log("i = "+i)
-                for (i in v) {
-                    // console.log(i)
-                    if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
-                        // console.log(v[i])
-                    }
-                }
-            });
+            
             if (history.state && history.state.url != "?" + type + "&page=" + page) {
-                history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
+                history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, tmp.title, "?" + type + "&page=" + page);
             } else {
-                history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, "首頁", "?" + mode + "&page=" + _GET["page"]);
+                history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, tmp.title, "?" + mode + "&page=" + _GET["page"]);
             }
         }
-    } else {
-        $.ajax({
-            method: 'Get',
-            url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
-            dataType: "json",
-            success: function(response) {
-                pageContent = response
-                pageMax = Object.keys(response).length - 1
-                types = type
-                if (_processData(response[Object.keys(response)[page]])) {
-                    scrolltop();
-                    $.each(response, function(i, v) {
-                        // console.log("v ="+v)
-                        // console.log("i = "+i)
-                        for (i in v) {
-                            // console.log(i)
-                            if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
-                                // console.log(v[i])
-                            }
-                        }
-                    });
-                    if (history.state && history.state.url != "?" + type + "&page=" + page) {
-                        history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
-                    } else {
-                        history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, "首頁", "?" + mode + "&page=" + _GET["page"]);
-                    }
-                }
-            }
-        })
     }
 }
 
@@ -174,8 +137,8 @@ function _processMain(type) {
 function _writeMain(index, el) {
     $('#' + index).html("")
     for (i = el.contentNo; i < el.contentNo + contentSize; i++) {
-        if (el.content[Object.keys(data)[i]]) {
-            var source = el.content[Object.keys(data)[i]];
+        if (el.content[i]) {
+            var source = el.content[i];
             var title = source.title;
             var cover = source.cover;
             var paragraph = source.paragraph;
