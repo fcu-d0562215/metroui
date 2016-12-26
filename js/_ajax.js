@@ -203,7 +203,7 @@ function _writeMain(index, el) {
 function mainNextContent(type) {
     if (fullData[type.id].contentNo != contentMax[type.id] && fullData[type.id].contentNo <= contentMax[type.id] - contentSize) {
         fullData[type.id].contentNo += contentSize
-        if (fullData[type.id].contentNo > contentMax[type.id] - contentSize) {
+        if (fullData[type.id].contentNo + contentSize > contentMax[type.id] ) {
             $('#next' + type.id).remove()
         }
         _processMain(type)
@@ -225,7 +225,7 @@ function mainPrevContent(type) {
         if (fullData[type.id].contentNo <= 0) {
             $('#prev' + type.id).remove()
         }
-        if (fullData[type.id].contentNo != contentMax[type.id] - contentSize) {
+        if (fullData[type.id].contentNo + contentSize <= contentMax[type.id]) {
             if (!$("#next" + type.id).html()) {
                 $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='mainNextContent(" + type.id + ")'>></span>")
             }

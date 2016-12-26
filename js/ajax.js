@@ -196,7 +196,7 @@ function prevContent(type) {
         if (contentno[type.id] <= 0) {
             $('#prev' + type.id).remove()
         }
-        if (contentno[type.id] != contentmax[type.id] - contentsize) {
+        if (contentno[type.id] + contentsize <= contentmax[type.id]) {
             if (!$("#next" + type.id).html()) {
                 $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='nextContent(" + type.id + ")'>></span>")
             }
