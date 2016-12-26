@@ -149,7 +149,7 @@ function _processData(data) {
     _resize()
 }
 
-function _getData(type, page) {
+function _getData(type, page = 0) {
     $.ajax({
         method: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",

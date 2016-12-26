@@ -3,22 +3,22 @@
     "Nagi":
     {
         "title": "豚骨拉麵 Nagi（台中店）",
-        "paragraph": "豚骨拉麵ラーメン 凪　Nagi，這個號稱宇宙最強的拉麵到底有多好吃，值得讓我們排半小時吃一次，只能說吃完之後真的好吃，雖稱不上宇宙第一，但是台中第一應該是實至名歸，有到老虎城看電影的朋友，在等電影開場的時候，可以順便來吃個? Nagi拉麵。",
+        "paragraph": "豚骨拉麵ラーメン 凪 Nagi，這個號稱宇宙最強的拉麵到底有多好吃，值得讓我們排半小時吃一次，只能說吃完之後真的好吃，雖稱不上宇宙第一，但是台中第一應該是實至名歸，有到老虎城看電影的朋友，在等電影開場的時候，可以順便來吃個拉麵。",
         "cover":"./web網頁設計/Nagi豚王拉麵/nagi-封面.jpg",
         "content":[
                 {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-1.jpg","text":"豚骨拉麵台中店"},
-                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-2.jpg","text":"豚骨拉麵(Nagi) 擁有四種口味的豚王，赤王，黑王和翠王<br>其中還有一個隱藏的限定王口味由於每日都有限供應，所以要<br>吃必須問過服務員才行"},
+                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-2.jpg","text":"拉麵主要有四種口味的豚王、赤王、黑王和翠王；還有一個每日限量供應的限定王口味，想吃必須問過服務人員才行。"},
                 {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-3.jpg"},
-                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-4.jpg","text":"價客制化的菜單是豚骨拉麵(Nagi)的一大特色依自己的喜好   打照專屬自己最喜愛口味的拉麵"}
+                {"picture":"./web網頁設計/Nagi豚王拉麵/nagi-4.jpg","text":"平價客製化的菜單是豚骨拉麵(Nagi)的一大特色，顧客可以依自己的喜好，打造專屬自己喜愛口味的拉麵。"}
             ],
         "lat":24.163804,
         "long":120.638261,
         "details":{
             "Name":"豚骨拉麵 Nagi（台中店）",
             "Contact":"(04)3606-2511",
-            "Address":"台中市河南路三段120號3樓老虎城",
+            "Address":"<br>台中市河南路三段120號3樓老虎城",
             "Working Hours":"<br>周日~周四11:00~22:00<br>周五~周六11:00~23:00",
-            "Facebook":"<a href='http://n-nagi.event2.tw'>豚骨拉麵 Nagi</a>"
+            "Website":"<a href='http://n-nagi.event2.tw'>官方網站</a>"
         }
     },
     "Huche":
@@ -37,9 +37,9 @@
         "details":{
             "Name":"麵屋虎徹(逢甲)",
             "Contact":"(04)2452-9459",
-            "Address":"台中市西屯區福興北三街20號",
+            "Address":"<br>台中市西屯區福興北三街20號",
             "Working Hours":"<br>(平日)17:00-23:00<br>(假日)17:00-24:00",
-            "Facebook":"<a href='https://www.facebook.com/kotetsu30/'>虎徹</a>"
+            "Website":"<a href='https://www.facebook.com/kotetsu30/'>Facebook</a>"
         }
     },
     "Pandora_feast":
@@ -57,9 +57,9 @@
         "details":{
             "Name":"潘朵拉之宴",
             "Contact":"(04)23201880",
-            "Address":"台中市南屯區公益路二段21號",
+            "Address":"<br>台中市南屯區公益路二段21號",
             "Working Hours":"<br>(平日):11:00~16:00、17:00~22:00<br>(假日)11:00~22:00",
-            "Facebook":"<a href='https://www.facebook.com/pantorasteak/'>潘朵拉之宴</a>"
+            "Website":"<a href='https://www.facebook.com/pantorasteak/'>Facebook</a>"
         }
     },
     "Tim_heart":
@@ -77,9 +77,9 @@
         "details":{
             "Name":"恬心朵朵",
             "Contact":"(04)25293135",
-            "Address":"台中市豐原區向陽路102號",
+            "Address":"<br>台中市豐原區向陽路102號",
             "Working Hours":"<br>(平日):8:30~22:00<br>(假日)8:30~22:00",
-            "Facebook":"<a href='https://www.facebook.com/lilywhitecafe3/'>恬心朵朵</a>"
+            "Website":"<a href='https://www.facebook.com/lilywhitecafe3/'>Facebook</a>"
         }
     },
     "Hanxiang":
@@ -97,9 +97,9 @@
         "details":{
             "Name":"韓鄉韓國料理",
             "Contact":"(04)23156879",
-            "Address":"台中市西屯區漢口路二段148-2號",
+            "Address":"<br>台中市西屯區漢口路二段148-2號",
             "Working Hours":"<br>(平日):11:00~14:30、17:00~21:00<br>(假日):11:00~14:30、17:00~21:00",
-            "Facebook":"<a href='https://www.facebook.com/pages/%E9%9F%93%E9%84%89%E9%9F%93%E5%9C%8B%E6%96%99%E7%90%86/106418232770608'>韓鄉韓國料理</a>"
+            "Website":"<a href='https://www.facebook.com/pages/%E9%9F%93%E9%84%89%E9%9F%93%E5%9C%8B%E6%96%99%E7%90%86/106418232770608'>Facebook</a>"
         }
     },
     "Bai_Xi":
@@ -117,9 +117,9 @@
         "details":{
             "Name":"柏熙鐵板燒",
             "Contact":"(04)2328-7818",
-            "Address":"台中市西區台灣大道二段459號15樓",
+            "Address":"<br>台中市西區台灣大道二段459號15樓",
             "Working Hours":"<br>(平日):10:30 - 22:00<br>(假日):10:30 - 22:00",
-            "Facebook":"<a href='https://www.facebook.com/%E6%9F%8F%E7%86%99%E9%90%B5%E6%9D%BF%E7%87%92%E5%8F%B0%E4%B8%AD%E5%BB%A3%E4%B8%89%E5%BA%97-1170933976333090/'>柏熙鐵板燒</a>"
+            "Website":"<a href='https://www.facebook.com/%E6%9F%8F%E7%86%99%E9%90%B5%E6%9D%BF%E7%87%92%E5%8F%B0%E4%B8%AD%E5%BB%A3%E4%B8%89%E5%BA%97-1170933976333090/'>Facebook</a>"
         }
     },
     "Teppanyaki":
@@ -137,9 +137,9 @@
         "details":{
             "Name":"燄鐵板燒",
             "Contact":"(04)2475-2555",
-            "Address":"台中市南屯區東興路二段217號",
+            "Address":"<br>台中市南屯區東興路二段217號",
             "Working Hours":"<br>(平日):11:00~14:30、16:00~21:30<br>(假日):11:00~14:30、16:00~21:30",
-            "Facebook":"<a href='https://www.facebook.com/flame.teppanyaki/'>燄鐵板燒</a>"
+            "Website":"<a href='https://www.facebook.com/flame.teppanyaki/'>Facebook</a>"
         }
     },
     "Mr_38":
@@ -157,9 +157,9 @@
         "details":{
             "Name":"Mr. 38咖哩界傳奇人物",
             "Contact":"(04)2325-3838",
-            "Address":"台中市西區公益路260號",
+            "Address":"<br>台中市西區公益路260號",
             "Working Hours":"<br>(平日):11:00~14:00、17:00~21:30<br>(假日):11:00~21:30(",
-            "Facebook":"<a href='https://www.facebook.com/Mr-38-%E5%92%96%E5%93%A9-%E5%85%AC%E7%9B%8A%E5%BA%97-253835408143716/?fref=ts'>Mr. 38咖哩界傳奇人物</a>"
+            "Website":"<a href='https://www.facebook.com/Mr-38-%E5%92%96%E5%93%A9-%E5%85%AC%E7%9B%8A%E5%BA%97-253835408143716/?fref=ts'>Facebook</a>"
         }
     },
     "New_new_park":
@@ -177,9 +177,9 @@
         "details":{
             "Name":"新新園汕頭火鍋",
             "Contact":"(04)22545572",
-            "Address":"台中市南屯區大墩十一街730號",
+            "Address":"<br>台中市南屯區大墩十一街730號",
             "Working Hours":"<br>(平日):11:30~15:00、17:00~凌晨2:00<br>(假日):11:30~15:00、17:00~凌晨2:00",
-            "Facebook":"<a href='http://zine1215.pixnet.net/blog/post/%E3%80%90%E5%BA%97%E5%AE%B6%E8%B3%87%E8%A8%8A%E3%80%91%20%E6%96%B0%E6%96%B0%E5%9C%92%E6%B1%95%E9%A0%AD%E7%81%AB%E9%8D%8B(%E5%8F%B0%E4%B8%AD%E5%8D%97%E5%B1%AF%E5%BA%97)%20%E5%9C%B0%E5%9D%80:%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%8D%97%E5%B1%AF%E5%8D%80%E5%A4%A7%E5%A2%A9%E5%8D%81%E4%B8%80%E8%A1%97730%E8%99%9F%20%E9%9B%BB%E8%A9%B1:04-22545572%20%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93:11:30~15:00(%E6%94%B6%E5%AE%A2%E5%88%B014:40)%E3%80%8117:00~%E5%87%8C%E6%99%A82:00(%E6%94%B6%E5%AE%A2%E5%88%B01:30)%20FB%E7%B2%89%E7%B5%B2%E5%9C%98:%E8%AB%8B%E9%BB%9E%E6%88%91'>新新園汕頭火鍋</a>"
+            "Website":"<a href='http://zine1215.pixnet.net/blog/post/%E3%80%90%E5%BA%97%E5%AE%B6%E8%B3%87%E8%A8%8A%E3%80%91%20%E6%96%B0%E6%96%B0%E5%9C%92%E6%B1%95%E9%A0%AD%E7%81%AB%E9%8D%8B(%E5%8F%B0%E4%B8%AD%E5%8D%97%E5%B1%AF%E5%BA%97)%20%E5%9C%B0%E5%9D%80:%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%8D%97%E5%B1%AF%E5%8D%80%E5%A4%A7%E5%A2%A9%E5%8D%81%E4%B8%80%E8%A1%97730%E8%99%9F%20%E9%9B%BB%E8%A9%B1:04-22545572%20%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93:11:30~15:00(%E6%94%B6%E5%AE%A2%E5%88%B014:40)%E3%80%8117:00~%E5%87%8C%E6%99%A82:00(%E6%94%B6%E5%AE%A2%E5%88%B01:30)%20FB%E7%B2%89%E7%B5%B2%E5%9C%98:%E8%AB%8B%E9%BB%9E%E6%88%91'>Pixnet</a>"
         }
     },
     "Malaysian_era":
@@ -197,9 +197,9 @@
         "details":{
             "Name":"大馬時代",
             "Contact":"(04)2461-8833",
-            "Address":"台中市西屯區西屯路三段166-48號",
+            "Address":"<br>台中市西屯區西屯路三段166-48號",
             "Working Hours":"<br>(平日):11:30~14:30、17:30~21:00<br>(假日):11:30~15:00、17:30~21:30",
-            "Facebook":"<a href='https://www.facebook.com/mtimescafe/'>大馬時代</a>"
+            "Website":"<a href='https://www.facebook.com/mtimescafe/'>Facebook</a>"
         }
     },
     "Classical_rose_garden":
@@ -217,9 +217,9 @@
         "details":{
             "Name":"古典玫瑰園",
             "Contact":"(04)3507-0600",
-            "Address":"台中市西區五權西路一段2號2樓",
+            "Address":"<br>台中市西區五權西路一段2號2樓",
             "Working Hours":"<br>(平日):9:00~17:00<br>(假日):9:00~18:00",
-            "Facebook":"<a href='http://www.rosehouse.com/rosehouse/'>古典玫瑰園</a>"
+            "Website":"<a href='http://www.rosehouse.com/rosehouse/'>官方網站</a>"
         }
     },
     "Qi_Hong":
@@ -237,9 +237,9 @@
         "details":{
             "Name":"圻宏馬來風味料理",
             "Contact":"(04)2236-4567",
-            "Address":"台中市北屯區青島路三段143號",
+            "Address":"<br>台中市北屯區青島路三段143號",
             "Working Hours":"<br>(平日):11:30~14:30、17:00~21:30<br>(假日):11:30~14:30、17:00~21:30",
-            "Facebook":"<a href='https://www.facebook.com/hungs1canteens'>圻宏馬來風味料理</a>"
+            "Website":"<a href='https://www.facebook.com/hungs1canteens'>Facebook</a>"
         }
     },
     "MIGU":
@@ -257,9 +257,9 @@
         "details":{
             "Name":"米古MIGU PASTA",
             "Contact":"0989-204-003",
-            "Address":"台中市北屯區大連路三段115號",
+            "Address":"<br>台中市北屯區大連路三段115號",
             "Working Hours":"<br>(平日):12:00~14:30、18:00~20:30<br>(假日):11:30~14:30、17:30~21:00",
-            "Facebook":"<a href='https://www.facebook.com/migupastajoe'>米古MIGU PASTA</a>"
+            "Website":"<a href='https://www.facebook.com/migupastajoe'>Facebook</a>"
         }
     },
     "Empty_sea":
@@ -277,9 +277,9 @@
         "details":{
             "Name":"空海拉麵",
             "Contact":"(04)2310-2598",
-            "Address":"台中市西屯區大隆路140號",
+            "Address":"<br>台中市西屯區大隆路140號",
             "Working Hours":"<br>(平日):11:30~21:00<br>(假日):11:00~21:30",
-            "Facebook":"<a href='https://www.facebook.com/kukai.tw'>空海拉麵</a>"
+            "Website":"<a href='https://www.facebook.com/kukai.tw'>Facebook</a>"
         }
     },
     "Princess":
@@ -297,9 +297,9 @@
         "details":{
             "Name":"妃彤巧可咖啡館",
             "Contact":"(04)2378-1677",
-            "Address":"台中市西區美村路一段687號2樓",
+            "Address":"<br>台中市西區美村路一段687號2樓",
             "Working Hours":"<br>(平日):10:00~20:30<br>(假日):10:00~20:30",
-            "Facebook":"<a href='https://www.facebook.com/lr6288'>妃彤巧可咖啡館</a>"
+            "Website":"<a href='https://www.facebook.com/lr6288'>Facebook</a>"
         }
     },
     "Alan_Bell":
@@ -317,9 +317,9 @@
         "details":{
             "Name":"阿蘭貝爾牛排廚房",
             "Contact":"(04)2633-0987",
-            "Address":"台中市龍井區藝術街81巷5號",
+            "Address":"<br>台中市龍井區藝術街81巷5號",
             "Working Hours":"<br>(平日):11:00~14:00、17:00~21:00<br>(假日):11:00~14:00、17:00~21:00",
-            "Facebook":"<a href='https://www.facebook.com/alanbiersteak'>阿蘭貝爾牛排廚房</a>"
+            "Website":"<a href='https://www.facebook.com/alanbiersteak'>Facebook</a>"
         }
     },
     "Yue_Yuen":
@@ -337,9 +337,9 @@
         "details":{
             "Name":"裕元花園酒店",
             "Contact":"(04)2465-6555",
-            "Address":"台中市西屯區台灣大道四段610號",
+            "Address":"<br>台中市西屯區台灣大道四段610號",
             "Working Hours":"<br>(平日):11:30~14:00、18:00~01:00<br>(假日):11:30~14:00、18:00~02:00",
-            "Facebook":"<a href='https://www.facebook.com/RarebarSteakhouse?fref=ts'>裕元花園酒店</a>"
+            "Website":"<a href='https://www.facebook.com/RarebarSteakhouse?fref=ts'>Facebook</a>"
         }
     },
     "VAPiANO":
@@ -357,9 +357,9 @@
         "details":{
             "Name":"VAPiANO",
             "Contact":"(04)2328-8853",
-            "Address":"台中市西區中興街221號",
+            "Address":"<br>台中市西區中興街221號",
             "Working Hours":"<br>(平日):11:00~23:00<br>(假日):11:00~23:00",
-            "Facebook":"<a href='https://www.facebook.com/VapianoTaichung1'>VAPiANO</a>"
+            "Website":"<a href='https://www.facebook.com/VapianoTaichung1'>Facebook</a>"
         }
     },
     "war_pot":
@@ -377,9 +377,9 @@
         "details":{
             "Name":"春秋戰鍋",
             "Contact":"(04)2418-0880",
-            "Address":"台中市大里區國光路二段409號",
+            "Address":"<br>台中市大里區國光路二段409號",
             "Working Hours":"<br>(平日):11:00~14:00、17:00~22:00<br>(假日):11:00~14:00、17:00~22:00",
-            "Facebook":"<a href='https://www.facebook.com/chunciouhotpot'>春秋戰鍋</a>"
+            "Website":"<a href='https://www.facebook.com/chunciouhotpot'>Facebook</a>"
         }
     },
     "Jishi":
@@ -397,9 +397,9 @@
         "details":{
             "Name":"偈亭泡菜鍋",
             "Contact":"(04)2225-9397",
-            "Address":"台中市北區雙十路一段89號",
+            "Address":"<br>台中市北區雙十路一段89號",
             "Working Hours":"<br>(平日):11:30~22:00<br>(假日):11:30~22:00",
-            "Facebook":"<a href='https://www.facebook.com/GTing.YU.SS'>偈亭泡菜鍋</a>"
+            "Website":"<a href='https://www.facebook.com/GTing.YU.SS'>Facebook</a>"
         }
     },
     "StayReal_Cafe":
@@ -417,9 +417,9 @@
         "details":{
             "Name":"StayReal Cafe",
             "Contact":"(04)2221-1055",
-            "Address":"台中市北區一中街103-1號2樓",
+            "Address":"<br>台中市北區一中街103-1號2樓",
             "Working Hours":"<br>(平日):12:00-22:00<br>(假日):12:00-22:00",
-            "Facebook":"<a href='https://www.facebook.com/StayRealCafe'>StayReal Cafe</a>"
+            "Website":"<a href='https://www.facebook.com/StayRealCafe'>Facebook</a>"
         }
     },
     "Ma_Tei":
@@ -437,9 +437,9 @@
         "details":{
             "Name":"咖啡瑪榭",
             "Contact":"(04)2372-1388",
-            "Address":"台中市西區五權一街116號",
+            "Address":"<br>台中市西區五權一街116號",
             "Working Hours":"<br>(平日):7:30~22:00<br>(假日):7:30~23:00",
-            "Facebook":"<a href='https://www.facebook.com/Marche.Taichung'>咖啡瑪榭</a>"
+            "Website":"<a href='https://www.facebook.com/Marche.Taichung'>Facebook</a>"
         }
     },
     "Sunburn":
@@ -457,9 +457,9 @@
         "details":{
             "Name":"炙牛食創堂",
             "Contact":"(04)2326-0208",
-            "Address":"台中市西區臺灣大道二段159號",
+            "Address":"<br>台中市西區臺灣大道二段159號",
             "Working Hours":"<br>(平日):11:00~02:00<br>(假日):11:00~02:00",
-            "Facebook":"<a href='https://www.facebook.com/pages/%E7%82%99%E7%89%9B%E9%A3%9F%E5%89%B5%E5%A0%82-Flaming-Bull/1581210898783598'>炙牛食創堂</a>"
+            "Website":"<a href='https://www.facebook.com/pages/%E7%82%99%E7%89%9B%E9%A3%9F%E5%89%B5%E5%A0%82-Flaming-Bull/1581210898783598'>Facebook</a>"
         }
     },
     "Crescent":
@@ -477,9 +477,9 @@
         "details":{
             "Name":"新月梧桐",
             "Contact":"(04)2378-3181",
-            "Address":"台中市西區五權西三街123號",
+            "Address":"<br>台中市西區五權西三街123號",
             "Working Hours":"<br>(平日):11:30~14:00、17:30~21:00<br>(假日):11:30~14:30、17:30~21:00",
-            "Facebook":"<a href='http://www.theme.net.tw/'>新月梧桐</a>"
+            "Website":"<a href='http://www.theme.net.tw/'>官方網站</a>"
         }
     }
 }
