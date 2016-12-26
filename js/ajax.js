@@ -1,3 +1,15 @@
+var URL = window.location.href.split("?");
+console.log(URL.shift());
+var mode = "main";
+var _GET = [];
+if (URL.length > 0 && URL[URL.length - 1] != "") {
+    URL = URL.shift().split("&");
+    mode = URL.shift();
+    URL.forEach(function(get) {
+        var tmp = get.split("=");
+        _GET[tmp[0]] = tmp[1];
+    })
+}
 var pageno = 0
 var pagemax = 0
 var pageContent = ""
@@ -10,57 +22,10 @@ var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
     "travel": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/travel.json"
 }
-var content ={
+var content = {
     "food": "",
-    "travel":""
+    "travel": ""
 }
-
-$.ajaxSetup({
-    method: "POST",
-    cache: false,
-    processData: false,
-    contentType: false,
-    beforeSend: function(xhr) {
-        $("#loading").stop().css('display', 'block').animate({ opacity: 1 }, 1000);
-
-        $(".progress").stop().css({
-            opacity: '1',
-            display: 'block'
-        });
-    },
-    xhr: function() {
-        var xhr = new window.XMLHttpRequest();
-        var percentComplete = 0;
-        //Upload progress
-        xhr.upload.addEventListener("progress", function(evt) {
-            // console.log("QaQ")
-
-            if (evt.lengthComputable) {
-                percentComplete = (evt.loaded / evt.total) * 20;
-                //Do something with upload progress
-                console.log("  up " + percentComplete);
-                $(".progress").attr('value', percentComplete);
-            }
-        }, false);
-        //Download progress
-        xhr.addEventListener("progress", function(evt) {
-            // console.log(evt.loaded)
-
-            if (evt.lengthComputable) {
-                // console.log("QoQq")
-                percentComplete = ((evt.loaded / evt.total) * 80) + 20;
-                //Do something with download progress
-                // console.log("down "+percentComplete);
-                $(".progress").attr('value', percentComplete)
-            }
-
-        }, false);
-        return xhr;
-    }
-});
-$(document).ajaxStop(function() {
-    hide_progressbar();
-});
 window.onpopstate = function() {
     if (event.state) {
         var data_type = (event.state).type;
@@ -82,9 +47,7 @@ window.onpopstate = function() {
     } else {
         if (document.location.search == "") {
             location.reload();
-        } else {
-
-        }
+        } else {}
     }
 }
 
@@ -149,7 +112,10 @@ function _processData(data) {
     _resize()
 }
 
-function _getData(type, page = 0) {
+function _getData(type, page) {
+    if (page === undefined)
+        page = 0;
+    console.log(page);
     $.ajax({
         method: 'Get',
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
@@ -159,36 +125,33 @@ function _getData(type, page = 0) {
             pagemax = Object.keys(response).length - 1
             _processData(pageContent[Object.keys(pageContent)[pageno]])
             if(Object.keys(response).length>0){
-                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
             }
             $(document).scrollTop(0);
-
             $.each(response, function(i, v) {
                 for (i in v) {
                     if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
                     }
                 }
-
             });
         }
     })
 }
 
-
-function mainSwipeStart(){
+function mainSwipeStart() {
     e = this.event
     swipestart = e.touches[0].clientX
 }
-function mainSwipeEnd(type){
+
+function mainSwipeEnd(type) {
     e = this.event
-    if(swipestart - e.changedTouches[0].clientX>=50||swipestart - e.changedTouches[0].clientX<=-50){
-        if(swipestart > e.changedTouches[0].clientX){
-        	nextContent(type)
-    	}else{
-        	prevContent(type)
+    if (swipestart - e.changedTouches[0].clientX >= 50 || swipestart - e.changedTouches[0].clientX <= -50) {
+        if (swipestart > e.changedTouches[0].clientX) {
+            nextContent(type)
+        } else {
+            prevContent(type)
         }
     }
-
 }
 
 function nextpage() {
@@ -197,13 +160,13 @@ function nextpage() {
         _processData(pageContent[Object.keys(pageContent)[pageno]])
         if(pageno < pagemax){
             if(!$("#nextpagebutton").html()){
-                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
             }
         }else{
             $("#nextpagebutton").remove()
         }
         if(pageno>0 && !$("#prevpagebutton").html()){
-            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''><<</span>")
+            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
         }
 
     }
@@ -215,13 +178,13 @@ function previouspage() {
         _processData(pageContent[Object.keys(pageContent)[pageno]])
         if(pageno > 0){
             if(!$("#prevpagebutton").html()){
-                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''><<</span>")
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
             }
         }else{
             $("#prevpagebutton").remove()
         }
         if(pageno < pagemax && !$("#nextpagebutton").html()){
-            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
         }
 
     }
@@ -231,8 +194,7 @@ function previouspage() {
 function nextContent(type) {
     if (contentno[type.id] != contentmax[type.id] && contentno[type.id] <= contentmax[type.id] - contentsize) {
         contentno[type.id] += contentsize
-
-        if (contentno[type.id] > contentmax[type.id] - contentsize ) {
+        if (contentno[type.id] > contentmax[type.id] - contentsize) {
             $('#next' + type.id).remove()
         }
         _processMain(content[type.id], type.id, contentno[type.id])
@@ -277,16 +239,16 @@ function _getMainData(url, type, content_no) {
         dataType: "json",
         success: function(response) {
             content[type] = response
-            _processMain(content[type],type,content_no);
+            _processMain(content[type], type, content_no);
         }
     })
 }
 
-function _processMain(data,type,content_no) {
-    contentmax[type] = Object.keys(data).length - 1 ;
+function _processMain(data, type, content_no) {
+    contentmax[type] = Object.keys(data).length - 1;
     $('#' + type).html("")
     for (i = content_no; i < content_no + contentsize; i++) {
-        if(data[Object.keys(data)[i]]){
+        if (data[Object.keys(data)[i]]) {
             var source = data[Object.keys(data)[i]];
             var title = source.title;
             var cover = source.cover;
@@ -294,114 +256,165 @@ function _processMain(data,type,content_no) {
             var string = '<div class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2"><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
             $('#' + type).append(string);
         }
-
     }
 }
-
-
-$("#bitch").ready(function(){
-        window.onkeyup=function(e){
-        if(e.keyIdentifier=="Right" || e.keyCode==39){
-            nextpage();
-        }else if(e.keyIdentifier=="Left" || e.keyCode==37){
-            previouspage();
+$("#bitch").ready(function() {
+        window.onkeyup = function(e) {
+            if (e.keyIdentifier == "Right" || e.keyCode == 39) {
+                nextpage();
+            } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
+                previouspage();
+            }
         }
+    })
+    /*
+    function page(url) {
+        event.preventDefault();
+        var formdata = {};
+        formdata.page = url;
+        $.ajax({
+            data: formdata,
+            success: function(response) {
+                response = eval(response);
+                $('.content').text(response);
+                history.pushState({ response: response, type: 'page' }, "逢甲海青班", "?page=" + url);
+            }
+        })
     }
-})
-/*
-function page(url) {
-    event.preventDefault();
-    var formdata = {};
-    formdata.page = url;
-    $.ajax({
-        data: formdata,
-        success: function(response) {
-            response = eval(response);
-            $('.content').text(response);
-            history.pushState({ response: response, type: 'page' }, "逢甲海青班", "?page=" + url);
-        }
-    })
-}
-
-function news(url) {
-    event.preventDefault();
-    var formdata = {};
-    formdata.news = url;
-    $.ajax({
-        data: formdata,
-        success: function(response) {
-            response = eval(response);
-            $('.content').text(response);
-            history.pushState({ response: response, type: 'news' }, "逢甲海青班", "?news=" + url);
-        }
-    })
-}
-
-function home() {
-    event.preventDefault();
-    var formdata = {};
-    formdata.home = 'home';
-    $.ajax({
-        data: formdata,
-        success: function(response) {
-            $('.content').html(response);
-            history.pushState({ response: response, type: 'history' }, "逢甲海青班", "?home");
-        }
-    })
-}
-
-function googledocview(one_element) {
-    event.preventDefault();
-    var url = encodeURIComponent(one_element.href);
-    var str = '<iframe src="http://docs.google.com/viewer?embedded=true&url=' + url + '" width="100%" height="500px" style="border: none;"></iframe>';
-    str += "<div style='position:absolute ;left: 3px;top: 3px;'><a href='" + one_element.href + "' download>下載</a></div>";
-    history.pushState({ response: str, type: 'googledocview' }, "逢甲海青班", "?googledocview=" + url);
-    $('.content').html(str);
-}
-*/
+    function news(url) {
+        event.preventDefault();
+        var formdata = {};
+        formdata.news = url;
+        $.ajax({
+            data: formdata,
+            success: function(response) {
+                response = eval(response);
+                $('.content').text(response);
+                history.pushState({ response: response, type: 'news' }, "逢甲海青班", "?news=" + url);
+            }
+        })
+    }
+    function home() {
+        event.preventDefault();
+        var formdata = {};
+        formdata.home = 'home';
+        $.ajax({
+            data: formdata,
+            success: function(response) {
+                $('.content').html(response);
+                history.pushState({ response: response, type: 'history' }, "逢甲海青班", "?home");
+            }
+        })
+    }
+    function googledocview(one_element) {
+        event.preventDefault();
+        var url = encodeURIComponent(one_element.href);
+        var str = '<iframe src="http://docs.google.com/viewer?embedded=true&url=' + url + '" width="100%" height="500px" style="border: none;"></iframe>';
+        str += "<div style='position:absolute ;left: 3px;top: 3px;'><a href='" + one_element.href + "' download>下載</a></div>";
+        history.pushState({ response: str, type: 'googledocview' }, "逢甲海青班", "?googledocview=" + url);
+        $('.content').html(str);
+    }
+    */
 function hide_progressbar() {
     $("#loading").stop().animate({ opacity: 0 }, 300, function() { $("#loading").css('display', 'none'); });
     return $(".progress").stop().delay(300).animate({ opacity: 0 }, 300, function() { $(".progress").css('display', 'none').attr('value', 0); });
-
 }
 
-function _resize(){
-  return _changeContentSize(),!0
-}
-function _changeContentSize(){
-  var n=_width();
-  n<576?contentsize=1:n<768?contentsize=2:n<992?contentsize=3:n<1200?contentsize=4:contentsize=5
+function _resize() {
+    return _changeContentSize(), !0
 }
 
-function scrolltop(){$(document).scrollTop(0)
+function _changeContentSize() {
+    var n = _width();
+    n < 576 ? contentsize = 1 : n < 768 ? contentsize = 2 : n < 992 ? contentsize = 3 : n < 1200 ? contentsize = 4 : contentsize = 5
 }
 
-function _width(){return window.innerWidth||document.documentElement.clientWidth||document.getElementsByTagName("body")[0].clientWidth}function _height(){return window.innerHeight||document.documentElement.clientHeight||document.getElementsByTagName("body")[0].clientHeight}
+function scrolltop() {
+    $(document).scrollTop(0)
+}
 
+function _width() {
+    return window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName("body")[0].clientWidth
+}
 
-$(window).resize(function(){
+function _height() {
+    return window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight
+}
+
+$(window).resize(function() {
     _resize()
-  for (type in dataSource) {
-      _processMain(content[type], type, contentno[type])
-
-      if (contentno[type] + contentsize > contentmax[type] ) {
+    for (type in dataSource) {
+        _processMain(content[type], type, contentno[type])
+        if (contentno[type] + contentsize > contentmax[type]) {
             $('#next' + type).remove()
-        }else{
-             if (!$("#next" + type).html()) {
+        } else {
+            if (!$("#next" + type).html()) {
                 $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
             }
         }
-      if (contentno[type] <= 0 ) {
+
+        if (contentno[type] <= 0) {
             $('#prev' + type).remove()
-        }else{
-             if (!$("#prev" + type).html()) {
+        } else {
+            if (!$("#prev" + type).html()) {
                 $('#' + type + 'Content').append("<span id='prev" + type + "' onclick='prevContent(" + type + ")'><</span>")
             }
         }
+    }
+});
+$(document).ready(function() {
+    $("ul.nav li.dropdown").hover(function() {
+        $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeIn(100), $(this).find("a").attr("aria-expanded", "true"), $(this).addClass("open")
+    }, function() {
+        $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeOut(100), $(this).find("a").attr("aria-expanded", "false"), $(this).removeClass("open")
+    });
+    if(mode == "main"){
+        mainpage();
+    }else if (mode == "food" || mode == "travel") {
+        _getData(mode,_GET["page"]);
 
-  }
+    }
+});
 
-
-
-
-}),$(document).ready(function(){$("ul.nav li.dropdown").hover(function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeIn(100),$(this).find("a").attr("aria-expanded","true"),$(this).addClass("open")},function(){$(this).find(".dropdown-menu").stop(!0,!0).delay(50).fadeOut(100),$(this).find("a").attr("aria-expanded","false"),$(this).removeClass("open")}),mainpage()});
+$.ajaxSetup({
+    method: "POST",
+    cache: false,
+    processData: false,
+    contentType: false,
+    beforeSend: function(xhr) {
+        $("#loading").stop().css('display', 'block').animate({ opacity: 1 }, 1000);
+        $(".progress").stop().css({
+            opacity: '1',
+            display: 'block'
+        });
+    },
+    xhr: function() {
+        var xhr = new window.XMLHttpRequest();
+        var percentComplete = 0;
+        //Upload progress
+        xhr.upload.addEventListener("progress", function(evt) {
+            // console.log("QaQ")
+            if (evt.lengthComputable) {
+                percentComplete = (evt.loaded / evt.total) * 20;
+                //Do something with upload progress
+                console.log("  up " + percentComplete);
+                $(".progress").attr('value', percentComplete);
+            }
+        }, false);
+        //Download progress
+        xhr.addEventListener("progress", function(evt) {
+            // console.log(evt.loaded)
+            if (evt.lengthComputable) {
+                // console.log("QoQq")
+                percentComplete = ((evt.loaded / evt.total) * 80) + 20;
+                //Do something with download progress
+                // console.log("down "+percentComplete);
+                $(".progress").attr('value', percentComplete)
+            }
+        }, false);
+        return xhr;
+    }
+});
+$(document).ajaxStop(function() {
+    hide_progressbar();
+});
