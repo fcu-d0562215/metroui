@@ -208,11 +208,11 @@ function previouspage() {
 }
 
 function nextContent(type) {
-    if (contentno[type.id] != contentmax[type.id]) {
+    if (contentno[type.id] != contentmax[type.id] && contentno[type.id] >= contentmax[type.id] - contentsize
+     ) {
         contentno[type.id] += contentsize
 
         if (contentno[type.id] >= contentmax[type.id] - contentsize ) {
-            contentno[type.id] = contentmax[type.id]
             $('#next' + type.id).remove()
         }
         _processMain(content[type.id], type.id, contentno[type.id])
