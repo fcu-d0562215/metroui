@@ -61,6 +61,9 @@
     #DataBody{
         padding: 0 4%;
     }
+    #MainBody{
+        padding-top: 20px;
+    }
 
     #nextpagebutton{
         position: fixed;
