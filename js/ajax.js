@@ -12,10 +12,11 @@ if (URL.length > 0 && URL[URL.length - 1] != "") {
 }
 var pageno = 0
 var pagemax = 0
+var pageContent = ""
 var contentno = { "food": 0, "travel": 0 }
 var contentmax = { "food": 0, "travel": 0 }
 var contentsize = 0
-var types, allInOne
+var types
 var swipestart;
 var dataSource = {
     "food": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
@@ -68,7 +69,7 @@ function _processData(data) {
             _dataContent = "";
         for (var i = 0; i < Object.keys(data.content).length; i++) {
             if (data.content[i].picture) {
-                _dataContent += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='40%' ><br>"
+                _dataContent += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='70%' ><br>"
             }
             // console.log(document.querySelector("#body"))
             if (data.content[i].text) {
@@ -101,7 +102,7 @@ function _getData(type, page) {
         url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
         dataType: "json",
         success: function(response) {
-            allInOne = response
+            pageContent = response
             pagemax = Object.keys(response).length - 1
             types = type
             if (_processData(response[Object.keys(response)[page]])) {
@@ -141,15 +142,38 @@ function mainSwipeEnd(type) {
 function nextpage() {
     if (pageno != pagemax) {
         pageno += 1
-        _getData(types, pageno)
+        _processData(pageContent[Object.keys(pageContent)[pageno]])
+        if(pageno < pagemax){
+            if(!$("#nextpagebutton").html()){
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+            }
+        }else{
+            $("#nextpagebutton").remove()
+        }
+        if(pageno>0 && !$("#prevpagebutton").html()){
+            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+        }
+
     }
 }
 
 function previouspage() {
     if (pageno != 0) {
         pageno -= 1
-        _getData(types, pageno)
+        _processData(pageContent[Object.keys(pageContent)[pageno]])
+        if(pageno > 0){
+            if(!$("#prevpagebutton").html()){
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+            }
+        }else{
+            $("#prevpagebutton").remove()
+        }
+        if(pageno < pagemax && !$("#nextpagebutton").html()){
+            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+        }
+
     }
+
 }
 
 function nextContent(type) {
@@ -304,6 +328,7 @@ function _width() {
 function _height() {
     return window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName("body")[0].clientHeight
 }
+
 $(window).resize(function() {
     _resize()
     for (type in dataSource) {
@@ -315,6 +340,7 @@ $(window).resize(function() {
                 $('#' + type + 'Content').append("<span id='next" + type + "' onclick='nextContent(" + type + ")'>></span>")
             }
         }
+
         if (contentno[type] <= 0) {
             $('#prev' + type).remove()
         } else {
@@ -336,9 +362,9 @@ $(document).ready(function() {
         _resetMainLayout();
         mainpage();
         history.replaceState({response: $(".container-fluid").html()},"首頁","?main")
-        
     }
 });
+
 $.ajaxSetup({
     method: "POST",
     cache: false,

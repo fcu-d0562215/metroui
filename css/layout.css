@@ -35,7 +35,7 @@
 
     #body {
         text-align: center;
-        
+
     }
 
     #map {
@@ -59,7 +59,37 @@
 /*        font-size: 160%;*/
     }
     #DataBody{
-        padding: 0 50px;
+        padding: 0 4%;
+    }
+
+    #nextpagebutton{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        height: 20px;
+        background-image: url(../img/arrow_right.png);
+        background-repeat: no-repeat;
+        margin: auto;
+        color: rgb(38, 158, 115);
+    }
+
+    #prevpagebutton{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        height: 20px;
+        background-repeat: no-repeat;
+        width: 10%;
+        margin: auto;
+        background-image: url(../img/arrow_left.png);
+        color: rgb(38, 158, 115);
+    }
+
+    #prevpagebutton:hover,#nextpagebutton:hover{
+        color: rgb(57, 244, 244);
+        cursor: pointer;
     }
 
 
@@ -195,10 +225,11 @@
             margin-top: 50px;
             text-decoration: underline;
         }
-a{
-    text-align: left;
-    color: #69a4f1;
-}
+
+        a{
+            text-align: left;
+            color: #69a4f1;
+        }
         a:hover{
             color:rgb(68, 240, 193);
             cursor: pointer;
