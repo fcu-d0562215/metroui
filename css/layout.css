@@ -53,9 +53,9 @@
 
     #body>#DataBody>div:nth-of-type(4)>div>div {
         border: 3px solid rgba(41, 62, 52, 0.8);
-        background-color: rgba(41, 62, 82, 0.9);
+        background-color: rgba(159, 200, 246, 0.9);
         border-radius: 20px;
-        color: rgb(223, 227, 249);
+        color: rgb(0, 0, 0);
 /*        font-size: 160%;*/
     }
     #DataBody{
@@ -73,6 +73,14 @@
         background-repeat: no-repeat;
         margin: auto;
         color: rgb(38, 158, 115);
+    }
+
+    #nextpagebutton:hover{
+        background-image: url(../img/arrow_right_hover.png);
+    }
+
+    #prevpagebutton:hover{
+        background-image: url(../img/arrow_left_hover.png);
     }
 
     #prevpagebutton{
@@ -229,10 +237,10 @@
 
         a{
             text-align: left;
-            color: #69a4f1;
+            color: rgb(18, 31, 62);
         }
         a:hover{
-            color:rgb(68, 240, 193);
+            color:rgb(69, 96, 163);
             cursor: pointer;
         }
 
@@ -274,6 +282,7 @@
         }
 
         .calouse_Content img {
+            border-radius: 10px;
             background-color: white;
         }
 

@@ -2,32 +2,28 @@
     "XS_Castle": {
         "title": "新社古堡花園",
         "paragraph": "新社古堡花園(新社莊園)位於台中市新社區協成村協中街，屬於大坑風景區內，是近年來台中興起的旅遊景點，位在海拔約為500至860公尺處，溫在23度左右，十分適合人在這裡生活居住，宜人的氣候讓新社莊園成為民眾假日踏青的好去處；面積廣闊的新社古堡花園地處台中市太平區與台中市北屯區的分隔山稜線，是中台灣的綠地花園，擁有『台中之肺』的美稱，新社古堡花園是許多民眾來到台中旅遊可徹底放鬆心靈的旅遊景點。",
-        "cover": "./web網頁設計/莊園古堡/gg-封面.jpg",
+        "cover": "./web網頁設計/Travel/莊園古堡/gg-封面.jpg",
         "content": [
-            { "picture1": "./web網頁設計/莊園古堡/gg-1.jpg" },
-            { "picture2": "./web網頁設計/莊園古堡/gg-2.jpg" },
-            { "picture3": "./web網頁設計/莊園古堡/gg-3.jpg" },
-            { "picture4": "./web網頁設計/莊園古堡/gg-4.jpg" }
+            { "picture1": "./web網頁設計/Travel/莊園古堡/gg-1.jpg" },
+            { "picture2": "./web網頁設計/Travel/莊園古堡/gg-2.jpg" },
+            { "picture3": "./web網頁設計/Travel/莊園古堡/gg-3.jpg" },
+            { "picture4": "./web網頁設計/Travel/莊園古堡/gg-4.jpg" }
         ],
         "lat": 24.184524,
         "long": 120.645432,
         "details": {
-            "Name": "",
-            "Contact": "",
-            "Address": "",
-            "Working Hours": "",
-            "Facebook": ""
+            "Name": "新社古堡花園",
+            "Address": ""
         }
     },
     "Clear_farm": {
         "title": "清境農場",
         "paragraph": "青青草原相當適合情侶與家人出遊喔，在這裡除了能與動物們近距離互動，也能呼吸到新鮮空氣美麗的山景與綠油油草原更讓人無法忘懷。其實在這邊什麼也不做，也能讓人待上一整天，真的是都市人的小確幸啊!南投「清境農場」的好山好水讓人忘記一切的不快樂與煩惱，大家有機會一定要來森呼吸。",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/Clear_farm/清境農場封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/Clear_farm/清境農場1.jpg" },
+            { "picture2": "./web網頁設計/Travel/Clear_farm/清境農場2.jpg" },
+            { "picture3": "./web網頁設計/Travel/Clear_farm/清境農場3.jpg" }
         ],
         "lat": 24.055532,
         "long": 121.161966,
@@ -36,118 +32,105 @@
             "Contact": "(049)2802748",
             "Address": "南投縣仁愛鄉大同村仁和路170號",
             "Working Hours": "平日08：00 ~17：00  假日08：00~17：30",
-            "Facebook": "https://www.facebook.com/pages/%E6%B8%85%E6%B7%A8%E8%BE%B2%E5%A0%B4/264678983617374?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/pages/%E6%B8%85%E6%B7%A8%E8%BE%B2%E5%A0%B4/264678983617374?fref=ts'>Facebook</a>"
         }
     },
     "Fengjia": {
         "title": "逢甲夜市",
         "paragraph": "逢甲文華夜市位於逢甲大學側門，從文華路一直延伸到福星路，消費族群以二、三十歲的年輕人為主。因其有著位於學區和接近市區的地緣關係，逐漸成為臺中市夜市集團的龍頭。逢甲文華夜市與其它臺中市夜市最大不同之處，在於其不單是以飲食著稱，也包含了各式各樣的商店，營業時間亦較長。近年來，市政府重新規劃商圈風貌，整修路面，街道造景，並規劃停車空間，努力解決停車的問題。現今逢甲文華夜市嶄新面貌更吸引了不少消費族群，商圈更有逐漸擴大的現象，並成為民眾心目中票選「臺中市十大觀光景點」之一。",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/Fengjia/逢甲夜市封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/Fengjia/逢甲夜市1.jpg" },
+            { "picture2": "./web網頁設計/Travel/Fengjia/逢甲夜市2.jpg" },
+            { "picture3": "./web網頁設計/Travel/Fengjia/逢甲夜市3.jpg" }
         ],
         "lat": 24.178641,
         "long": 120.645753,
         "details": {
             "Name": "逢甲夜市",
-            "Contact": "-",
             "Address": "407台中市西屯區文華路100號",
             "Working Hours": "平日18：00 ~12：00  假日18：00~02：30",
-            "Facebook": "https://www.facebook.com/%E9%80%A2%E7%94%B2%E5%A4%9C%E5%B8%82%E5%95%86%E5%9C%88-641620162642559/?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/%E9%80%A2%E7%94%B2%E5%A4%9C%E5%B8%82%E5%95%86%E5%9C%88-641620162642559/?fref=ts'>Facebook</a>"
         }
     },
     "Grass_enlightenment": {
         "title": "草悟道",
         "paragraph": "草悟道是台中市區一條綠色走廊，由北往南，從國立科學博物館起，串聯市民廣場、國立台灣美術館節美術園道間，綿延約3.6公里，形成一條名符其實的綠園道，這一片位於台中市中心一連串的綠地公園，除了是台中市民散步、休閒的好去處外，也吸引了許多店家進駐，兩旁林立著各式各樣充滿濃厚異國風情的餐廳、咖啡館，成為一處可以放鬆心情、遠離塵囂，享受生活的最佳境地。",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/Grass_enlightenment/草悟道封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/Grass_enlightenment/草悟道1.jpg" },
+            { "picture2": "./web網頁設計/Travel/Grass_enlightenment/草悟道2.jpg" },
+            { "picture3": "./web網頁設計/Travel/Grass_enlightenment/草悟道3.jpg" }
         ],
         "lat": 24.149448,
         "long": 120.665093,
         "details": {
             "Name": "草悟道",
-            "Contact": "-",
             "Address": "403台中市西區英才路534號",
             "Working Hours": "-",
-            "Facebook": "https://www.facebook.com/pages/%E8%8D%89%E6%82%9F%E9%81%93-Calligraphy-Greenway/325109854285671?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/pages/%E8%8D%89%E6%82%9F%E9%81%93-Calligraphy-Greenway/325109854285671?fref=ts'>Facebook</a>"
         }
     },
     "East_China_Sea": {
         "title": "東海夜市",
         "paragraph": "東海商圈因為有BRT公車站直接到站，附近景點步行可到，所以還沒架設ibike，搭公車的人可以選擇在【榮總/東海大學站】或是【東海別墅站】下車。東海商圈大約在下午過後比較熱鬧，上午可以先到東海大學走走，沿著校園內可走到東海夜市吃小吃，最後再到國際街、藝術街吃個浪漫晚餐，如果有交通工具的人可以再到都會公園附近看夜景",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/East_China_Sea/東海夜市封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/East_China_Sea/東海夜市1.jpg" },
+            { "picture2": "./web網頁設計/Travel/East_China_Sea/東海夜市2.jpg" }
         ],
         "lat": 24.182415,
         "long": 120.602728,
         "details": {
             "Name": "東海夜市",
-            "Contact": "-",
             "Address": "407台中市西屯區台灣大道四段1727號",
             "Working Hours": "平日18：00 ~12：00  假日18：00~02：30",
-            "Facebook": "https://www.facebook.com/pages/%E6%9D%B1%E6%B5%B7%E5%A4%9C%E5%B8%82%E5%95%86%E5%9C%88/355245554510398?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/pages/%E6%9D%B1%E6%B5%B7%E5%A4%9C%E5%B8%82%E5%95%86%E5%9C%88/355245554510398?fref=ts'>Facebook</a>"
         }
     },
     "One_street": {
         "title": "一中街",
         "paragraph": "台中小吃美食真的很多，更不乏特色餐廳，各區美食各有特色，而觀光必造訪的一中不僅好逛，美食也很多",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/One_street/一中商圈封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/One_street/一中商圈1.jpg" },
+            { "picture2": "./web網頁設計/Travel/One_street/一中商圈2.jpg" },
+            { "picture3": "./web網頁設計/Travel/One_street/一中商圈3.jpg" }
         ],
         "lat": 24.150503,
         "long": 120.685518,
         "details": {
             "Name": "一中街",
-            "Contact": "-",
             "Address": "404台中市北區一中街",
             "Working Hours": "平日10:00~23:00",
-            "Facebook": "https://www.facebook.com/taichungmarket/?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/taichungmarket/?fref=ts'>Facebook</a>"
         }
     },
     "MapleGarden": {
         "title": "秋紅谷",
         "paragraph": "不論甚麼時節，漫步在秋紅谷廣場都是個賞心悅目的享受！位於臺中市臺灣大道旁的秋紅谷廣場，是臺中地區特有的凹型市民休閒綠地，占地3公頃多的秋紅谷公園，擁有湖泊、紅樹、綠草坪、觀景橋，相當適合散步、約會、運動，白天有舒服的綠意；夜晚有著精采萬變的不夜燈火，開放迄今迅速成為臺中最火紅的景點之一。",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/MapleGarden/秋紅谷封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/MapleGarden/秋紅谷1.jpg" },
+            { "picture2": "./web網頁設計/Travel/MapleGarden/秋紅谷2.jpg" },
+            { "picture3": "./web網頁設計/Travel/MapleGarden/秋紅谷3.jpg" }
         ],
         "lat": 24.167247,
         "long": 120.637844,
         "details": {
             "Name": "秋紅谷",
-            "Contact": "-",
             "Address": "407台中市西屯區朝富路30號",
-            "Working Hours": "-",
-            "Facebook": "https://www.facebook.com/pages/%E7%A7%8B%E7%B4%85%E8%B0%B7%E5%BB%A3%E5%A0%B4/223149971203934?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/pages/%E7%A7%8B%E7%B4%85%E8%B0%B7%E5%BB%A3%E5%A0%B4/223149971203934?fref=ts'>Facebook</a>"
         }
     },
     "New_agency": {
         "title": "新社",
         "paragraph": "新社花海雖然規模縮小一些，人潮也少了一些，更適合來這踏青散步，目前花況開約5成左右，拍起照來多了點綠意，也有不同美感。逛完花海後，可以到大坑的風尚人文咖啡館休息或是陶然左岸享受一下疏食料理，很悠閒的半日遊。",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/New_agency/新社花海封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/New_agency/新社花海1.jpg" },
+            { "picture2": "./web網頁設計/Travel/New_agency/新社花海2.jpg" },
+            { "picture3": "./web網頁設計/Travel/New_agency/新社花海3.jpg" }
         ],
         "lat": 24.202940,
         "long": 120.807677,
@@ -156,27 +139,24 @@
             "Contact": "-",
             "Address": "426台中市新社區協興街30號",
             "Working Hours": "平日07:30 - 18:30",
-            "Facebook": "https://www.facebook.com/%E6%96%B0%E7%A4%BE%E8%8A%B1%E6%B5%B7-268078366571179/?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/%E6%96%B0%E7%A4%BE%E8%8A%B1%E6%B5%B7-268078366571179/?fref=ts'>Facebook</a>"
         }
     },
     "Month_old": {
         "title": "月老",
         "paragraph": "位於軍營和土雞城都會旁叫不起眼的小巷道內，雖然沒有什麼指標，但卻是很多攝影玩家最常來此的拍攝景點，這邊可以把台中的夜景盡收眼底，即可以欣賞日落，夜晚也沒什麼光害更可欣賞美美的夜景。",
-        "cover": "",
+        "cover": "./web網頁設計/Travel/Month_old/台中月老封面.jpg",
         "content": [
-            { "picture1": "" },
-            { "picture2": "" },
-            { "picture3": "" },
-            { "picture4": "" }
+            { "picture1": "./web網頁設計/Travel/Month_old/台中月老1.jpg" },
+            { "picture2": "./web網頁設計/Travel/Month_old/台中月老2.jpg" },
+            { "picture3": "./web網頁設計/Travel/Month_old/台中月老3.jpg" }
         ],
         "lat": 24.226893,
         "long": 120.604022,
         "details": {
             "Name": "月老",
-            "Contact": "-",
             "Address": "428台中市大雅區中75鄉道",
-            "Working Hours": "-",
-            "Facebook": "https://www.facebook.com/pages/%E5%8F%B0%E4%B8%AD%E6%9C%88%E8%80%81%E5%BB%9F%E5%A4%9C%E6%99%AF/150233831716676?fref=ts"
+            "Facebook": "<a href='https://www.facebook.com/pages/%E5%8F%B0%E4%B8%AD%E6%9C%88%E8%80%81%E5%BB%9F%E5%A4%9C%E6%99%AF/150233831716676?fref=ts'>Facebook</a>"
         }
     }
 }
