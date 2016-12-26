@@ -239,7 +239,7 @@ function _processMain(data, type, content_no) {
             var cover = source.cover;
             var paragraph = source.paragraph;
             var str = "_getData('"+type+"','"+content_no+"')"
-            var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick='+str+'><p class="mycard_title">' + title + '</p><img src="' + cover + '" alt=""><p class="content">' + paragraph + '</p><a class="moreInfo" href="">More info ...</a></div>'
+            var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick="'+str+'"><p style="cursor:pointer;" class="mycard_title">' + title + '</p><img style="cursor:pointer;" src="' + cover + '" alt=""><p style="cursor:pointer;" class="content">' + paragraph + '</p><a style="cursor:pointer;" class="moreInfo" href onclick="event.preventDefault();">More info ...</a></div>'
             $('#' + type).append(string);
         }
     }
