@@ -39,6 +39,7 @@ function _processData(data) {
             if (data.content[i].picture) {
                 _dataContent += "<img src=" + data.content[i].picture + " style='margin-bottom:20px' width='70%' ><br>"
             }
+            // console.log(document.querySelector("#body"))
             if (data.content[i].text) {
                 _dataContent += "<p>" + data.content[i].text + "</p><br>"
             }
@@ -64,19 +65,54 @@ function _processData(data) {
 function _getData(type, page) {
     if (page === undefined)
         page = 0;
-
-    if (tmp = fullData[type].content[Object.keys(fullData[type].content)[page]]) {
-        if (_processData(tmp)) {
+    if (pageContent[Object.keys(pageContent)[page]]) {
+        if (_processData(pageContent[Object.keys(pageContent)[page]])) {
             scrolltop();
-            // if (Object.keys(tmp).length > 0) {
-            //     $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
-            // }
+            $.each(pageContent, function(i, v) {
+                // console.log("v ="+v)
+                // console.log("i = "+i)
+                for (i in v) {
+                    // console.log(i)
+                    if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
+                        // console.log(v[i])
+                    }
+                }
+            });
             if (history.state && history.state.url != "?" + type + "&page=" + page) {
-                history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, tmp.title, "?" + type + "&page=" + page);
+                history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
             } else {
-                history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, tmp.title, "?" + mode + "&page=" + _GET["page"]);
+                history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, "首頁", "?" + mode + "&page=" + _GET["page"]);
             }
         }
+    } else {
+        $.ajax({
+            method: 'Get',
+            url: "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/" + type + ".json",
+            dataType: "json",
+            success: function(response) {
+                pageContent = response
+                pageMax = Object.keys(response).length - 1
+                types = type
+                if (_processData(response[Object.keys(response)[page]])) {
+                    scrolltop();
+                    $.each(response, function(i, v) {
+                        // console.log("v ="+v)
+                        // console.log("i = "+i)
+                        for (i in v) {
+                            // console.log(i)
+                            if (String(v[i]).search(new RegExp(/拉麵/i)) != -1) {
+                                // console.log(v[i])
+                            }
+                        }
+                    });
+                    if (history.state && history.state.url != "?" + type + "&page=" + page) {
+                        history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, response[Object.keys(response)[page]].title, "?" + type + "&page=" + page);
+                    } else {
+                        history.replaceState({ response: $(".container-fluid").html(), type: type, page: page, url: "?" + mode + "&page=" + _GET["page"] }, "首頁", "?" + mode + "&page=" + _GET["page"]);
+                    }
+                }
+            }
+        })
     }
 }
 
@@ -127,24 +163,23 @@ function mainpage() {
 }
 
 function _processMain(type) {
-    if (type == 'undefined') {
+    if (type) {
         _writeMain(type, fullData[type]);
-    } else {
-        $.each(fullData, function(index, el) {
-            _writeMain(index, el);
-        });
-    }
+    } else {}
+    $.each(fullData, function(index, el) {
+        _writeMain(index, el);
+    });
 }
 
 function _writeMain(index, el) {
     $('#' + index).html("")
     for (i = el.contentNo; i < el.contentNo + contentSize; i++) {
-        if (tmp = el.content[Object.keys(el.content)[i]]) {
-            var source = tmp;
+        if (el.content[Object.keys(data)[i]]) {
+            var source = el.content[Object.keys(data)[i]];
             var title = source.title;
             var cover = source.cover;
             var paragraph = source.paragraph;
-            var str = "_getData('" + index + "','" + i + "')"
+            var str = "_getData('" + index + "','" + content_no + "')"
             var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick="' + str + '"><p style="cursor:pointer;" class="mycard_title">' + title + '</p><img style="cursor:pointer;" src="' + cover + '" alt=""><p style="cursor:pointer;" class="content">' + paragraph + '</p><a style="cursor:pointer;" class="moreInfo" href onclick="event.preventDefault();">More info ...</a></div>'
             $('#' + index).append(string);
         }
@@ -166,9 +201,9 @@ function _writeMain(index, el) {
 }
 
 function mainNextContent(type) {
-    if (fullData[type.id].contentNo != fullData[type.id].contentMax && fullData[type.id].contentNo <= fullData[type.id].contentMax - contentSize) {
+    if (fullData[type.id].contentNo != contentMax[type.id] && fullData[type.id].contentNo <= contentMax[type.id] - contentSize) {
         fullData[type.id].contentNo += contentSize
-        if (fullData[type.id].contentNo > fullData[type.id].contentMax - contentSize) {
+        if (fullData[type.id].contentNo + contentSize > contentMax[type.id] ) {
             $('#next' + type.id).remove()
         }
         _processMain(type)
@@ -190,15 +225,13 @@ function mainPrevContent(type) {
         if (fullData[type.id].contentNo <= 0) {
             $('#prev' + type.id).remove()
         }
-
-        if (fullData[type.id].contentNo != fullData[type.id].contentMax - contentSize) {
+        if (fullData[type.id].contentNo + contentSize <= contentMax[type.id]) {
             if (!$("#next" + type.id).html()) {
                 $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='mainNextContent(" + type.id + ")'>></span>")
             }
         }
     }
 }
-
 function mainSwipeStart() {
     e = this.event
     swipestart = e.touches[0].clientX
@@ -253,17 +286,18 @@ $(window).resize(function() {
     _resize()
 });
 $(document).ready(function() {
-    $('ul.nav li').click(function(event) {
-        if ($(".navbar-toggleable-xs.collapse ").hasClass('in')) {
-            $('.navbar-toggler').click();
-        }
-    });
     $("ul.nav li.dropdown").hover(function() {
         $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeIn(100), $(this).find("a").attr("aria-expanded", "true"), $(this).addClass("open")
     }, function() {
         $(this).find(".dropdown-menu").stop(!0, !0).delay(50).fadeOut(100), $(this).find("a").attr("aria-expanded", "false"), $(this).removeClass("open")
     });
     _getFullData();
+    if (mode == "food" || mode == "travel") {
+        _getData(mode, _GET["page"]);
+    } else {
+        mainpage();
+
+    }
 });
 $.ajaxSetup({
     method: "POST",
@@ -282,6 +316,7 @@ $.ajaxSetup({
         var percentComplete = 0;
         //Upload progress
         xhr.upload.addEventListener("progress", function(evt) {
+            // console.log("QaQ")
             if (evt.lengthComputable) {
                 percentComplete = (evt.loaded / evt.total) * 20;
                 //Do something with upload progress
@@ -293,6 +328,7 @@ $.ajaxSetup({
         xhr.addEventListener("progress", function(evt) {
             // console.log(evt.loaded)
             if (evt.lengthComputable) {
+                // console.log("QoQq")
                 percentComplete = ((evt.loaded / evt.total) * 80) + 20;
                 //Do something with download progress
                 // console.log("down "+percentComplete);
@@ -302,13 +338,7 @@ $.ajaxSetup({
         return xhr;
     }
 });
-$(document).ajaxStop(function() {
-    if (mode == "food" || mode == "travel") {
-        _getData(mode, _GET["page"]);
-    } else {
-        mainpage();
-    }
-});
+$(document).ajaxStop(function() {});
 
 function _GETURL() {
     URL = window.location.href.split("?");
@@ -324,6 +354,7 @@ function _GETURL() {
 }
 window.onpopstate = function() {
     if (event.state) {
+        console.log(event)
         $('.container-fluid').html(event.state.response);
         scrolltop();
     }
@@ -359,14 +390,11 @@ function _getFullData() {
                 // console.log("error");
             })
             .always(function() {
-
                 // console.log("complete");
             });
 
     });
-
 }
-
 function _resetDataLayout() {
     $("#body").remove();
     $(".container-fluid").append('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
@@ -374,6 +402,6 @@ function _resetDataLayout() {
 
 function _resetMainLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>ROAD TO FUTURE</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
+    $(".container-fluid").append('<div class="row" id="body"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>ROAD TO FUTURE</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div>');
     _changecontentSize();
 }

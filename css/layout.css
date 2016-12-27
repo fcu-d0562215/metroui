@@ -61,6 +61,9 @@
     #DataBody{
         padding: 0 4%;
     }
+    #MainBody{
+        padding-top: 20px;
+    }
 
     #nextpagebutton{
         position: fixed;
@@ -303,8 +306,11 @@
             border-radius: 20px;
             color: rgb(10, 102, 148);
         }
-
+        #calouse_Header{
+            font-size: 25px;
+        }
         .calouse_Content {
+            border: 1px solid  gray;
             background-color: #103051;
             border-radius: 20px;
             align-content: center;
