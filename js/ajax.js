@@ -68,10 +68,10 @@ function _getData(type, page) {
             pageNo = page * 1;
             pageMax = fullData[type].contentMax;
             scrolltop();
-            if (pageNo < Object.keys(tmp).length) {
+            if (pageNo != Object.keys(fullData[type].content).length-1) {
                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
             }
-            if (pageNo > 0) {
+            if (pageNo != 0) {
                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
             }
             if (history.state && history.state.url != "?" + type + "&page=" + page) {
