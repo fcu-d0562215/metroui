@@ -31,7 +31,7 @@
             "Name": "清境農場",
             "Contact": "(049)2802748",
             "Address": "南投縣仁愛鄉大同村仁和路170號",
-            "Working Hours": "平日08：00 ~17：00  假日08：00~17：30",
+            "Working Hours": "<br>平日08：00 ~ 17：00<br>假日08：00 ~ 17：30",
             "Facebook": "<a href='https://www.facebook.com/pages/%E6%B8%85%E6%B7%A8%E8%BE%B2%E5%A0%B4/264678983617374?fref=ts'>Facebook</a>"
         }
     },
@@ -49,7 +49,7 @@
         "details": {
             "Name": "逢甲夜市",
             "Address": "407台中市西屯區文華路100號",
-            "Working Hours": "平日18：00 ~12：00  假日18：00~02：30",
+            "Working Hours": "<br>平日18：00 ~ 12：00<br>假日18：00 ~ 02：30",
             "Facebook": "<a href='https://www.facebook.com/%E9%80%A2%E7%94%B2%E5%A4%9C%E5%B8%82%E5%95%86%E5%9C%88-641620162642559/?fref=ts'>Facebook</a>"
         }
     },
@@ -67,7 +67,6 @@
         "details": {
             "Name": "草悟道",
             "Address": "403台中市西區英才路534號",
-            "Working Hours": "-",
             "Facebook": "<a href='https://www.facebook.com/pages/%E8%8D%89%E6%82%9F%E9%81%93-Calligraphy-Greenway/325109854285671?fref=ts'>Facebook</a>"
         }
     },
@@ -84,7 +83,7 @@
         "details": {
             "Name": "東海夜市",
             "Address": "407台中市西屯區台灣大道四段1727號",
-            "Working Hours": "平日18：00 ~12：00  假日18：00~02：30",
+            "Working Hours": "<br>平日18：00 ~ 12：00<br>假日18：00 ~ 02：30",
             "Facebook": "<a href='https://www.facebook.com/pages/%E6%9D%B1%E6%B5%B7%E5%A4%9C%E5%B8%82%E5%95%86%E5%9C%88/355245554510398?fref=ts'>Facebook</a>"
         }
     },
@@ -102,7 +101,7 @@
         "details": {
             "Name": "一中街",
             "Address": "404台中市北區一中街",
-            "Working Hours": "平日10:00~23:00",
+            "Working Hours": "平日 10:00 ~ 23:00",
             "Facebook": "<a href='https://www.facebook.com/taichungmarket/?fref=ts'>Facebook</a>"
         }
     },
@@ -137,7 +136,7 @@
         "details": {
             "Name": "新社",
             "Address": "426台中市新社區協興街30號",
-            "Working Hours": "平日07:30 - 18:30",
+            "Working Hours": "平日07:30 ~ 18:30",
             "Facebook": "<a href='https://www.facebook.com/%E6%96%B0%E7%A4%BE%E8%8A%B1%E6%B5%B7-268078366571179/?fref=ts'>Facebook</a>"
         }
     },
