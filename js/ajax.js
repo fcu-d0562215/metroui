@@ -256,6 +256,18 @@ $(window).resize(function() {
     _resize()
 });
 $(document).ready(function() {
+    $(window).on("contextmenu", function(e) {
+        return false;
+    });
+    $(window).bind('cut copy paste', function(e) {
+        e.preventDefault();
+    });
+    document.onkeypress = function(event) {
+        event = (event || window.event);
+        if (event.keyCode == 17 || event.keyCode == 16 || event.keyCode == 73 || event.keyCode == 123) {
+            return false;
+        }
+    }
     $('ul.nav li').click(function(event) {
         if ($(".navbar-toggleable-xs.collapse ").hasClass('in')) {
             $('.navbar-toggler').click();
@@ -355,9 +367,9 @@ function _loadMap() {
     var str = '<div style="position:fixed;width:100%;height:100%;border-width:0;margin:0 -15px;margin-top: -54px;padding-top: 54px;"><iframe src="./map.html" style="width:100%;height:100%;border-width:0;"></iframe></div>';
     $('.container-fluid').html(str);
     if (history.state && history.state.url != "?map") {
-        history.pushState({ response: $('.container-fluid').html(), url: "?map"}, "地圖", "?map");
+        history.pushState({ response: $('.container-fluid').html(), url: "?map" }, "地圖", "?map");
     } else {
-        history.replaceState({ response: $('.container-fluid').html(), url: "?map"}, "地圖", "?map");
+        history.replaceState({ response: $('.container-fluid').html(), url: "?map" }, "地圖", "?map");
     }
 }
 
