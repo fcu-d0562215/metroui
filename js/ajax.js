@@ -1,28 +1,26 @@
 var URL;
 var mode;
 var _GET = [];
-_GETURL();
 var pageNo = 0;
 var pageMax = 0;
 var contentSize = 0;
-var types;
 var swipestart;
 var fullData = {
     "food": {
         "url": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-        "contentNo": 0,
+        "mainContentNo": 0,
         "contentMax": 0,
         "content": {}
     },
     "travel": {
         "url": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/travel.json",
-        "contentNo": 0,
+        "mainContentNo": 0,
         "contentMax": 0,
         "content": {}
     }
 
 }
-
+_GETURL();
 
 
 
@@ -67,10 +65,15 @@ function _getData(type, page) {
 
     if (tmp = fullData[type].content[Object.keys(fullData[type].content)[page]]) {
         if (_processData(tmp)) {
+            pageNo = page * 1;
+            pageMax = fullData[type].contentMax;
             scrolltop();
-            // if (Object.keys(tmp).length > 0) {
-            //     $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
-            // }
+            if (pageNo < Object.keys(tmp).length) {
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+            }
+            if (pageNo > 0) {
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+            }
             if (history.state && history.state.url != "?" + type + "&page=" + page) {
                 history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, tmp.title, "?" + type + "&page=" + page);
             } else {
@@ -81,10 +84,10 @@ function _getData(type, page) {
 }
 
 
-function nextpage(type) {
+function nextpage() {
     if (pageNo != pageMax) {
-        pageNo += 1
-        _processData(fullData[type][Object.keys(fullData[type])[pageNo]])
+        pageNo += 1;
+        _getData(mode, pageNo)
         if (pageNo < pageMax) {
             if (!$("#nextpagebutton").html()) {
                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
@@ -98,10 +101,10 @@ function nextpage(type) {
     }
 }
 
-function previouspage(type) {
+function previouspage() {
     if (pageNo != 0) {
         pageNo -= 1
-        _processData(fullData[type][Object.keys(fullData[type])[pageNo]])
+        _getData(mode, pageNo)
         if (pageNo > 0) {
             if (!$("#prevpagebutton").html()) {
                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
@@ -138,7 +141,7 @@ function _processMain(type) {
 
 function _writeMain(index, el) {
     $('#' + index).html("")
-    for (i = el.contentNo; i < el.contentNo + contentSize; i++) {
+    for (i = el.mainContentNo; i < el.mainContentNo + contentSize; i++) {
         if (tmp = el.content[Object.keys(el.content)[i]]) {
             var source = tmp;
             var title = source.title;
@@ -149,14 +152,14 @@ function _writeMain(index, el) {
             $('#' + index).append(string);
         }
     }
-    if (el.contentNo + contentSize > el.contentMax) {
+    if (el.mainContentNo + contentSize > el.contentMax) {
         $('#next' + index).remove()
     } else {
         if (!$("#next" + index).html()) {
             $('#' + index + 'Content').append("<span id='next" + index + "' onclick='mainNextContent(" + index + ")'>></span>")
         }
     }
-    if (el.contentNo <= 0) {
+    if (el.mainContentNo <= 0) {
         $('#prev' + index).remove()
     } else {
         if (!$("#prev" + index).html()) {
@@ -166,13 +169,13 @@ function _writeMain(index, el) {
 }
 
 function mainNextContent(type) {
-    if (fullData[type.id].contentNo != fullData[type.id].contentMax && fullData[type.id].contentNo <= fullData[type.id].contentMax - contentSize) {
-        fullData[type.id].contentNo += contentSize
-        if (fullData[type.id].contentNo > fullData[type.id].contentMax - contentSize) {
+    if (fullData[type.id].mainContentNo != fullData[type.id].contentMax && fullData[type.id].mainContentNo <= fullData[type.id].contentMax - contentSize) {
+        fullData[type.id].mainContentNo += contentSize
+        if (fullData[type.id].mainContentNo > fullData[type.id].contentMax - contentSize) {
             $('#next' + type.id).remove()
         }
         _processMain(type)
-        if (fullData[type.id].contentNo != 0) {
+        if (fullData[type.id].mainContentNo != 0) {
             if (!$("#prev" + type.id).html()) {
                 $("#" + type.id + "Content").prepend('<span id="prev' + type.id + '" onclick="mainPrevContent(' + type.id + ')"><</span>')
             }
@@ -181,17 +184,17 @@ function mainNextContent(type) {
 }
 
 function mainPrevContent(type) {
-    if (fullData[type.id].contentNo != 0) {
-        fullData[type.id].contentNo -= contentSize
-        if (fullData[type.id].contentNo < 0) {
-            fullData[type.id].contentNo = 0
+    if (fullData[type.id].mainContentNo != 0) {
+        fullData[type.id].mainContentNo -= contentSize
+        if (fullData[type.id].mainContentNo < 0) {
+            fullData[type.id].mainContentNo = 0
         }
         _processMain(type)
-        if (fullData[type.id].contentNo <= 0) {
+        if (fullData[type.id].mainContentNo <= 0) {
             $('#prev' + type.id).remove()
         }
 
-        if (fullData[type.id].contentNo != fullData[type.id].contentMax - contentSize) {
+        if (fullData[type.id].mainContentNo != fullData[type.id].contentMax - contentSize) {
             if (!$("#next" + type.id).html()) {
                 $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='mainNextContent(" + type.id + ")'>></span>")
             }
@@ -253,6 +256,18 @@ $(window).resize(function() {
     _resize()
 });
 $(document).ready(function() {
+    $(window).on("contextmenu", function(e) {
+        return false;
+    });
+    $(window).bind('cut copy paste', function(e) {
+        e.preventDefault();
+    });
+    document.onkeypress = function(event) {
+        event = (event || window.event);
+        if (event.keyCode == 17 || event.keyCode == 16 || event.keyCode == 73 || event.keyCode == 123) {
+            return false;
+        }
+    }
     $('ul.nav li').click(function(event) {
         if ($(".navbar-toggleable-xs.collapse ").hasClass('in')) {
             $('.navbar-toggler').click();
@@ -305,6 +320,8 @@ $.ajaxSetup({
 $(document).ajaxStop(function() {
     if (mode == "food" || mode == "travel") {
         _getData(mode, _GET["page"]);
+    } else if (mode == "map") {
+        _loadMap();
     } else {
         mainpage();
     }
@@ -324,6 +341,7 @@ function _GETURL() {
 }
 window.onpopstate = function() {
     if (event.state) {
+        console.log(event.state.response)
         $('.container-fluid').html(event.state.response);
         scrolltop();
     }
@@ -342,6 +360,17 @@ function initMap(lati, long) {
         position: uluru,
         map: map
     });
+}
+
+function _loadMap() {
+
+    var str = '<div style="position:fixed;width:100%;height:100%;border-width:0;margin:0 -15px;margin-top: -54px;padding-top: 54px;"><iframe src="./map.html" style="width:100%;height:100%;border-width:0;"></iframe></div>';
+    $('.container-fluid').html(str);
+    if (history.state && history.state.url != "?map") {
+        history.pushState({ response: $('.container-fluid').html(), url: "?map" }, "地圖", "?map");
+    } else {
+        history.replaceState({ response: $('.container-fluid').html(), url: "?map" }, "地圖", "?map");
+    }
 }
 
 function _getFullData() {
@@ -368,12 +397,10 @@ function _getFullData() {
 }
 
 function _resetDataLayout() {
-    $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
+    $(".container-fluid").html('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
 }
 
 function _resetMainLayout() {
-    $("#body").remove();
-    $(".container-fluid").append('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>遊悠樂</p><span>您旅遊的最佳好幫手<br>讓您出遊悠哉又快樂</div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
+    $(".container-fluid").html('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>遊悠樂</p><span>您旅遊的最佳好幫手<br>讓您出遊悠哉又快樂</div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
     _changecontentSize();
 }
