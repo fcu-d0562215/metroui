@@ -68,7 +68,9 @@ function _getData(type, page) {
     if (tmp = fullData[type].content[Object.keys(fullData[type].content)[page]]) {
         if (_processData(tmp)) {
             scrolltop();
-
+            // if (Object.keys(tmp).length > 0) {
+            //     $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+            // }
             if (history.state && history.state.url != "?" + type + "&page=" + page) {
                 history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, tmp.title, "?" + type + "&page=" + page);
             } else {
@@ -142,7 +144,7 @@ function _writeMain(index, el) {
             var title = source.title;
             var cover = source.cover;
             var paragraph = source.paragraph;
-            var str = "_getData('" + index + "','" + el.contentNo + "')"
+            var str = "_getData('" + index + "','" + i + "')"
             var string = '<div style="cursor:pointer;" class="mycard col-xs-12 col-sm-6 col-md-3 col-lg-2 col-xl-2" onclick="' + str + '"><p style="cursor:pointer;" class="mycard_title">' + title + '</p><img style="cursor:pointer;" src="' + cover + '" alt=""><p style="cursor:pointer;" class="content">' + paragraph + '</p><a style="cursor:pointer;" class="moreInfo" href onclick="event.preventDefault();">More info ...</a></div>'
             $('#' + index).append(string);
         }
