@@ -11,11 +11,27 @@
       #map {
         height: 100%;
       }
+      .container-fluid{
+          padding: 0;
+          margin: 0;
+          height: 100px;
+      }
+      @media screen and (min-width:700px){
+          .container-fluid{
+              padding: 0;
+              margin: 0;
+              height: 200px;
+          }
+      }
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
+
+      /*#mapImg{
+        height: 100%;
+      }*/
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_gPWP0aCOVigpdrPwK6uqNrQjtgWsaQk"></script>
   </head>
@@ -38,25 +54,26 @@
 
         function addMarker(content) {
           var marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
             position: new google.maps.LatLng(content.lat, content.long),
             map: map
           });
-          var contentString = '<div id="mapTitle">'
+          var contentString = '<div class="container-fluid" style="text-align:center"><div style="height:100%">'
             if(content.title)
-               contentString += '<span style="text-align:center;">'+content.title+'</span>'
-            contentString += '<div id="bodyContent">'
+               contentString += '<span id="mapTitle">'+content.title+'</span>'
+            contentString += '<div class="col-xs-12" style="padding:0;height:100%">'
             if(content.cover)
-               contentString += '<div id="mapImg" class="col-xs-6"><img src="'+content.cover+'"style="width:100%;"></div>'
-            contentString += '<div id="mapContent" class="col-xs-6">'
+               contentString += '<div class="col-xs-3 col-md-5" style="padding:0;height:100%"><div style="width:100%;height:100%;" ><img src="'+content.cover+'" width="100%" height="100%" /></div></div>'
+            contentString += '<div id="mapContent" class="col-xs-9 col-md-7" style="text-align:left;overflow-y:scroll;height:100%">'
            if(content.details["Working Hours"])
-                contentString += '<span>上班時間 :'+content.details["Working Hours"]+'</span>'
+                contentString += '<span>上班時間 :'+content.details["Working Hours"]+'</span><br>'
            if(content.details["Contact"])
-                contentString += '<span>聯絡電話 :'+content.details.Contact+'</span>'
+                contentString += '<span>聯絡電話 :'+content.details.Contact+'</span><br>'
             if(content.details.Address)
-               contentString += '<span>地址 :'+content.details.Address+'</span>'
+               contentString += '<span>地址 :'+content.details.Address+'</span><br>'
             if(content.details.Website)
                contentString += '<span>Facebook: '+content.details.Website+'</span>'
-            contentString += '</div>'
+            contentString += '</div></div></div></div>'
            var infowindow = new google.maps.InfoWindow({
               content: contentString
             });
