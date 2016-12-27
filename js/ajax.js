@@ -83,7 +83,17 @@ function _getData(type, page) {
     }
 }
 
-
+function _search(){
+    _getData('food',10);
+    var data = {};
+    $.each(fullData, function(index, val) {
+        $.extend(true, data, val.content);
+    });
+    $.each(data, function(index, val) {
+         console.log(index);
+    });
+    
+}
 function nextpage() {
     if (pageNo != pageMax) {
         pageNo += 1;

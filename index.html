@@ -21,7 +21,7 @@
     <nav class="navbar navbar-dark bg-inverse navbar-fixed-top">
         <button class="navbar-toggler hidden-sm-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="/**/"></button>
         <a class="navbar-brand" href onclick="mainpage(); event.preventDefault();">首頁</a>
-        <div style="clear:both" class="collapse navbar-toggleable-xs" id="navbarResponsive">
+        <div class="collapse navbar-toggleable-xs" id="navbarResponsive">
             <ul class="nav navbar-nav">
                 <li class="nav-item" onclick='_loadMap();'><a class="nav-link">地圖<span class="sr-only">(current)</span></a></li>
                 <!-- <li style="top:54px;" class="nav-item" onclick='_getData("food",0);'><a class="nav-link">食物<span class="sr-only">(current)</span></a></li> -->
@@ -31,7 +31,7 @@
                     <!-- <div class="dropdown-menu"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a></div> -->
                 <!-- </li> -->
             </ul>
-            <form class="form-inline col-xs-12 col-sm-5 col-md-4 col-lg-3 float-sm-right" style="padding:0">
+            <form class="form-inline col-xs-12 col-sm-5 col-md-4 col-lg-3 float-sm-right" style="padding:0" onsubmit="_search();return false;">
                 <input class="form-control" placeholder="Search" style="width:75%;float:left">
                 <button class="btn btn-outline-success" type="submit" style="width:25%">搜索</button>
             </form>

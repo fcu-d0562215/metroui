@@ -11,38 +11,37 @@
         -webkit-touch-callout: none;
         cursor: default;
     }
-
+    
     progress::-webkit-progress-value {
         height: 1px;
         background: #2187e7;
         box-shadow: 0px 0px 5px 2px rgba(0, 198, 255, 0.7);
         transition: all 1s ease;
     }
-
+    
     progress[value]::-webkit-progress-bar {
         background: linear-gradient( to right, black 0%, black 100%);
     }
-
+    
     .nav-item>a,
     .navbar-brand,
     .dropdown-menu>a {
         cursor: pointer;
     }
-
+    
     * {
         font-size: 15px;
     }
-
+    
     #body {
         text-align: center;
-
     }
-
+    
     #map {
         height: 200px;
         width: 100%;
     }
-
+    
     #frame {
         background: #c26b2d;
         background-image: url("../img/frame.jpg");
@@ -53,9 +52,8 @@
         height: 200px;
         text-align: center;
         border-radius: 20px;
-
     }
-
+    
     #frame>p {
         font-size: 30px;
         position: absolute;
@@ -67,7 +65,7 @@
         margin: auto;
         color: rgb(9, 13, 56);
     }
-
+    
     #frame>span {
         font-size: 15px;
         position: absolute;
@@ -79,30 +77,32 @@
         margin: auto;
         color: rgb(9, 13, 56);
     }
-
+    
     #body>#DataBody>div:first-child {
         height: 20%;
     }
-
+    
     #body>#DataBody>div:nth-of-type(4) {
         margin: 25px 0 25px 0;
     }
-
+    
     #body>#DataBody>div:nth-of-type(4)>div>div {
         border: 3px solid rgba(41, 62, 52, 0.8);
         background-color: rgba(159, 200, 246, 0.9);
         border-radius: 20px;
         color: rgb(0, 0, 0);
-/*        font-size: 160%;*/
+        /*        font-size: 160%;*/
     }
-    #DataBody{
+    
+    #DataBody {
         padding: 0 4%;
     }
-    #MainBody{
+    
+    #MainBody {
         padding-top: 20px;
     }
-
-    #nextpagebutton{
+    
+    #nextpagebutton {
         position: fixed;
         top: 0;
         bottom: 0;
@@ -114,16 +114,16 @@
         margin: auto;
         color: rgb(38, 158, 115);
     }
-
-    #nextpagebutton:hover{
+    
+    #nextpagebutton:hover {
         background-image: url(../img/arrow_right_hover.png);
     }
-
-    #prevpagebutton:hover{
+    
+    #prevpagebutton:hover {
         background-image: url(../img/arrow_left_hover.png);
     }
-
-    #prevpagebutton{
+    
+    #prevpagebutton {
         position: fixed;
         top: 0;
         bottom: 0;
@@ -135,405 +135,415 @@
         background-image: url(../img/arrow_left.png);
         color: rgb(38, 158, 115);
     }
-
-    #prevpagebutton:hover,#nextpagebutton:hover{
+    
+    #prevpagebutton:hover,
+    #nextpagebutton:hover {
         color: rgb(57, 244, 244);
         cursor: pointer;
     }
-
-
     /*  temp html */
+    
+    .container-fluid {
+        margin-top: 54px;
+    }
+    
+    .calouse_Content {
+        padding: 30px 50px;
+    }
+    
+    .mycard {
+        width: 90%;
+        margin: 0 5%;
+    }
+    
+    #title {
+        color: rgb(1, 31, 43);
+        font-size: 160%;
+    }
+    
+    #paragraph {
+        color: rgb(1, 31, 43);
+        font-size: 150%;
+    }
+    
+    #mapTitle {
+        font-size: 18px;
+    }
+    
+    #mapContent>span {
+        font-weight: bolder;
+        font-size: 50%;
+    }
+    
+    #mapImg>img {
+        height: 100px;
+    }
+    
+    @media screen and (max-width:767px) {
+        .col-md-hide {
+            padding: 0;
+        }
+    }
+    
+    .navbar-toggleable-xs {
+        clear: both;
+    }
+    
+    @media screen and (min-width:576px) {
+        .navbar-toggleable-xs {
+            clear: none;
+        }
+        .mycard {
+            width: 40%;
+            margin: 0 5%;
+        }
         .container-fluid {
             margin-top: 54px;
         }
-
-        .calouse_Content{
-                padding:30px 50px;
+        #details>span {
+            font-size: 100%;
+            font-weight: bolder;
         }
-
-        .mycard
-        {
-           width: 90%;
-           margin: 0 5%;
+        #details>span>a {
+            font-size: 150%;
+            font-weight: bolder;
         }
-        #title{
-            color:rgb(1, 31, 43);
+        #title {
+            font-size: 190%;
+        }
+        #paragraph {
             font-size: 160%;
         }
-        #paragraph{
-            color:rgb(1, 31, 43);
-            font-size:150%;
-        }
-        #mapTitle{
-            font-size: 18px;
-        }
-        #mapContent>span{
+        #mapContent>span {
+            font-size: 110%;
             font-weight: bolder;
-            font-size: 50%;
         }
-        #mapImg>img{
-            height: 100px;
+        #mapImg>img {
+            height: 200px;
         }
-
-        @media screen and (max-width:767px){
-            .col-md-hide{
-                padding: 0;
-            }
+        #frame {
+            height: 300px;
+            text-align: center;
+            border-radius: 20px;
         }
-
-
-        @media screen and (min-width:576px) {
-            .mycard
-            {
-               width: 40%;
-               margin: 0 5%;
-            }
-            .container-fluid {
-                margin-top: 54px;
-            }
-            #details>span{
-                font-size: 100%;
-                font-weight: bolder;
-            }
-            #details>span>a{
-                font-size: 150%;
-                font-weight: bolder;
-            }
-            #title{
-                font-size: 190%;
-            }
-            #paragraph{
-                font-size:160%;
-            }
-            #mapContent>span{
-                font-size: 110%;
-                font-weight: bolder;
-            }
-            #mapImg>img{
-                height: 200px;
-
-            }
-            #frame {
-                height: 300px;
-                text-align: center;
-                border-radius: 20px;
-
-            }
-
-            #frame>p {
-                font-size: 60px;
-                position: absolute;
-                top: 0;
-                bottom: 110px;
-                left: 20%;
-                right: 0px;
-                height: 50px;
-                margin: auto;
-                color: rgb(9, 13, 56);
-            }
-
-            #frame>span {
-                font-size: 22px;
-                position: absolute;
-                top: 80px;
-                bottom: 0px;
-                left: 45%;
-                right: 0;
-                height: 50px;
-                margin: auto;
-                color: rgb(9, 13, 56);
-            }
-            #mapTitle{
-                font-size: 23px;
-            }
+        #frame>p {
+            font-size: 60px;
+            position: absolute;
+            top: 0;
+            bottom: 110px;
+            left: 20%;
+            right: 0px;
+            height: 50px;
+            margin: auto;
+            color: rgb(9, 13, 56);
         }
-
-
-
-        @media screen and (min-width:768px) {
-            .mycard
-            {
-                width: 28%;
-                 margin: 0 2.66%;
-            }
-            .container-fluid {
-                margin-top: 54px;
-            }
-            #details>span{
-                font-size: 85%;
-                font-weight: bolder;
-            }
-            #details>span>a{
-                font-size: 100%;
-                font-weight: bolder;
-            }
-            #title{
-                font-size: 210%;
-            }
-            #paragraph{
-                font-size:180%;
-            }
-            #mapContent>span{
-                font-size: 140%;
-                font-weight: bolder;
-            }
-            #mapImg>img{
-                height: 200px;
-            }
-            #mapTitle{
-                font-size: 30px;
-            }
+        #frame>span {
+            font-size: 22px;
+            position: absolute;
+            top: 80px;
+            bottom: 0px;
+            left: 45%;
+            right: 0;
+            height: 50px;
+            margin: auto;
+            color: rgb(9, 13, 56);
         }
-
-        @media screen and (min-width:850px){
-            #details>span{
-                font-size: 80%;
-                font-weight: bolder;
-            }
-            #details>span>a{
-                font-size: 110%;
-                font-weight: bolder;
-            }
+        #mapTitle {
+            font-size: 23px;
         }
-
-        @media screen and (min-width:992px) {
-            .mycard
-            {
-                width: 20%;
-                margin: 0 2.5%;
-            }
-            .container-fluid {
-                margin-top: 54px;
-            }
-            #details>span{
-                font-size: 75%;
-                font-weight: bolder;
-            }
-            #details>span>a{
-                font-size: 130%;
-                font-weight: bolder;
-            }
-            #mapContent>span{
-                font-size: 150%;
-                font-weight: bolder;
-            }
-            #mapImg>img{
-                height: 250px;
-            }
-
-            #frame {
-                height: 350px;
-            }
-
-            #frame>p {
-                font-size: 80px;
-                position: absolute;
-                top: 0;
-                bottom: 150px;
-                left: 20%;
-                right: 0px;
-                height: 50px;
-                margin: auto;
-                color: rgb(9, 13, 56);
-            }
-            #frame>span {
-                font-size: 35px;
-                position: absolute;
-                top: 90px;
-                bottom: 0px;
-                left: 50%;
-                right: 0;
-                height: 50px;
-                margin: auto;
-                color: rgb(9, 13, 56);
-            }
-            #mapTitle{
-                font-size: 30px;
-            }
+    }
+    
+    @media screen and (min-width:768px) {
+        .mycard {
+            width: 28%;
+            margin: 0 2.66%;
         }
-
-        @media screen and (min-width:1200px) {
-            .mycard {
+        .container-fluid {
+            margin-top: 54px;
+        }
+        #details>span {
+            font-size: 85%;
+            font-weight: bolder;
+        }
+        #details>span>a {
+            font-size: 100%;
+            font-weight: bolder;
+        }
+        #title {
+            font-size: 210%;
+        }
+        #paragraph {
+            font-size: 180%;
+        }
+        #mapContent>span {
+            font-size: 140%;
+            font-weight: bolder;
+        }
+        #mapImg>img {
+            height: 200px;
+        }
+        #mapTitle {
+            font-size: 30px;
+        }
+    }
+    
+    @media screen and (min-width:850px) {
+        #details>span {
+            font-size: 80%;
+            font-weight: bolder;
+        }
+        #details>span>a {
+            font-size: 110%;
+            font-weight: bolder;
+        }
+    }
+    
+    @media screen and (min-width:992px) {
+        .mycard {
+            width: 20%;
+            margin: 0 2.5%;
+        }
+        .container-fluid {
+            margin-top: 54px;
+        }
+        #details>span {
+            font-size: 75%;
+            font-weight: bolder;
+        }
+        #details>span>a {
+            font-size: 130%;
+            font-weight: bolder;
+        }
+        #mapContent>span {
+            font-size: 150%;
+            font-weight: bolder;
+        }
+        #mapImg>img {
+            height: 250px;
+        }
+        #frame {
+            height: 350px;
+        }
+        #frame>p {
+            font-size: 80px;
+            position: absolute;
+            top: 0;
+            bottom: 150px;
+            left: 20%;
+            right: 0px;
+            height: 50px;
+            margin: auto;
+            color: rgb(9, 13, 56);
+        }
+        #frame>span {
+            font-size: 35px;
+            position: absolute;
+            top: 90px;
+            bottom: 0px;
+            left: 50%;
+            right: 0;
+            height: 50px;
+            margin: auto;
+            color: rgb(9, 13, 56);
+        }
+        #mapTitle {
+            font-size: 30px;
+        }
+    }
+    
+    @media screen and (min-width:1200px) {
+        .mycard {
             width: 16%;
             margin: 0 2%;
-            }
-            .container-fluid {
-                margin-top: 54px;
-            }
-            #details>span{
-                font-size: 110%;
-                font-weight: bolder;
-            }
-            #frame {
-                height: 450px;
-            }
-
-            #frame>p {
-                font-size: 92px;
-                position: absolute;
-                top: 0;
-                bottom: 200px;
-                left: 30%;
-                right: 0;
-                height: 50px;
-                margin: auto;
-                color: rgb(9, 13, 56);
-            }
-            #frame>span {
-                font-size: 40px;
-                position: absolute;
-                top: 90px;
-                bottom: 0px;
-                left: 50%;
-                right: 0;
-                height: 50px;
-                margin: auto;
-                color: rgb(9, 13, 56);
-            }
-            #mapTitle{
-                font-size: 40px;
-            }
         }
-
-        body{
-/*            background-image: url("..\\img\\background.jpg");*/
-            background-repeat: repeat-x;
-            /*background-size: 100% 100%;*/
-            background-position: center;
-            background-color: lightgray;
+        .container-fluid {
+            margin-top: 54px;
         }
-
-        .moreInfo{
-            display: block;
-            margin-top: 50px;
-            text-decoration: underline;
+        #details>span {
+            font-size: 110%;
+            font-weight: bolder;
         }
-
-        a{
-            text-align: left;
-            color: rgb(18, 31, 62);
+        #frame {
+            height: 450px;
         }
-        a:hover{
-            color:rgb(69, 96, 163);
-            cursor: pointer;
-        }
-
-
-
-        .calouse {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border-radius: 20px;
-            color: rgb(10, 102, 148);
-        }
-        #calouse_Header{
-            font-size: 25px;
-        }
-        .calouse_Content {
-            border: 1px solid  gray;
-            background-color: #103051;
-            border-radius: 20px;
-            align-content: center;
-            font-size: 15px;
-            height: 370px;
-            overflow: hidden;
-        }
-
-        .calouse_Content img {
-            border-radius: 10px;
-            background-color: white;
-        }
-
-        .calouse_Content button {
-            border-radius: 10px;
-            font-size: 10px;
+        #frame>p {
+            font-size: 92px;
             position: absolute;
+            top: 0;
+            bottom: 200px;
+            left: 30%;
             right: 0;
-            bottom: 0;
+            height: 50px;
+            margin: auto;
+            color: rgb(9, 13, 56);
         }
-
-        .calouse_Content button:focus {
-            outline: none;
+        #frame>span {
+            font-size: 40px;
+            position: absolute;
+            top: 90px;
+            bottom: 0px;
+            left: 50%;
+            right: 0;
+            height: 50px;
+            margin: auto;
+            color: rgb(9, 13, 56);
         }
-
-        .mycard {
-            background-color: gray;
-            border-radius: 20px;
-            padding-top: 10px;
-            height: 300px;
-            color: white;
+        #mapTitle {
+            font-size: 40px;
         }
-
-        .mycard_title {
-            height: 20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .content {
-            display: block;
-            display: -webkit-box;
-            color: white;
-            max-width: 400px;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        #food>div>img , #travel>div>img {
-            width: 100%;
-            height: 35%;
-        }
-        /*#foodContent{
+    }
+    
+    body {
+        /*            background-image: url("..\\img\\background.jpg");*/
+        background-repeat: repeat-x;
+        /*background-size: 100% 100%;*/
+        background-position: center;
+        background-color: lightgray;
+    }
+    
+    .moreInfo {
+        display: block;
+        margin-top: 50px;
+        text-decoration: underline;
+    }
+    
+    a {
+        text-align: left;
+        color: rgb(18, 31, 62);
+    }
+    
+    a:hover {
+        color: rgb(69, 96, 163);
+        cursor: pointer;
+    }
+    
+    .calouse {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        color: rgb(10, 102, 148);
+    }
+    
+    #calouse_Header {
+        font-size: 25px;
+    }
+    
+    .calouse_Content {
+        border: 1px solid gray;
+        background-color: #103051;
+        border-radius: 20px;
+        align-content: center;
+        font-size: 15px;
+        height: 370px;
+        overflow: hidden;
+    }
+    
+    .calouse_Content img {
+        border-radius: 10px;
+        background-color: white;
+    }
+    
+    .calouse_Content button {
+        border-radius: 10px;
+        font-size: 10px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    
+    .calouse_Content button:focus {
+        outline: none;
+    }
+    
+    .mycard {
+        background-color: gray;
+        border-radius: 20px;
+        padding-top: 10px;
+        height: 300px;
+        color: white;
+    }
+    
+    .mycard_title {
+        height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .content {
+        display: block;
+        display: -webkit-box;
+        color: white;
+        max-width: 400px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    #food>div>img,
+    #travel>div>img {
+        width: 100%;
+        height: 35%;
+    }
+    /*#foodContent{
             padding: 0px;
         }*/
-        #food,#travel{
-            position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 300px;
-            margin: auto;
-            overflow-x: hidden;
-            overflow-y: hidden;
-        }
-        #prevfood,#nextfood,#prevtravel,#nexttravel{
-            z-index: 100;
-            color: white;
-            position: absolute;
-            top : 0;
-            bottom: 0;
-            margin: auto;
-            height: 20px;
-            align-content: center;
-            padding: 0px;
-            text-align: center;
-            font-size: 20px;
-            color: rgb(38, 106, 175);
-            background-color: rgba(85, 85, 85, 0);
-            border-width: 0px;
-            border-color: rgba(112, 139, 175, 0);
-            border-radius: 99px;
-        }
-        #prevfood:hover,#nextfood:hover,#prevtravel:hover,#nexttravel:hover{
-            color: white;
-            cursor: pointer;
-        }
-        #prevfood,#prevtravel{
-            text-align: right;
-            left: 1%;
-        }
-        #nextfood,#nexttravel{
-            text-align: left;
-            right: 1%;
-        }
-
-
-
-
-        /* temp.html css end*/
+    
+    #food,
+    #travel {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        margin: auto;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    
+    #prevfood,
+    #nextfood,
+    #prevtravel,
+    #nexttravel {
+        z-index: 100;
+        color: white;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 20px;
+        align-content: center;
+        padding: 0px;
+        text-align: center;
+        font-size: 20px;
+        color: rgb(38, 106, 175);
+        background-color: rgba(85, 85, 85, 0);
+        border-width: 0px;
+        border-color: rgba(112, 139, 175, 0);
+        border-radius: 99px;
+    }
+    
+    #prevfood:hover,
+    #nextfood:hover,
+    #prevtravel:hover,
+    #nexttravel:hover {
+        color: white;
+        cursor: pointer;
+    }
+    
+    #prevfood,
+    #prevtravel {
+        text-align: right;
+        left: 1%;
+    }
+    
+    #nextfood,
+    #nexttravel {
+        text-align: left;
+        right: 1%;
+    }
+    /* temp.html css end*/
     /*[class*="col-"]:nth-of-type(6n+1) {
     background-color: red;
 }
