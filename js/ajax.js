@@ -308,6 +308,8 @@ $.ajaxSetup({
 $(document).ajaxStop(function() {
     if (mode == "food" || mode == "travel") {
         _getData(mode, _GET["page"]);
+    } else if (mode == "map") {
+        _loadMap();
     } else {
         mainpage();
     }
@@ -327,6 +329,7 @@ function _GETURL() {
 }
 window.onpopstate = function() {
     if (event.state) {
+        console.log(event.state.response)
         $('.container-fluid').html(event.state.response);
         scrolltop();
     }
@@ -345,6 +348,17 @@ function initMap(lati, long) {
         position: uluru,
         map: map
     });
+}
+
+function _loadMap() {
+
+    var str = '<div style="position:fixed;width:100%;height:100%;border-width:0;margin:0 -15px;margin-top: -54px;padding-top: 54px;"><iframe src="./map.html" style="width:100%;height:100%;border-width:0;"></iframe></div>';
+    $('.container-fluid').html(str);
+    if (history.state && history.state.url != "?map") {
+        history.pushState({ response: $('.container-fluid').html(), url: "?map"}, "地圖", "?map");
+    } else {
+        history.replaceState({ response: $('.container-fluid').html(), url: "?map"}, "地圖", "?map");
+    }
 }
 
 function _getFullData() {
@@ -371,12 +385,10 @@ function _getFullData() {
 }
 
 function _resetDataLayout() {
-    $("#body").remove();
-    $(".container-fluid").append('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
+    $(".container-fluid").html('<div id="body"><div id="DataBody"><div class="row"><img id="cover" src="" width="100%" height="100%"></div><div class="row" style="padding-top:20px;padding-bottom:20px; "><span id="title" style="border-bottom:3px solid;"></span></div><div class="row"><h2 id="paragraph" ></h2></div><div class="row"><div id="_content" style="margin-bottom:15px" ></div></div></div></div>')
 }
 
 function _resetMainLayout() {
-    $("#body").remove();
-    $(".container-fluid").append('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>遊悠樂</p><span>您旅遊的最佳好幫手<br>讓您出遊悠哉又快樂</div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
+    $(".container-fluid").html('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>遊悠樂</p><span>您旅遊的最佳好幫手<br>讓您出遊悠哉又快樂</div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
     _changecontentSize();
 }
