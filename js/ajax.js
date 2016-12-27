@@ -79,39 +79,39 @@ function _getData(type, page) {
 }
 
 
-// function nextpage() {
-//     if (pageNo != pageMax) {
-//         pageNo += 1
-//         _processData(pageContent[Object.keys(pageContent)[pageNo]])
-//         if (pageNo < pageMax) {
-//             if (!$("#nextpagebutton").html()) {
-//                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-//             }
-//         } else {
-//             $("#nextpagebutton").remove()
-//         }
-//         if (pageNo > 0 && !$("#prevpagebutton").html()) {
-//             $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
-//         }
-//     }
-// }
+function nextpage(type) {
+    if (pageNo != pageMax) {
+        pageNo += 1
+        _processData(fullData[type][Object.keys(fullData[type])[pageNo]])
+        if (pageNo < pageMax) {
+            if (!$("#nextpagebutton").html()) {
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+            }
+        } else {
+            $("#nextpagebutton").remove()
+        }
+        if (pageNo > 0 && !$("#prevpagebutton").html()) {
+            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+        }
+    }
+}
 
-// function previouspage() {
-//     if (pageNo != 0) {
-//         pageNo -= 1
-//         _processData(pageContent[Object.keys(pageContent)[pageNo]])
-//         if (pageNo > 0) {
-//             if (!$("#prevpagebutton").html()) {
-//                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
-//             }
-//         } else {
-//             $("#prevpagebutton").remove()
-//         }
-//         if (pageNo < pageMax && !$("#nextpagebutton").html()) {
-//             $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-//         }
-//     }
-// }
+function previouspage(type) {
+    if (pageNo != 0) {
+        pageNo -= 1
+        _processData(fullData[type][Object.keys(fullData[type])[pageNo]])
+        if (pageNo > 0) {
+            if (!$("#prevpagebutton").html()) {
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+            }
+        } else {
+            $("#prevpagebutton").remove()
+        }
+        if (pageNo < pageMax && !$("#nextpagebutton").html()) {
+            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+        }
+    }
+}
 
 
 function mainpage() {
@@ -213,15 +213,15 @@ function mainSwipeEnd(type) {
     }
 }
 
-// $("#bitch").ready(function() {
-//     window.onkeyup = function(e) {
-//         if (e.keyIdentifier == "Right" || e.keyCode == 39) {
-//             nextpage();
-//         } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
-//             previouspage();
-//         }
-//     }
-// })
+$("#DataBody").ready(function() {
+    window.onkeyup = function(e) {
+        if (e.keyIdentifier == "Right" || e.keyCode == 39) {
+            nextpage("food");
+        } else if (e.keyIdentifier == "Left" || e.keyCode == 37) {
+            previouspage("food");
+        }
+    }
+})
 
 function _resize() {
     _changecontentSize();
@@ -372,6 +372,6 @@ function _resetDataLayout() {
 
 function _resetMainLayout() {
     $("#body").remove();
-    $(".container-fluid").append('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>ROAD TO FUTURE</p></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
+    $(".container-fluid").append('<div class="row" id="body"><div id="MainBody"><div class="col-xs-12"><div id="frame" class="col-xs-12"><p>遊悠樂</p><span>您旅遊的最佳好幫手<br>讓您出遊悠哉又快樂</div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Food</a><div class="col-xs-12" style="padding:0"><div id="foodContent" class="calouse_Content"  ><div id="food" class="col-xs-12" ontouchstart="mainSwipeStart(food)" ontouchend="mainSwipeEnd(food)"></div><span id="nextfood" onclick="mainNextContent(food)">></span></div></div></div><div class="calouse col-xs-12"><a id="calouse_Header" href="">Travel</a><div id="travelContent" class="calouse_Content col-xs-12" ><div id="travel" class="col-xs-12" ontouchstart="mainSwipeStart(travel)" ontouchend="mainSwipeEnd(travel)" ></div><span id="nexttravel" onclick="mainNextContent(travel)">></span></div></div></div></div>');
     _changecontentSize();
 }
