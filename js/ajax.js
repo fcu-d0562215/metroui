@@ -1,28 +1,26 @@
 var URL;
 var mode;
 var _GET = [];
-_GETURL();
 var pageNo = 0;
 var pageMax = 0;
 var contentSize = 0;
-var types;
 var swipestart;
 var fullData = {
     "food": {
         "url": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/food.json",
-        "contentNo": 0,
+        "mainContentNo": 0,
         "contentMax": 0,
         "content": {}
     },
     "travel": {
         "url": "https://raw.githubusercontent.com/fcu-d0562215/wp-project/master/travel.json",
-        "contentNo": 0,
+        "mainContentNo": 0,
         "contentMax": 0,
         "content": {}
     }
 
 }
-
+_GETURL();
 
 
 
@@ -67,10 +65,15 @@ function _getData(type, page) {
 
     if (tmp = fullData[type].content[Object.keys(fullData[type].content)[page]]) {
         if (_processData(tmp)) {
+            pageNo = page * 1;
+            pageMax = fullData[type].contentMax;
             scrolltop();
-            // if (Object.keys(tmp).length > 0) {
-            //     $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
-            // }
+            if (pageNo < Object.keys(tmp).length) {
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''>>></span>")
+            }
+            if (pageNo > 0) {
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+            }
             if (history.state && history.state.url != "?" + type + "&page=" + page) {
                 history.pushState({ response: $('.container-fluid').html(), type: type, page: page, url: "?" + type + "&page=" + page }, tmp.title, "?" + type + "&page=" + page);
             } else {
@@ -81,39 +84,39 @@ function _getData(type, page) {
 }
 
 
-// function nextpage() {
-//     if (pageNo != pageMax) {
-//         pageNo += 1
-//         _processData(pageContent[Object.keys(pageContent)[pageNo]])
-//         if (pageNo < pageMax) {
-//             if (!$("#nextpagebutton").html()) {
-//                 $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-//             }
-//         } else {
-//             $("#nextpagebutton").remove()
-//         }
-//         if (pageNo > 0 && !$("#prevpagebutton").html()) {
-//             $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
-//         }
-//     }
-// }
+function nextpage() {
+    if (pageNo != pageMax) {
+        pageNo += 1;
+        _getData(mode, pageNo)
+        if (pageNo < pageMax) {
+            if (!$("#nextpagebutton").html()) {
+                $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+            }
+        } else {
+            $("#nextpagebutton").remove()
+        }
+        if (pageNo > 0 && !$("#prevpagebutton").html()) {
+            $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+        }
+    }
+}
 
-// function previouspage() {
-//     if (pageNo != 0) {
-//         pageNo -= 1
-//         _processData(pageContent[Object.keys(pageContent)[pageNo]])
-//         if (pageNo > 0) {
-//             if (!$("#prevpagebutton").html()) {
-//                 $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
-//             }
-//         } else {
-//             $("#prevpagebutton").remove()
-//         }
-//         if (pageNo < pageMax && !$("#nextpagebutton").html()) {
-//             $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
-//         }
-//     }
-// }
+function previouspage() {
+    if (pageNo != 0) {
+        pageNo -= 1
+        _getData(mode, pageNo)
+        if (pageNo > 0) {
+            if (!$("#prevpagebutton").html()) {
+                $("#DataBody").prepend("<span id='prevpagebutton' onclick='previouspage()''></span>")
+            }
+        } else {
+            $("#prevpagebutton").remove()
+        }
+        if (pageNo < pageMax && !$("#nextpagebutton").html()) {
+            $("#DataBody").append("<span id='nextpagebutton' onclick='nextpage()''></span>")
+        }
+    }
+}
 
 
 function mainpage() {
@@ -138,7 +141,7 @@ function _processMain(type) {
 
 function _writeMain(index, el) {
     $('#' + index).html("")
-    for (i = el.contentNo; i < el.contentNo + contentSize; i++) {
+    for (i = el.mainContentNo; i < el.mainContentNo + contentSize; i++) {
         if (tmp = el.content[Object.keys(el.content)[i]]) {
             var source = tmp;
             var title = source.title;
@@ -149,14 +152,14 @@ function _writeMain(index, el) {
             $('#' + index).append(string);
         }
     }
-    if (el.contentNo + contentSize > el.contentMax) {
+    if (el.mainContentNo + contentSize > el.contentMax) {
         $('#next' + index).remove()
     } else {
         if (!$("#next" + index).html()) {
             $('#' + index + 'Content').append("<span id='next" + index + "' onclick='mainNextContent(" + index + ")'>></span>")
         }
     }
-    if (el.contentNo <= 0) {
+    if (el.mainContentNo <= 0) {
         $('#prev' + index).remove()
     } else {
         if (!$("#prev" + index).html()) {
@@ -166,13 +169,13 @@ function _writeMain(index, el) {
 }
 
 function mainNextContent(type) {
-    if (fullData[type.id].contentNo != fullData[type.id].contentMax && fullData[type.id].contentNo <= fullData[type.id].contentMax - contentSize) {
-        fullData[type.id].contentNo += contentSize
-        if (fullData[type.id].contentNo > fullData[type.id].contentMax - contentSize) {
+    if (fullData[type.id].mainContentNo != fullData[type.id].contentMax && fullData[type.id].mainContentNo <= fullData[type.id].contentMax - contentSize) {
+        fullData[type.id].mainContentNo += contentSize
+        if (fullData[type.id].mainContentNo > fullData[type.id].contentMax - contentSize) {
             $('#next' + type.id).remove()
         }
         _processMain(type)
-        if (fullData[type.id].contentNo != 0) {
+        if (fullData[type.id].mainContentNo != 0) {
             if (!$("#prev" + type.id).html()) {
                 $("#" + type.id + "Content").prepend('<span id="prev' + type.id + '" onclick="mainPrevContent(' + type.id + ')"><</span>')
             }
@@ -181,17 +184,17 @@ function mainNextContent(type) {
 }
 
 function mainPrevContent(type) {
-    if (fullData[type.id].contentNo != 0) {
-        fullData[type.id].contentNo -= contentSize
-        if (fullData[type.id].contentNo < 0) {
-            fullData[type.id].contentNo = 0
+    if (fullData[type.id].mainContentNo != 0) {
+        fullData[type.id].mainContentNo -= contentSize
+        if (fullData[type.id].mainContentNo < 0) {
+            fullData[type.id].mainContentNo = 0
         }
         _processMain(type)
-        if (fullData[type.id].contentNo <= 0) {
+        if (fullData[type.id].mainContentNo <= 0) {
             $('#prev' + type.id).remove()
         }
 
-        if (fullData[type.id].contentNo != fullData[type.id].contentMax - contentSize) {
+        if (fullData[type.id].mainContentNo != fullData[type.id].contentMax - contentSize) {
             if (!$("#next" + type.id).html()) {
                 $('#' + type.id + 'Content').append("<span id='next" + type.id + "' onclick='mainNextContent(" + type.id + ")'>></span>")
             }
