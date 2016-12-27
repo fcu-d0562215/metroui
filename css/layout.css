@@ -175,6 +175,13 @@
             height: 100px;
         }
 
+        @media screen and (max-width:767px){
+            .col-md-hide{
+                padding: 0;
+            }
+        }
+
+
         @media screen and (min-width:576px) {
             .mycard
             {

@@ -60,7 +60,7 @@
         "content": [
             {"picture": "./web網頁設計/Travel/Grass_enlightenment/草悟道1.jpg" },
             {"picture": "./web網頁設計/Travel/Grass_enlightenment/草悟道2.jpg" },
-            {"picture": "./web網頁設計/Travel/Grass_enlightenment/草悟道3.jpg" }
+            {"picture": "./web網頁設計/Travel/Grass_enlightenment/草悟道3.png" }
         ],
         "lat": 24.149448,
         "long": 120.665093,
@@ -136,7 +136,6 @@
         "long": 120.807677,
         "details": {
             "Name": "新社",
-            "Contact": "-",
             "Address": "426台中市新社區協興街30號",
             "Working Hours": "平日07:30 - 18:30",
             "Facebook": "<a href='https://www.facebook.com/%E6%96%B0%E7%A4%BE%E8%8A%B1%E6%B5%B7-268078366571179/?fref=ts'>Facebook</a>"

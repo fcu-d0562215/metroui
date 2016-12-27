@@ -50,12 +50,12 @@ function _processData(data) {
         for (var i = 0; i < Object.keys(data.details).length; i++) {
             _dataDetails += Object.keys(data.details)[i] + " : " + data.details[Object.keys(data.details)[i]] + "<br>"
         }
-        _content.before("<div class='col-md-4 col-lg-3 text-xs-left push-md-8 push-lg-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px;'><span>" + _dataDetails + "</span></div></div>");
+        _content.before("<div class='col-md-hide col-md-4 col-lg-3 text-xs-left push-md-8 push-lg-9' style='margin-bottom:15px;'><div id='details' style='padding:10px 5px;'><span>" + _dataDetails + "</span></div></div>");
     }
     _content = document.querySelector("#body>#DataBody>div:nth-of-type(4)")
     if (data.lat) {
-        _content.innerHTML += "<div class='col-md-4 col-lg-3 push-md-8 push-lg-9'><div style='padding: 0px 10px;'><p>地圖</p><p id='map' ></p></div></div>";
-        $("#body #_content").addClass("col-md-8 col-lg-9 float-md-right pull-md-4 pull-lg-3")
+        _content.innerHTML += "<div class='col-md-hide col-md-4 col-lg-3 push-md-8 push-lg-9'><div style='padding: 0px 10px;'><p>地圖</p><p id='map' ></p></div></div>";
+        $("#body #_content").addClass("col-md-hide col-md-8 col-lg-9 float-md-right pull-md-4 pull-lg-3")
         initMap(data.lat, data.long)
     }
     return _resize();
