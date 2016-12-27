@@ -87,6 +87,7 @@ function _getData(type, page) {
 function nextpage() {
     if (pageNo != pageMax) {
         pageNo += 1;
+        _GETURL();
         _getData(mode, pageNo)
         if (pageNo < pageMax) {
             if (!$("#nextpagebutton").html()) {
@@ -104,6 +105,7 @@ function nextpage() {
 function previouspage() {
     if (pageNo != 0) {
         pageNo -= 1
+        _GETURL();
         _getData(mode, pageNo)
         if (pageNo > 0) {
             if (!$("#prevpagebutton").html()) {
